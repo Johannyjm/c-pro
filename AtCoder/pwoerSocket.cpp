@@ -7,5 +7,14 @@ int main(){
 
     int a, b;
     cin >> a >> b;
-    cout << b / a + (b % a != 0) << endl;
+    int res = 0;
+    
+    for (int i = 1; i <= b; ++i){
+        int available = (i - 1) * (a - 1) + a;
+        if(available >= b){
+            res = i;
+            break;
+        }
+    }
+    cout << res << endl;
 }
