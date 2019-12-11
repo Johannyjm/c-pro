@@ -2,9 +2,9 @@
 using namespace std;
 
 int d(int n){
-    int res = 1;
+    int res = 0;
     while(n > 0){
-        n/10;
+        n/=10;
         res++;
     }
     return res;
@@ -17,7 +17,7 @@ int main() {
     cin >> n;
     int res = 0;
     for (int i = 1; i <= n; ++i){
-        if(n % 2 == 1)res++;
+        if(d(i) % 2 == 1)res++;
     }
-    cout << d(32654) << endl;
+    cout << res << endl;
 }
