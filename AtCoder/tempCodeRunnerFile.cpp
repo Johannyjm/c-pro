@@ -1,23 +1,15 @@
-#include <bits/stdc++.h>
-using namespace std;
+        // for(int j = 0; j < n; ++j){
 
-int d(int n){
-    int res = 1;
-    while(n > 0){
-        n/10;
-        res++;
-    }
-    return res;
-}
+        //     if(!honest[j])continue;
 
-int main() {
-    cin.tie(nullptr);
-    ios::sync_with_stdio(false);
-    int n;
-    cin >> n;
-    int res = 0;
-    for (int i = 1; i <= n; ++i){
-        if(n % 2 == 1)res++;
-    }
-    cout << d(32654) << endl;
-}
+        //     for (int k = 0; k < n; ++k) cout << honest[k];
+        //     cout << endl;
+
+        //     for(int k = 0; k < n; ++k){
+        //         cout << xy[j][k] << endl;
+        //         cout << honest[k] << endl;
+        //         cout << endl;
+        //         if(xy[j][k] ^ honest[k])flg = false;
+        //     }
+   
+        // }
