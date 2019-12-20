@@ -57,6 +57,11 @@ int main() {
     ll b = max(X, Y);
     ll MOD = 1e9 + 7;
 
+    if(X == 1 && Y == 1) {
+        cout << 0 << endl;
+        return 0;
+    }
+
     for (ll i = 0; i < min(X, Y); ++i){
         if(b == 2 * a) break;
         if(b > 2 * a){

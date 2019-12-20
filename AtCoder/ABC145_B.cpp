@@ -7,7 +7,7 @@ int main() {
     int n;
     string s;
     cin >> n >> s;
-    
+
     if(n % 2 == 1) {
         cout << "No" << endl;
         return 0;
@@ -18,6 +18,6 @@ int main() {
             return 0;
         }
     }
-    cout << "Yes" << endl;
+    cout << "Yes\n"
 
 }

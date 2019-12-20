@@ -11,8 +11,8 @@ int main() {
     cin >> s;
     for (int i = 0; i < n; ++i){
         if(i == k - 1) {
-            char c = s[i];
-            cout << c + 20;
+            char c = s[i] + 0x20;
+            cout << c;
         }
         else cout << s[i];
     }

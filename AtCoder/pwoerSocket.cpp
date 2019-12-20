@@ -8,6 +8,11 @@ int main(){
     int a, b;
     cin >> a >> b;
     int res = 0;
+
+    if(b == 1){
+        cout << 0 << endl;
+        return 0;
+    }
     
     for (int i = 1; i <= b; ++i){
         int available = (i - 1) * (a - 1) + a;

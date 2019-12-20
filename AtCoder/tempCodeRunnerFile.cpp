@@ -1,1 +1,2 @@
-cout << distance_sq << endl;
+
+        }
