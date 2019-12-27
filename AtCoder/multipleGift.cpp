@@ -7,9 +7,14 @@ int main() {
     cin.tie(nullptr);
     ios::sync_with_stdio(false);
 
-    int w, a, b;
-    cin >> w >> a >> b;
+    ll x, y;
+    cin >> x >> y;
 
-    if((a<=b && b<=a+w) || (a<=b+w && b+w<=a+w)) cout << 0 << endl;
-    else cout << min(abs(b+w-a), abs(a+w-b)) << endl;
+    int res = 0;
+
+    while(x<=y){
+        x *= 2;
+        ++res;
+    }
+    cout << res << endl;
 }

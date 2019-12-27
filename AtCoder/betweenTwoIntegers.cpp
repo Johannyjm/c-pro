@@ -7,9 +7,9 @@ int main() {
     cin.tie(nullptr);
     ios::sync_with_stdio(false);
 
-    int w, a, b;
-    cin >> w >> a >> b;
+    int a, b, c;
+    cin >> a >> b >> c;
 
-    if((a<=b && b<=a+w) || (a<=b+w && b+w<=a+w)) cout << 0 << endl;
-    else cout << min(abs(b+w-a), abs(a+w-b)) << endl;
+    if(a<=c && c<=b) puts("Yes");
+    else puts("No");
 }

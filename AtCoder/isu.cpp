@@ -7,9 +7,11 @@ int main() {
     cin.tie(nullptr);
     ios::sync_with_stdio(false);
 
-    int w, a, b;
-    cin >> w >> a >> b;
+    int x, y, z;
+    cin >> x >> y >> z;
 
-    if((a<=b && b<=a+w) || (a<=b+w && b+w<=a+w)) cout << 0 << endl;
-    else cout << min(abs(b+w-a), abs(a+w-b)) << endl;
+    int res = x/(y+z);
+    if(res*(y+z)+z <= x) cout << res << endl;
+    else cout << res-1 << endl;
+
 }

@@ -1,39 +1,38 @@
 #include <bits/stdc++.h>
+#define rep(i, n) for (int i = 0; i < (n); ++i)
 using namespace std;
+typedef long long ll;
 
-int main(){
+int main() {
     cin.tie(nullptr);
     ios::sync_with_stdio(false);
 
-    int N, M;
-    cin >> N >> M;
-    string A[N], B[M];
+    int n, m;
+    cin >> n >> m;
+    string a[n], b[m];
+    rep(i, n) cin >> a[i];
+    rep(i, m) cin >> b[i];
 
-    for(int i = 0; i < N; ++i) cin >> A[i];
-    for(int i = 0; i < M; ++i) cin >> B[i];
+    bool flg = false;
 
-    string clipped[M];
+    rep(i, n-m+1){
+        rep(j, n-m+1){
+            string sub = a[i].substr(j, m);
 
-    for (int i = 0; i < N - M + 1; ++i){
+            if(sub == b[0]){
+                flg = true;
+                rep(k, m){
+                    sub = a[i+k].substr(j, m);
 
-        for (int j = 0; j < N - M + 1; ++j){
-
-            for(int n = i; n < i + M; ++n) clipped[n - i] = A[n];
-
-            for(int m = 0; m < M; ++m){
-                clipped[m] = clipped[m].substr(j, M);
-            }
-            
-            for(int m = 0; m < M; ++m){
-
-                if(clipped[m] == B[m]){
-                    cout << "Yes" << endl;
+                    if(sub == b[k]) flg = flg && true;
+                    else flg = false;
+                }
+                if(flg) {
+                    puts("Yes");
                     return 0;
                 }
             }
         }
-        
     }
-    cout << "No" << endl;
-    return 0;
+    puts("No");
 }

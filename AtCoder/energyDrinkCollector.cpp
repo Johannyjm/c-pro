@@ -18,9 +18,6 @@ int main() {
     }
     sort(ab, ab+n);
 
-    for(ll i = 0; i < n; ++i){
-        cout << ab[i].first << " " << ab[i].second << endl;
-    }
     ll res = 0;
     ll cnt = 0;
 
