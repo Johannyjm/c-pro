@@ -7,12 +7,13 @@ int main() {
     cin.tie(nullptr);
     ios::sync_with_stdio(false);
 
-    int a, b, c, d;
-    cin >> a >> b >> c >> d;
+    int a, b, n;
+    cin >> a >> b >> n;
 
-    if(a*d >= b*c){
-        if(a*d == b*c) puts("DRAW");
-        else puts("AOKI");
+    for (int i = n; i < n + a*b; ++i){
+        if(i%a==0 && i%b==0){
+            cout << i << endl;
+            return 0;
+        }
     }
-    else puts("TAKAHASHI");
 }

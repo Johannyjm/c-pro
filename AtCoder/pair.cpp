@@ -7,12 +7,9 @@ int main() {
     cin.tie(nullptr);
     ios::sync_with_stdio(false);
 
-    int a, b, c, d;
-    cin >> a >> b >> c >> d;
+    int n;
+    cin >> n;
 
-    if(a*d >= b*c){
-        if(a*d == b*c) puts("DRAW");
-        else puts("AOKI");
-    }
-    else puts("TAKAHASHI");
+    if(n%2) cout << n+1 << endl;
+    else cout << n-1 << endl;
 }

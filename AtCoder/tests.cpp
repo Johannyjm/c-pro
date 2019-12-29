@@ -7,12 +7,9 @@ int main() {
     cin.tie(nullptr);
     ios::sync_with_stdio(false);
 
-    int a, b, c, d;
-    cin >> a >> b >> c >> d;
+    int x, y;
+    cin >> x >> y;
 
-    if(a*d >= b*c){
-        if(a*d == b*c) puts("DRAW");
-        else puts("AOKI");
-    }
-    else puts("TAKAHASHI");
+    if(y > x) puts("Better");
+    else puts("Worse");
 }

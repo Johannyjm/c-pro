@@ -7,12 +7,9 @@ int main() {
     cin.tie(nullptr);
     ios::sync_with_stdio(false);
 
-    int a, b, c, d;
-    cin >> a >> b >> c >> d;
+    string n;
+    cin >> n;
 
-    if(a*d >= b*c){
-        if(a*d == b*c) puts("DRAW");
-        else puts("AOKI");
-    }
-    else puts("TAKAHASHI");
+    if(n[0] == n[1] && n[1] == n[2] && n[2] == n[3]) cout << "SAME" << endl;
+    else cout << "DIFFERENT" << endl;
 }

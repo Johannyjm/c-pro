@@ -7,12 +7,10 @@ int main() {
     cin.tie(nullptr);
     ios::sync_with_stdio(false);
 
-    int a, b, c, d;
-    cin >> a >> b >> c >> d;
+    int l1, l2, l3;
+    cin >> l1 >> l2 >> l3;
 
-    if(a*d >= b*c){
-        if(a*d == b*c) puts("DRAW");
-        else puts("AOKI");
-    }
-    else puts("TAKAHASHI");
+    if(l1 == l2) cout << l3 << endl;
+    else if(l1 == l3) cout << l2 << endl;
+    else cout << l1 << endl;
 }
