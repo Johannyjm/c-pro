@@ -58,29 +58,4 @@ int main() {
     cout << res << endl;
     return 0;
 
-
-
-
-    int len = t.length();
-    int board[len][3] = {0};
-    rep(i, len){
-        if(t[i] == 's') board[i][0] += r;
-        if(t[i] == 'p') board[i][1] += s;
-        if(t[i] == 'r') board[i][2] += p;
-    }
-    rep(i, n){
-        rep(j, 3){
-            cout << board[i][j];
-        }
-        cout << endl;
-    }
-    return 0;
-    for(int i = 1; i < 3; ++i){
-        char machine = t[i];
-        int r_score = machine=='s'?r:0;
-        int s_score = machine=='p'?s:0;
-        int p_score = machine=='r'?p:0;
-
-
-    }
 }
