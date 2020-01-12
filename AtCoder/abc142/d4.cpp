@@ -4,16 +4,6 @@
 using namespace std;
 typedef long long ll;
 
-ll gcd(ll m, ll n){
-    ll tmp;
-    while(m%n){
-        tmp = n;
-        n = m % n;
-        m = tmp;
-    }
-    return n;
-}
-
 int main() {
     cin.tie(nullptr);
     ios::sync_with_stdio(false);
@@ -24,24 +14,25 @@ int main() {
     ll tmpa = a;
     ll tmpb = b;
 
-    int bucket[max(a, b)+1] = {0};
+    map<int, int> abp;
+    
     for(int i = 2; i*i <= a; ++i){
         if(tmpa%i == 0){
-            ++bucket[i];
+            ++abp[i];
             while(tmpa%i==0) tmpa /= i;
         }
     }
 
     for(int i = 2; i*i <= b; ++i){
         if(tmpb%i == 0){
-            ++bucket[i];
+            ++abp[i];
             while(tmpb%i==0) tmpb /= i;
         }
     }
 
     int res = 1;
-    for(int i = 2; i*i < n; ++i){
-        if(bucket[i]>1) ++res;
+    for(int key = 2; key*key <= n; ++key){
+        if(abp[key]>1) ++res;
     }
 
     cout << res << endl;
