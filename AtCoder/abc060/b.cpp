@@ -13,6 +13,11 @@ int main() {
     int amul = a + a;
     int bmod = a%b;
 
+    if(a%b==c || amul%b==c){
+        puts("YES");
+        return 0;
+    }
+
     while(amul%b != bmod){
         amul += a;
         if(amul%b == c){
