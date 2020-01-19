@@ -11,9 +11,35 @@ int main() {
     int n;
     cin >> n;
 
-    vector<int> bucket(2000000000);
+    pair<int, int> xl[n];
+    rep(i, n){
+        int x, l;
+        cin >> x >> l;
 
-    cout << bucket[1000000000] << endl;
+        xl[i] = make_pair(x, l);
+    }
+
+    sort(xl, xl+n);
+    vector<int> over(n, 0);
+    int p_reach = xl[0].first + xl[0].second;
+    int over_idx = 0;
+
+    rep1(i, n){
+        int x = xl[i].first;
+        int l = xl[i].second;
+
+        if(x-l < p_reach){
+            ++over[over_idx];
+            for(int j = i+1; j < n; ++j) {
+                int nx = xl[j].first;
+                int nl = xl[j].second;
+                
+                if(nx - nl < p_reach) ++over[over_idx];
+                else break;
+            }
+        }
+    }
+
 
     return 0;
 }

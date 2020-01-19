@@ -18,8 +18,6 @@ int main() {
     }
     string res = "";
     rep(j, 26){
-        // rep(i, n) cout << s[i][j] << " ";
-        // cout << endl;
         int min_n = 51;
         rep(i, n) min_n = min(min_n, s[i][j]);
         rep(i, min_n) res += 'a' + j;

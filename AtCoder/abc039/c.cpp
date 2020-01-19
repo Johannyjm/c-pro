@@ -18,7 +18,6 @@ int main() {
 
         string subs = s.substr(i, 6);
         if(subs == "WBWBWB"){
-            cout << cnt << endl;
             cout << notes[(10-cnt)%7] << endl;
             return 0;
         }
