@@ -4,28 +4,22 @@
 using namespace std;
 typedef long long ll;
 
-int d(int n){
-    int d = 1;
-    int tmp = n;
-    while(tmp/10){
-        ++d;
-        tmp/=10;
-    }
-    return d;
-}
-
 int main() {
     cin.tie(nullptr);
     ios::sync_with_stdio(false);
 
-    int n;
-    cin >> n;
+    set<int> st;
 
-    int de = d(n);
+    st.insert(1);
+    st.insert(5);
+    st.insert(2);
+    st.insert(3);
+    st.insert(5);
 
-    int res = 0;
+    for(auto ele: st){
+        cout << ele << endl;
+    }
     
-
 
     return 0;
 }
