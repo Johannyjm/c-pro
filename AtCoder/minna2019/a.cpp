@@ -8,21 +8,11 @@ int main() {
     cin.tie(nullptr);
     ios::sync_with_stdio(false);
 
-    set<int> st;
+    int n, k;
+    cin >> n >> k;
 
-    st.insert(1);
-    st.insert(5);
-    st.insert(2);
-    st.insert(3);
-    st.insert(5);
-
-    for(auto ele: st){
-        cout << ele << endl;
-    }
-    
-    cout << endl;
-    cout << st.size() << endl;
-    
+    if((n+1) / 2 < k) puts("NO");
+    else puts("YES");
 
     return 0;
 }

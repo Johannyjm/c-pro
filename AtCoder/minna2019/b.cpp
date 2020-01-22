@@ -8,21 +8,22 @@ int main() {
     cin.tie(nullptr);
     ios::sync_with_stdio(false);
 
-    set<int> st;
-
-    st.insert(1);
-    st.insert(5);
-    st.insert(2);
-    st.insert(3);
-    st.insert(5);
-
-    for(auto ele: st){
-        cout << ele << endl;
+    vector<int> road(4, 0);
+    rep(i, 3){
+        int a, b;
+        cin >> a >> b;
+        ++road[a-1];
+        ++road[b-1];
     }
-    
-    cout << endl;
-    cout << st.size() << endl;
-    
+
+    rep(i, 4){
+        if(road[i] > 2){
+            puts("NO");
+            return 0;
+        }
+    }
+
+    puts("YES");
 
     return 0;
 }

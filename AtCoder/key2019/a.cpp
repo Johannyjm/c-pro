@@ -8,21 +8,11 @@ int main() {
     cin.tie(nullptr);
     ios::sync_with_stdio(false);
 
-    set<int> st;
+    int a, b, c, d;
+    cin >> a >> b >> c >> d;
 
-    st.insert(1);
-    st.insert(5);
-    st.insert(2);
-    st.insert(3);
-    st.insert(5);
-
-    for(auto ele: st){
-        cout << ele << endl;
-    }
-    
-    cout << endl;
-    cout << st.size() << endl;
-    
+    if(a+b+c+d==21 && a*b*c*d==252) puts("YES");
+    else puts("NO");
 
     return 0;
 }

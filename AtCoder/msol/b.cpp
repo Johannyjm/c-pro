@@ -8,21 +8,17 @@ int main() {
     cin.tie(nullptr);
     ios::sync_with_stdio(false);
 
-    set<int> st;
-
-    st.insert(1);
-    st.insert(5);
-    st.insert(2);
-    st.insert(3);
-    st.insert(5);
-
-    for(auto ele: st){
-        cout << ele << endl;
+    string s;
+    cin >> s;
+    
+    int n = s.size();
+    int cnt = 0;
+    rep(i, n){
+        if(s[i] == 'o') ++cnt;
     }
-    
-    cout << endl;
-    cout << st.size() << endl;
-    
+
+    if(15-n + cnt >= 8) puts("YES");
+    else puts("NO");
 
     return 0;
 }
