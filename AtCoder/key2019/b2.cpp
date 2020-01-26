@@ -22,8 +22,8 @@ int main() {
         string l = k.substr(0, i);
         string r = k.substr(i, 7-i);
 
-        cout << l << " " << r << endl;
-        cout << s.substr(0, i) << " " << s.substr(n-7+i, 7-i) << endl << endl;
+        // cout << l << " " << r << endl;
+        // cout << s.substr(0, i) << " " << s.substr(n-7+i, 7-i) << endl << endl;
 
         if(s.substr(0, i)==l && s.substr(n-7+i, 7-i)==r){
             puts("YES");
