@@ -52,7 +52,6 @@ int main() {
             }
 
             else if(half[mid] == remain[i]) {
-                // cout << half[mid] << " " << remain[i] << endl;
                 cout << m << endl;
                 return 0;
             }

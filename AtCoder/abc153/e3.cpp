@@ -32,7 +32,7 @@ int main() {
 
         rep(j, h+1){
             if(j<=a) dp[i][j] = min(dp[i-1][j], b);
-            else dp[i][j] = min(dp[i-1][j], min(dp[i-1][j-a]+b, b * ((j+a-1) / a)));
+            else dp[i][j] = min(dp[i-1][j], min(dp[i-1][j-a]+b, b * ((j+a-1) / a)));
         }
     }
 
