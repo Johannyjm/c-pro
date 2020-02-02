@@ -9,7 +9,11 @@ int main() {
     cin.tie(nullptr);
     ios::sync_with_stdio(false);
 
-    
+    int n, k;
+    cin >> n >> k;
+
+    if((n-1)/2 >= k) puts("YES");
+    else puts("NO");
 
     return 0;
 }

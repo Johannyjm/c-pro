@@ -9,7 +9,15 @@ int main() {
     cin.tie(nullptr);
     ios::sync_with_stdio(false);
 
-    
+    int n;
+    cin >> n;
+
+    int num = n%9 + 9 * (n%9==0);
+    int repeat = n/9 + 1*(n%9!=0);
+    rep(i, repeat){
+        cout << num;
+    }
+    cout << endl;
 
     return 0;
 }

@@ -9,7 +9,10 @@ int main() {
     cin.tie(nullptr);
     ios::sync_with_stdio(false);
 
-    
+    int h, w;
+    cin >> h >> w;
+
+    cout << (w-1) * h + (h-1) * w << endl;
 
     return 0;
 }

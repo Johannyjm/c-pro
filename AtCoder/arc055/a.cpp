@@ -9,7 +9,16 @@ int main() {
     cin.tie(nullptr);
     ios::sync_with_stdio(false);
 
-    
+    int n;
+    cin >> n;
 
+    string s = "1";
+    rep(i, n-1){
+        s += '0';
+    }
+    s += '7';
+
+    cout << s << endl;
+    
     return 0;
 }

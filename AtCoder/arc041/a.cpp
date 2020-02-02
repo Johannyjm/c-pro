@@ -9,7 +9,14 @@ int main() {
     cin.tie(nullptr);
     ios::sync_with_stdio(false);
 
-    
+    int x, y, k;
+    cin >> x >> y >> k;
+
+    int res;
+    if(k <= y) res = x + k;
+    else res = x + y - (k - y);
+
+    cout << res << endl;
 
     return 0;
 }

@@ -9,7 +9,17 @@ int main() {
     cin.tie(nullptr);
     ios::sync_with_stdio(false);
 
-    
+    string name;
+    cin >> name;
+    int n = name.size();
+    bool flg = true;
+
+    rep(i, n/2){
+        if(name[i] != name[n-i-1]) flg = false;
+    }
+
+    if(flg) puts("YES");
+    else puts("NO");
 
     return 0;
 }

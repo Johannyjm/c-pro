@@ -9,7 +9,17 @@ int main() {
     cin.tie(nullptr);
     ios::sync_with_stdio(false);
 
-    
+    int n;
+    cin >> n;
+
+    int res = 0;
+    rep(i, n){
+        int m;
+        cin >> m;
+        res += max(0, 80 - m);
+    }
+
+    cout << res << endl;
 
     return 0;
 }

@@ -9,7 +9,11 @@ int main() {
     cin.tie(nullptr);
     ios::sync_with_stdio(false);
 
-    
+    char C, c;
+    cin >> C >> c;
+
+    if(C-'A' == c-'a') puts("Yes");
+    else puts("No");
 
     return 0;
 }

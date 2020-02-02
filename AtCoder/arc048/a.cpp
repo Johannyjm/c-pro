@@ -9,7 +9,15 @@ int main() {
     cin.tie(nullptr);
     ios::sync_with_stdio(false);
 
-    
+    int a, b;
+    cin >> a >> b;
+
+    if((a>0 && b>0) || (a<0 && b<0)){
+        cout << b-a << endl;
+        return 0;
+    }
+
+    cout << b-a-1 << endl;
 
     return 0;
 }

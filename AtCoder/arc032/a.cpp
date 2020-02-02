@@ -9,7 +9,11 @@ int main() {
     cin.tie(nullptr);
     ios::sync_with_stdio(false);
 
-    
+    int n;
+    cin >> n;
+
+    if(n==2) puts("WANWAN");
+    else puts("BOWWOW");
 
     return 0;
 }

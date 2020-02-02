@@ -9,7 +9,20 @@ int main() {
     cin.tie(nullptr);
     ios::sync_with_stdio(false);
 
-    
+    int n;
+    cin >> n;
+    vector<int> a(n);
+    rep(i, n) cin >> a[i];
+
+    sort(a.begin(), a.end(), greater<int>());
+
+    int res = 0;
+    rep(i, n){
+        if(i%2) continue;
+        res += a[i];
+    }
+
+    cout << res << endl;
 
     return 0;
 }

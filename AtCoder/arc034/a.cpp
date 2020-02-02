@@ -9,7 +9,17 @@ int main() {
     cin.tie(nullptr);
     ios::sync_with_stdio(false);
 
-    
+    int n;
+    cin >> n;
+    double a, b, c, d, e;
+
+    double res = -1;
+    rep(i, n){
+        cin >> a >> b >> c >> d >> e;
+        res = max(res, a+b+c+d+e*110/900);
+    }
+
+    printf("%.15f\n", res);
 
     return 0;
 }
