@@ -6,6 +6,17 @@ typedef long long ll;
 const ll INF = 1LL << 60;
 const int MOD = 1000000007;
 
+ll fact_mod(ll num){
+    if(num==0) return 1;
+
+    ll ret = 1;
+    rep1(i, num){
+        i %= MOD;
+        ret = ret * i % MOD;
+    }
+    return ret;
+}
+
 int main() {
     cin.tie(nullptr);
     ios::sync_with_stdio(false);
@@ -33,11 +44,20 @@ int main() {
         all_smaller[i] = cnt;
     }
 
+    ll res = 0;
+    ll FACT = fact_mod(k-1);
+    rep(i, n){
+        if(all_smaller[i]==0) continue;
+        res = ((res + (right_smaller[i]%MOD * k%MOD) % MOD) % MOD + (all_smaller[i]%MOD) * FACT % MOD) % MOD;
+    }
+
+    cout << res << endl;
+
     
-    rep(i, n) cout << right_smaller[i] << " ";
-    cout << endl;
-    rep(i, n) cout << all_smaller[i] << " ";
-    cout << endl;
+    // rep(i, n) cout << right_smaller[i] << " ";
+    // cout << endl;
+    // rep(i, n) cout << all_smaller[i] << " ";
+    // cout << endl;
 
     // vector<vector<int>> smaller(n, vector<int>(n));
     // rep(i, n){
@@ -55,11 +75,11 @@ int main() {
     //     cout << endl;
     // }
 
-    ll res  = 0;
-    rep(i, n) res = (res + right_smaller[i]) % MOD;
-    k %= MOD;
+    // ll res  = 0;
+    // rep(i, n) res = (res + right_smaller[i]) % MOD;
+    // k %= MOD;
     
-    cout << res*k%MOD*k%MOD << endl;
+    // cout << res*k%MOD*k%MOD << endl;
 
 
     return 0;
