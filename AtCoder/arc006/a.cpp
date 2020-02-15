@@ -44,8 +44,6 @@ int main() {
     }
     else res = 1;
 
-    cout << wn << endl;
-
     cout << res << endl;
 
     return 0;
