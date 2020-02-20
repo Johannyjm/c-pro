@@ -9,15 +9,10 @@ int main() {
     cin.tie(nullptr);
     ios::sync_with_stdio(false);
 
-    ll a, b, k, l;
-    cin >> a >> b >> k >> l;
+    int a, b;
+    cin >> a >> b;
 
-    ll res = b*(k/l);
-
-    int remain = k%l;
-    res += min(a*remain, b);
-
-    cout << res << endl;
+    cout << max(a+b, max(a-b, a*b)) << endl;
 
     return 0;
 }

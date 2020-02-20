@@ -9,15 +9,12 @@ int main() {
     cin.tie(nullptr);
     ios::sync_with_stdio(false);
 
-    ll a, b, k, l;
-    cin >> a >> b >> k >> l;
+    double w, h, x, y;
+    cin >> w >> h >> x >> y;
 
-    ll res = b*(k/l);
-
-    int remain = k%l;
-    res += min(a*remain, b);
-
-    cout << res << endl;
+    printf("%.19f", w*h/2);
+    if(2*x == w && 2*y == h) puts(" 1");
+    else puts(" 0");
 
     return 0;
 }

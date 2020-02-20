@@ -9,15 +9,10 @@ int main() {
     cin.tie(nullptr);
     ios::sync_with_stdio(false);
 
-    ll a, b, k, l;
-    cin >> a >> b >> k >> l;
+    int H, W, h, w;
+    cin >> H >> W >> h >> w;
 
-    ll res = b*(k/l);
-
-    int remain = k%l;
-    res += min(a*remain, b);
-
-    cout << res << endl;
+    cout << (H-h) * (W-w) << endl;
 
     return 0;
 }

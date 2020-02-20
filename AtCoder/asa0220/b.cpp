@@ -9,15 +9,25 @@ int main() {
     cin.tie(nullptr);
     ios::sync_with_stdio(false);
 
-    ll a, b, k, l;
-    cin >> a >> b >> k >> l;
+    int n;
+    cin >> n;
 
-    ll res = b*(k/l);
+    int current_max;
+    cin >> current_max;
 
-    int remain = k%l;
-    res += min(a*remain, b);
+    rep1(i, n){
+        int h;
+        cin >> h;
 
-    cout << res << endl;
+        if(current_max-1 > h){
+            puts("No");
+            return 0;
+        }
+
+        current_max = max(current_max, h);
+    }
+
+    puts("Yes");
 
     return 0;
 }

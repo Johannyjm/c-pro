@@ -9,15 +9,20 @@ int main() {
     cin.tie(nullptr);
     ios::sync_with_stdio(false);
 
-    ll a, b, k, l;
-    cin >> a >> b >> k >> l;
+    int n;
+    cin >> n;
 
-    ll res = b*(k/l);
+    set<int> num;
+    rep(i, n){
+        int a;
+        cin >> a;
 
-    int remain = k%l;
-    res += min(a*remain, b);
+        num.insert(a);
 
-    cout << res << endl;
+    }
+
+    if(num.size() == n) puts("YES");
+    else puts("NO");
 
     return 0;
 }
