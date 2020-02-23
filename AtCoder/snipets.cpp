@@ -88,3 +88,15 @@ ll mod_pow(ll x, ll r){
 ll mod_div(ll a, ll b){
     return mod_mul(a, mod_pow(b, MOD - 2));
 }
+
+int three_base(int num){
+    int ret = 0;
+    int d = 1;
+    while(num){
+        ret += num%3 * d;
+        num /= 3;
+        d *= 10;
+    }
+
+    return ret;
+}
