@@ -9,14 +9,14 @@ int main() {
     cin.tie(nullptr);
     ios::sync_with_stdio(false);
 
-    int n;
+    ll n;
     cin >> n;
-    vector<int> a(n+1);
-    vector<int> b(n);
+    vector<ll> a(n+1);
+    vector<ll> b(n);
     rep(i, n+1) cin >> a[i];
     rep(i, n) cin >> b[i];
 
-    int res = 0;
+    ll res = 0;
     rep(i, n){
         if(a[i]>=b[i]) res += b[i];
         else{

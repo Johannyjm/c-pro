@@ -19,16 +19,18 @@ int main() {
     dp[0][1][0] = 0;
     dp[0][1][1] = 0;
 
-    rep1(i, n+1){
-        rep(smaller, 2){
-            rep(j, 2){
+    rep(i, n){
 
-                int c = s[i-1] - '0';
+        dp[i+1][0][0] = 
+        // rep(smaller, 2){
+        //     rep(j, 2){
 
-                dp[i][smaller || c < s[i-1]][j || c == 3] += dp[i-1][smaller][j];
+        //         int c = s[i-1] - '0';
 
-            }
-        }
+        //         dp[i][smaller || c < s[i-1]][j || c == 3] += dp[i-1][smaller][j];
+
+        //     }
+        // }
         
     }
 

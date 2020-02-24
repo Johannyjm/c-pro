@@ -12,7 +12,6 @@ int main() {
     ll n, tmp;
     cin >> n;
     vector<ll> a(n);
-    ll sum = 0;
     map<ll, ll> mp;
     bool flg = false;
     const ll MOD = 1000000007LL;
