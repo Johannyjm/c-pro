@@ -1,0 +1,27 @@
+#include <bits/stdc++.h>
+#define rep(i, n) for (int i = 0; i < (n); ++i)
+#define rep1(i, n) for (int i = 1; i < (n); ++i)
+using namespace std;
+typedef long long ll;
+const ll INF = 1LL << 60;
+
+int main() {
+    cin.tie(nullptr);
+    ios::sync_with_stdio(false);
+
+    int n;
+    cin >> n;
+
+    rep1(i, n+1){
+        string out = "";
+
+        rep(c, 5){
+            if(i%(c+2)==0) out += (char)('a' + c);
+        }
+
+        if(out=="") cout << i << endl;
+        else cout << out << endl;
+    }
+
+    return 0;
+}
