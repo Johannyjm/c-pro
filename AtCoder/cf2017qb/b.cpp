@@ -33,7 +33,5 @@ int main() {
 
     puts("YES");
 
-
-
     return 0;
 }

@@ -9,22 +9,21 @@ int main() {
     cin.tie(nullptr);
     ios::sync_with_stdio(false);
 
+    ll n;
     string s;
-    cin >> s;
-    ll n = s.size();
-    ll res = n * (n - 1);
+    cin >> n >> s;
 
-    rep(i, n){
-        if(s[i] == 'U'){
-            res += i;
-        }
+    vector<ll> freq(26, 0);
+    rep(i, n) ++freq[s[i]-'a'];
+    const ll MOD = 1000000007;
 
-        else{
-            res += n - i - 1;
-        }
+    ll res = 1LL;
+    rep(i, 26){
+        res = (res%MOD*(freq[i]+1)%MOD)%MOD;
     }
 
-    cout << res << endl;
+    cout << res-1 << endl;
+
 
     return 0;
 }

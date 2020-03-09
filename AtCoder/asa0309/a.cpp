@@ -9,22 +9,14 @@ int main() {
     cin.tie(nullptr);
     ios::sync_with_stdio(false);
 
-    string s;
-    cin >> s;
-    ll n = s.size();
-    ll res = n * (n - 1);
+    int n;
+    cin >> n;
+    vector<int> d(n);
+    rep(i, n) cin >> d[i];
 
-    rep(i, n){
-        if(s[i] == 'U'){
-            res += i;
-        }
+    sort(d.begin(), d.end());
 
-        else{
-            res += n - i - 1;
-        }
-    }
-
-    cout << res << endl;
+    cout << d[n/2] - d[n/2-1] << endl;
 
     return 0;
 }

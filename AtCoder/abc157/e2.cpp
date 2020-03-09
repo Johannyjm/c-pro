@@ -5,7 +5,7 @@ using namespace std;
 typedef long long ll;
 const ll INF = 1LL << 60;
 
-const ll SEG_LEN = 1LL << 30;
+const ll SEG_LEN = 1LL << 20;
 int seg[26][SEG_LEN * 2];
 
 
