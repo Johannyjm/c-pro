@@ -9,14 +9,20 @@ int main() {
     ios::sync_with_stdio(false);
 
     vector<int> num;
-    num.push_back(3);
-    num.push_back(4);
-    num.push_back(5);
+    // num.push_back(3);
+    // num.push_back(4);
+    // num.push_back(5);
 
-    cout << num[num.size()-1] << endl;
-    cout << num.back() << endl;
-    cout << num.back() << endl;
-    cout << num.front() << endl;
+    // cout << num[num.size()-1] << endl;
+    // cout << num.back() << endl;
+    // cout << num.back() << endl;
+    // cout << num.front() << endl;
+
+    num = {1, 2, 1};
+
+
+    rep(i, num.size()) cout << num[i] << " ";
+    cout << endl;
 
     return 0;
 }
