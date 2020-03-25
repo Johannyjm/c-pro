@@ -15,14 +15,15 @@ int main() {
     string s;
     cin >> s;
 
-    map<string, int> freq;
+    map<string, int> e_freq, o_freq;
     rep1(i, n){
         string two = s.substr(i-1, 2);
-        ++freq[two];
+        if(i%2) ++o_freq[two];
+        else ++e_freq[two];
     }
 
-    int fir = -1;
-    int sec = -1;
+    int fir = 0;
+    int sec = 0;
     for(auto f: freq){
         cout << f.first << " " << f.second << endl;
         if(f.second > fir){

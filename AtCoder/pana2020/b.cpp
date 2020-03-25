@@ -12,7 +12,8 @@ int main() {
     ll h, w;
     cin >> h >> w;
 
-    cout << h*w/2 + (h*w%2) << endl; 
+    if(h==1 || w==1) cout << 1 << endl;
+    else cout << h*w/2 + (h*w%2) << endl; 
 
     return 0;
 }
