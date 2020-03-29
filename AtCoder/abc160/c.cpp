@@ -5,24 +5,24 @@ using namespace std;
 typedef long long ll;
 const ll INF = 1LL << 60;
 
-int n;
-
-void dfs(string res, int num){
-    if(num == n) cout << res << endl;
-    else{
-        for(char c = 'a'; c <= 'c'; ++c){
-            dfs(res+c, num+1);
-        }
-    }
-}
-
 int main() {
     cin.tie(nullptr);
     ios::sync_with_stdio(false);
 
-    cin >> n;
+    int k, n, l;
+    cin >> k >> n;
 
-    dfs("", 0);
+    vector<int> a(n);
+    vector<int> dif(n);
+    rep(i, n) cin >> a[i];
+
+    dif[0] = a[0] + (k - a[n-1]);
+    rep1(i, n) dif[i] = a[i] - a[i-1];
+
+    int d_max = -1;
+    rep(i, n) d_max = max(d_max, dif[i]);
+
+    cout << k - d_max << endl;
 
     return 0;
 }

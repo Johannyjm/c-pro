@@ -5,24 +5,15 @@ using namespace std;
 typedef long long ll;
 const ll INF = 1LL << 60;
 
-int n;
-
-void dfs(string res, int num){
-    if(num == n) cout << res << endl;
-    else{
-        for(char c = 'a'; c <= 'c'; ++c){
-            dfs(res+c, num+1);
-        }
-    }
-}
-
 int main() {
     cin.tie(nullptr);
     ios::sync_with_stdio(false);
 
-    cin >> n;
+    string s;
+    cin >> s;
 
-    dfs("", 0);
+    if(s[2]==s[3] && s[4]==s[5]) puts("Yes");
+    else puts("No");
 
     return 0;
 }
