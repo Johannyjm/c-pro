@@ -23,10 +23,30 @@ int main() {
         }
     }
 
-    rep(i, n) {
-        rep(j, 60) cout << a[i][j];
-        cout << endl;
+    // rep(i, n) {
+    //     rep(j, 60) cout << a[i][j];
+    //     cout << endl;
+    // }
+
+    vector<ll> bit_num(60, 0);
+    rep(i, n){
+        rep(j, 60) bit_num[j] += a[i][j];
     }
+
+    // cout << endl;
+    // rep(i, 60) cout << bit_num[i];
+    // cout << endl;
+
+    ll MOD = 1000000007;
+    ll res = 0;
+    ll base = 1;
+    rep(i, 60){
+        res += base%MOD * bit_num[i]%MOD * (n - bit_num[i])%MOD;
+        res %= MOD;
+
+        base *= 2;
+    }
+    cout << res << endl;
 
     return 0;
 }

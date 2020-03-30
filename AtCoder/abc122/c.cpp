@@ -20,8 +20,8 @@ int main() {
         }
         else cnt[i+1] = cnt[i];
     }
-    rep(i, n) cout << cnt[i] << " ";
-    cout << endl;
+    // rep(i, n) cout << cnt[i] << " ";
+    // cout << endl;
 
     rep(_, q){
         int l, r;
