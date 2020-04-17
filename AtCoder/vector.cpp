@@ -18,11 +18,24 @@ int main() {
     // cout << num.back() << endl;
     // cout << num.front() << endl;
 
-    num = {1, 2, 1};
-
+    num = {1, 2, 1, 5, 8, 13, 78, 534, 2, 46, 8, 56, 3, 5, 5, 5, 5, 5, 5, 5, 5};
+    sort(num.begin(), num.end());
 
     rep(i, num.size()) cout << num[i] << " ";
     cout << endl;
+
+    cout << upper_bound(num.begin(), num.end(), 8) - num.begin() << endl;
+
+    // reverse(num.begin(), num.end());
+    rep(i, num.size()) cout << num[i] << " ";
+    cout << endl;
+    cout << lower_bound(num.begin(), num.end(), 8) - num.begin() << endl;
+
+    // cout << lower_bound(num.begin(), num.end(), 2) - num.begin() << endl;
+    // cout << num.end() - lower_bound(num.begin(), num.end(), 2) << endl;
+    // cout << upper_bound(num.begin(), num.end(), 2) - num.begin() << endl;
+    // cout << num.end() - upper_bound(num.begin(), num.end(), 2) << endl;
+    
 
     return 0;
 }
