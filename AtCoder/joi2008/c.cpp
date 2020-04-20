@@ -33,10 +33,7 @@ int main() {
     rep(i, n) half.push_back(p[i]);
 
     sort(half.begin(), half.end());
-    rep(i, half.size()){
-        cout << half[i] << " ";
-    }
-    cout << endl;
+    
     int res = 0;
     rep(i, half.size()){
         int target = half[i];
@@ -59,13 +56,12 @@ int main() {
                 cout << m << endl;
                 return 0;
             }
-            // cout << ok << ng << mid << target << half[mid] << endl;
+
             if(target+half[mid] > m) ng = mid;
             else ok = mid;
         }
         
         res = max(res, target+half[ok]);
-        cout << target + half[ok] << " " << res << endl;
     }
 
     cout << res << endl;
