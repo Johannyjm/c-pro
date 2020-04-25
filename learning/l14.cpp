@@ -36,7 +36,7 @@ int main(){
     Kitty k("abc");
     k.func();
 
-    Kitty obj[3] = {"defg", "ghih", "jklm"};
+    Kitty obj[3] = {"def", "ghi", "jkl"};
     for(int i = 0; i < 3; ++i) obj[i].func();
 
 }
