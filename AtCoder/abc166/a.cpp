@@ -9,10 +9,11 @@ int main() {
     cin.tie(nullptr);
     ios::sync_with_stdio(false);
 
-    int n, m;
-    cin >> n >> m;
+    string s;
+    cin >> s;
 
-    
+    if(s=="ABC") puts("ARC");
+    else puts("ABC");
 
     return 0;
 }

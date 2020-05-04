@@ -9,10 +9,10 @@ int main() {
     cin.tie(nullptr);
     ios::sync_with_stdio(false);
 
-    int n, m;
-    cin >> n >> m;
+    int n, a, b;
+    cin >> n >> a >> b;
 
-    
+    cout << min(b, n*a) << endl;
 
     return 0;
 }

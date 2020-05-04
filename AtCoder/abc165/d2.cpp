@@ -5,14 +5,20 @@
 using namespace std;
 typedef long long ll;
 
+ll a, b;
+ll func(ll x){
+    return a*x/b - a*(x/b);
+}
+
 int main() {
     cin.tie(nullptr);
     ios::sync_with_stdio(false);
 
-    int n, m;
-    cin >> n >> m;
+    ll n;
+    cin >> a >> b >> n;
 
-    
+    if(n<b) cout << func(n) << endl;
+    else cout << func(b-1) << endl;
 
     return 0;
 }
