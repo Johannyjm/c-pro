@@ -21,6 +21,12 @@ int main() {
         for(int i = l[j]-1; i >= 0; --i) dp[j][i] = l[j]-i;
     }
 
+    rep1(i, n){
+        if(dp[i][l[i-1] + l[i]] > 10*i){
+            dp[i][l[i-1] + l[i]] = 10*i;
+        }
+    }
+
     rep(i, n){
         rep(j, 111) cout << dp[i][j] << " ";
         cout << endl;
