@@ -12,7 +12,7 @@ vector<vector<int>> dp;
 int rec(int l, int r){
     cout << l << " " << r << endl;
     if(dp[l][r] != -1) return dp[l][r];
-    if(r-l <= 1) return dp[l][r] = INF;
+    if(r-l <= 1) return dp[l][r] = 0;
     if(r-l == 2) return dp[l][r] = row[l] * col[l] * col[r-1];
 
     int ret = INF;
