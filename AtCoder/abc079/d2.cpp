@@ -19,39 +19,33 @@ int main() {
     rep(i, h) rep(j, w) cin >> a[i][j];
 
     const int INF = 1001001001;
-    vector<int> dist2one(10, INF);
-    dist2one[1] = 0;
 
-    rep(s, 10){
-        if(s == 1) continue;
-        vector<int> dist(10, INF);
-        dist[s] = 0;
-        priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq;
-        pq.push(make_pair(0, s));
+    vector<int> dist(10, INF);
+    dist[1] = 0;
+    priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq;
+    pq.push(make_pair(0, 1));
 
-        while(!pq.empty()){
-            pair<int, int> p = pq.top();
-            int v = p.second;
-            pq.pop();
+    while(!pq.empty()){
+        pair<int, int> p = pq.top();
+        int v = p.second;
+        pq.pop();
 
-            rep(nv, 10){
-                if(nv == v) continue;
+        rep(nv, 10){
+            if(nv == v) continue;
 
-                if(dist[nv] > dist[v] + cost[v][nv]){
-                    dist[nv] = dist[v] + cost[v][nv];
+            if(dist[nv] > dist[v] + cost[nv][v]){
+                dist[nv] = dist[v] + cost[nv][v];
 
-                    pq.push(make_pair(dist[nv], nv));
-                }
+                pq.push(make_pair(dist[nv], nv));
             }
         }
-
-        dist2one[s] = dist[1];
     }
+
 
     int res = 0;
     rep(i, h) rep(j, w){
         if(a[i][j] == -1) continue;
-        res += dist2one[a[i][j]];
+        res += dist[a[i][j]];
     }
 
     cout << res << endl;
