@@ -45,7 +45,7 @@ struct UnionFind {
         r.resize(n, 1);
     }
 
-    bool find(int x){
+    int find(int x){
         if(p[x] == -1) return x;
         else return p[x] = find(p[x]);
     }
