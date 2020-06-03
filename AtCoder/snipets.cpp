@@ -55,7 +55,7 @@ pair<map<ll, ll>, set<ll>> prime_factor(ll n){
         if(n%i==0) primes.insert(i);
 
         while(n%i == 0){
-            res[i]++;
+            ++res[i];
             n /= i;
         }
     }
