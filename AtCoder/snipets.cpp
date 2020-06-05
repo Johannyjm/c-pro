@@ -28,26 +28,6 @@ ll lcm(ll m, ll n){
     return m / gcd(m, n) * n;
 }
 
-/*
-pair<map<int, int>, set<int>> prime_factor(int n){
-    map<int, int> res;
-    set<int> primes;
-    for(int i = 2; i*i <= n; ++i) {
-        if(n%i==0) primes.insert(i);
-
-        while(n%i == 0){
-            res[i]++;
-            n /= i;
-        }
-    }
-    if(n != 1) {
-        res[n] = 1;
-        primes.insert(n);
-    }
-    return make_pair(res, primes);
-}
-*/
-
 pair<map<ll, ll>, set<ll>> prime_factor(ll n){
     map<ll, ll> res;
     set<ll> primes;
@@ -90,7 +70,7 @@ ll mod_pow(ll x, ll r){
     else{
         ll t = mod_pow(x, r/2) % MOD;
         ll k = mod_mul(t, t);
-        return (k % MOD) * (x % MOD);
+        return ((k % MOD) * (x % MOD)) % MOD;
     }
 }
 
@@ -107,5 +87,16 @@ int three_base(int num){
         d *= 10;
     }
 
+    return ret;
+}
+
+set<ll> divisor(ll n) {
+    set<ll> ret;
+    for(ll i = 1; i*i <= n; ++i) {
+        if (n%i == 0) {
+            ret.insert(i);
+            if(i*i != n) ret.insert(n/i);
+        }
+    }
     return ret;
 }
