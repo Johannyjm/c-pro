@@ -35,9 +35,14 @@ int main() {
     }
 
     rep1(i, m) rep1(j, n){
-        jsm[i][j] = jsm[i][j-1] + (jsm[i][j] == 'J') + (jsm[i-1][j] == 'J');
-        osm[i][j] = osm[i][j-1] + (osm[i][j] == 'O') + (osm[i-1][j] == 'O');
-        ism[i][j] = ism[i][j-1] + (ism[i][j] == 'I') + (ism[i-1][j] == 'I');
+        jsm[i][j] = jsm[i][j-1] + (jsm[i][j] == 'J');
+        osm[i][j] = osm[i][j-1] + (osm[i][j] == 'O');
+        ism[i][j] = ism[i][j-1] + (ism[i][j] == 'I');
+    }
+
+    rep1(i, m) rep1(j, n){
+        jsm[i][j] += jsm[i-1][j];
+        osm
     }
 
     rep(i, m){
