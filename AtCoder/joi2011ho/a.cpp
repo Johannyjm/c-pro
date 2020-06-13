@@ -15,39 +15,46 @@ int main() {
     vector<vector<char>> c(m, vector<char>(n));
     rep(i, m) rep(j, n) cin >> c[i][j];
 
-    vector<vector<int>> jsm(m, vector<int>(n, 0));
-    vector<vector<int>> osm(m, vector<int>(n, 0));
-    vector<vector<int>> ism(m, vector<int>(n, 0));
-    if(c[0][0] == 'J') jsm[0][0] = 1;
-    if(c[0][0] == 'O') osm[0][0] = 1;
-    if(c[0][0] == 'I') ism[0][0] = 1;
-
-    rep1(i, m){
-        jsm[i][0] = jsm[i-1][0] + (c[i][0] == 'J');
-        osm[i][0] = osm[i-1][0] + (c[i][0] == 'O');
-        ism[i][0] = ism[i-1][0] + (c[i][0] == 'I');
-    }
-    
-    rep1(j, n){
-        jsm[0][j] = jsm[0][j-1] + (c[0][j] == 'J');
-        osm[0][j] = osm[0][j-1] + (c[0][j] == 'O');
-        ism[0][j] = ism[0][j-1] + (c[0][j] == 'I');
-    }
-
-    rep1(i, m) rep1(j, n){
-        jsm[i][j] = jsm[i][j-1] + (jsm[i][j] == 'J');
-        osm[i][j] = osm[i][j-1] + (osm[i][j] == 'O');
-        ism[i][j] = ism[i][j-1] + (ism[i][j] == 'I');
-    }
-
-    rep1(i, m) rep1(j, n){
-        jsm[i][j] += jsm[i-1][j];
-        osm
-    }
+    vector<char> joi = {'J', 'O', 'I'};
+    vector<vector<vector<int>>> sm(3, vector<vector<int>>(m, vector<int>(n, 0)));
 
     rep(i, m){
-        rep(j, n) cout << jsm[i][j] << " ";
-        cout << endl;
+        rep(l, 3){
+            if(c[i][0] == joi[l]) sm[l][i][0] = 1;
+        }
+    }
+    
+    rep(i, m) rep1(j, n) rep(l, 3){
+        sm[l][i][j] = sm[l][i][j-1] + (c[i][j] == joi[l]);
+    }
+
+    rep1(i, m) rep(j, n) rep(l, 3){
+        sm[l][i][j] += sm[l][i-1][j];
+    }
+
+    rep(_, k){
+        int a, b, c, d;
+        cin >> a >> b >> c >> d;
+        --a;
+        --b;
+        --c;
+        --d;
+
+        vector<int> res(3);
+        rep(l, 3){
+            // calc w - x - y + z;
+            int w = sm[l][c][d];
+            int x = 0;
+            int y = 0;
+            int z = 0;
+            if(a != 0) x = sm[l][a-1][d];
+            if(b != 0) y = sm[l][c][b-1];
+            if(a != 0 && b != 0) z = sm[l][a-1][b-1];
+
+            res[l] = w - x - y + z;
+        }
+        
+        cout << res[0] << " " << res[1] << " " << res[2] << "\n";
     }
 
 
