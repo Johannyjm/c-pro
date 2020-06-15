@@ -14,15 +14,46 @@ int main(){
     vector<ll> a(n), b(n);
     rep(i, n) cin >> a[i] >> b[i];
 
-    map<int, map<int, int>> mp;
-    rep(i, n){
-        mp[b[i]] = {i, a[i]};
+    map<int, multiset<int>> mp;
+    rep(i, n) mp[b[i]].insert(a[i]);
+
+    multiset<int> maxs;
+    for(auto itr = mp.begin(); itr != mp.end(); ++itr){
+        maxs.insert(*itr->second.rbegin());
     }
 
-    rep(i, n){
-        for(auto itr = mp.begin(); itr != mp.end(); ++itr){
-            cout << itr->first << " " << itr->second->first << " " << itr->second->second << endl;
+    rep(_, q){
+        int who, to;
+        cin >> who >> to;
+        --who;
+
+        int from = b[who];
+        int rate = a[who];
+
+        // max moves
+        if(*mp[from].rbegin() == rate){
+            maxs.erase(maxs.find(rate));
+            mp[from].erase(mp[from].find(rate));
+
+            if(!mp[from].empty()) maxs.insert(*mp[from].rbegin());
         }
+        // non-max erase
+        else mp[from].erase(mp[from].find(rate));
+
+        // empty moves
+        if(mp[to].empty()) maxs.insert(rate);
+        if(!mp[to].empty() && *mp[to].rbegin() < rate){
+            maxs.erase(maxs.find(*mp[to].rbegin()));
+            
+            // insert
+            maxs.insert(rate);
+        }
+        // insert
+        mp[to].insert(rate);
+        
+        cout << *maxs.begin() << endl;
+
+        b[who] = to;
     }
 
     return 0;
