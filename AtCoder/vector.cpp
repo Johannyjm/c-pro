@@ -8,6 +8,20 @@ int main() {
     cin.tie(nullptr);
     ios::sync_with_stdio(false);
 
+    vector<pair<int, int>> vp;
+    vp.push_back(make_pair(0, 1));
+    vp.push_back(make_pair(2, 3));
+    vp.push_back(make_pair(4, 5));
+
+    rep(i, vp.size()) cout << i << ": " << vp[i].first << " " << vp[i].second << endl;
+
+    vp.pop_back();
+
+    rep(i, vp.size()) cout << i << ": " << vp[i].first << " " << vp[i].second << endl;
+
+
+    
+
     vector<int> num;
     // num.push_back(3);
     // num.push_back(4);
