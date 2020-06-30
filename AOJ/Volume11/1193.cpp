@@ -24,21 +24,21 @@ int main(){
     cin.tie(nullptr);
     ios::sync_with_stdio(false);
 
-    int h;
-    cin >> h;
-    vector<vector<int>> a(h, vector<int>(5));
-    rep(i, h) rep(j, 5) cin >> a[i][j];
+    // int h;
+    // cin >> h;
+    // vector<vector<int>> a(h, vector<int>(5));
+    // rep(i, h) rep(j, 5) cin >> a[i][j];
 
 
-    vector<vector<int>> b = refresh(a, h);
+    // vector<vector<int>> b = refresh(a, h);
 
-    cout << endl;
-    rep(i, h){
-        rep(j, 5) cout << b[i][j] << " ";
-        cout << endl;
-    }
+    // cout << endl;
+    // rep(i, h){
+    //     rep(j, 5) cout << b[i][j] << " ";
+    //     cout << endl;
+    // }
 
-    return 0;
+    // return 0;
 
 
     while(1){
