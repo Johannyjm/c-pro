@@ -20,6 +20,7 @@ int main(){
     int b_cnt = m;
     int res = 0;
     rep(a_cnt, n+1){
+        if(a[a_cnt]>k) break;
         while(a[a_cnt] + b[b_cnt] > k) --b_cnt;
         res = max(res, a_cnt+b_cnt);
     }

@@ -56,7 +56,7 @@ int main(){
     // rep(i, d) cout << t[i] << endl;
 
     sort(sms.begin(), sms.end());
-
+    
     int res = total;
     rep(didx, d){
         if(didx > 10) break;
@@ -85,7 +85,46 @@ int main(){
             }
         }
 
-        if(to != -1) t[sms[didx].second] = to;
+        if(to != -1){
+            t[sms[didx].second] = to;
+            sms[didx].first =  res;
+        }
+    }
+
+    sort(sms.begin(), sms.end());
+    
+    int res = total;
+    rep(didx, d){
+        if(didx > 10) break;
+        int to = -1;
+        rep(kidx, 26){
+            vector<int> tt = t;
+            tt[sms[didx].second] = kidx;
+
+            vector<int> last(26, 0);
+            int res_c = 0;
+            rep(i, d){
+                res_c += s[i][tt[i]];
+                
+                int minus = 0;
+
+                rep(j, 26) ++last[j];
+                last[tt[i]] = 0;
+                rep(j, 26) minus += c[j] * last[j];
+
+                res_c -= minus;
+                
+            }
+            if(res_c > res){
+                to = kidx;
+                res = res_c;
+            }
+        }
+
+        if(to != -1){
+            t[sms[didx].second] = to;
+            sms[didx].first =  res;
+        }
     }
 
     rep(i, d) cout << t[i]+1 << endl;

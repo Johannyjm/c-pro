@@ -12,6 +12,7 @@ int main(){
     ll n, m;
     cin >> n >> m;
     vector<ll> a(n);
+    set<ll> st;
     rep(i, n){
         cin >> a[i];
         if(i!=0){
@@ -20,6 +21,7 @@ int main(){
                 return 0;
             }
         }
+        st.insert(a[i]);
     }
     sort(a.begin(), a.end(), greater<ll>());
 
