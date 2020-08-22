@@ -9,10 +9,11 @@ int main(){
     cin.tie(nullptr);
     ios::sync_with_stdio(false);
 
-    ll x, k, d;
-    cin >> x >> k >> d;
+    int n, x, t;
+    cin >> n >> x >> t;
 
-    if(abs(x) - k*d)
+    int num = (n + x - 1) / x;
+    cout << num * t << endl;
 
     return 0;
 }

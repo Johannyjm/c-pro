@@ -9,10 +9,17 @@ int main(){
     cin.tie(nullptr);
     ios::sync_with_stdio(false);
 
-    ll x, k, d;
-    cin >> x >> k >> d;
+    string s;
+    cin >> s;
+    int n = s.size();
 
-    if(abs(x) - k*d)
+    ll sm = 0;
+    rep(i, n){
+        sm += s[i] - '0';
+    }
+
+    if(sm%9 == 0) puts("Yes");
+    else puts("No");
 
     return 0;
 }
