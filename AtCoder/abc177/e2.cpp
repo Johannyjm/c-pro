@@ -15,15 +15,22 @@ ll gcd(ll m, ll n){
     return n;
 }
 
-set<ll> prime_factor(ll n){
+pair<map<ll, ll>, set<ll>> prime_factor(ll n){
+    map<ll, ll> res;
     set<ll> primes;
     for(ll i = 2; i*i <= n; ++i) {
         if(n%i==0) primes.insert(i);
+
+        while(n%i == 0){
+            ++res[i];
+            n /= i;
+        }
     }
     if(n != 1) {
+        res[n] = 1;
         primes.insert(n);
     }
-    return primes;
+    return make_pair(res, primes);
 }
 
 int main(){
@@ -48,12 +55,12 @@ int main(){
         if(ispair){
             if(e[a[i]] > 0) ispair = false;
             else{
-                set<ll> pri = prime_factor(a[i]);
+                set<ll> pri = prime_factor(a[i]).second;
 
                 for(ll base: pri){
-                    if(e[base] > 0) continue;
+                    //if(e[base] > 0) continue;
                     ll mul = 1;
-                    while(base*mul < 100000){
+                    while(base*mul <= 1000000){
                         ++e[base*mul];
                         ++mul;
                     }
