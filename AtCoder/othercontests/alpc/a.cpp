@@ -14,6 +14,10 @@ int main(){
     int n, q;
     cin >> n >> q;
     dsu d(n);
+    string s;
+    cin >> s;
+
+    cout << s.size() << " " << s << " " << s.substr(2, 4) << endl;
     rep(i, q){
         int t, u, v;
         cin >> t >> u >> v;
