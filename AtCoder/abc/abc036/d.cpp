@@ -2,31 +2,50 @@
 #include <vector>
 using namespace std;
 using ll = long long;
+
 const int mod = 1000000007;
 
-vector<ll> calc_fib(ll n){
-    vector<ll> ret(n+10);
-    ret[0] = 1;
-    ret[1] = 1;
-    for(int i = 2; i < n+10; ++i){
-        ret[i] = (ret[i-2] + ret[i-1]) % mod;
-    }
+vector<ll> dpf;
+vector<ll> dpg;
+vector<vector<int>> g;
+ll recg(int, int);
 
-    return ret;
+ll recf(int v, int prev){
+    if(dpf[v] > 0) return dpf[v];
+
+    ll white = recg(v, prev);
+    ll black = 1;
+    for(int nv: g[v]){
+        if(nv == prev) continue;
+
+        black = black * recg(nv, v) % mod;
+    }
+    
+    return dpf[v] = (white + black) % mod;
 }
 
+ll recg(int v, int prev){
+    if(dpg[v] > 0) return dpg[v];
+
+    ll ret = 1;
+    for(int nv: g[v]){
+        if(nv == prev) continue;
+
+        ret = (ret * recf(nv, v)) % mod;
+    }
+
+    return dpg[v] = ret;
+}
 
 int main(){
     cin.tie(nullptr);
-    ios::sycn_with_stdio(false);
-    
+    ios::sync_with_stdio(false);
+
     int n;
     cin >> n;
     
-    vector<ll> fib(n+10) = calc_fib(n);
-
-    vector<vector<int>> g(n);
-    for(int i = 0; i < n; ++i){
+    g.resize(n);
+    for(int i = 0; i < n-1; ++i){
         int a, b;
         cin >> a >> b;
         --a;
@@ -34,16 +53,10 @@ int main(){
         g[a].push_back(b);
         g[b].push_back(a);
     }
-
-    int start;
-    for(int i = 0; i < n; ++i){
-        if(g[i].size() == 1){
-            start = i;
-            break;
-        }
-    }
-
-    cout << dfs(start) << endl;
     
+    dpf.resize(n, 0);
+    dpg.resize(n, 0);
+    cout << recf(0, -1) << endl;
+
     return 0;
 }
