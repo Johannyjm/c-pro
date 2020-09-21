@@ -8,16 +8,6 @@ int main() {
     cin.tie(nullptr);
     ios::sync_with_stdio(false);
 
-    vector<pair<int, int>> vp;
-    vp.push_back(make_pair(0, 1));
-    vp.push_back(make_pair(2, 3));
-    vp.push_back(make_pair(4, 5));
-
-    rep(i, vp.size()) cout << i << ": " << vp[i].first << " " << vp[i].second << endl;
-
-    vp.pop_back();
-
-    rep(i, vp.size()) cout << i << ": " << vp[i].first << " " << vp[i].second << endl;
 
 
     
@@ -32,19 +22,29 @@ int main() {
     // cout << num.back() << endl;
     // cout << num.front() << endl;
 
-    num = {1, 2, 1, 5, 8, 13, 78, 534, 2, 46, 8, 56, 3, 5, 5, 5, 5, 5, 5, 5, 5};
+    num = {2, 5, 8, 13, 78, 534, 2, 46, 8, 56, 3, 5, 5, 5};
+    int n = num.size();
     sort(num.begin(), num.end());
 
-    rep(i, num.size()) cout << num[i] << " ";
+    rep(i, n) cout << num[i] << " ";
     cout << endl;
 
     cout << upper_bound(num.begin(), num.end(), 8) - num.begin() << endl;
 
     // reverse(num.begin(), num.end());
-    rep(i, num.size()) cout << num[i] << " ";
+    rep(i, n) cout << num[i] << " ";
     cout << endl;
     cout << lower_bound(num.begin(), num.end(), 8) - num.begin() << endl;
 
+    rep(i, n) cout << num[i] << " ";
+    // cout << endl;
+    // cout << upper_bound(num.begin(), num.end(), 2) - num.begin() << endl;
+    // cout << lower_bound(num.begin(), num.end(), 2) - num.begin() << endl;
+    cout << endl << endl;
+    vector<int> a = {1, 2,  3, 5};
+    cout << upper_bound(a.begin(), a.end(), 2) - a.begin() << endl;
+    cout << lower_bound(a.begin(), a.end(), 2) - a.begin() << endl;
+    
     // cout << lower_bound(num.begin(), num.end(), 2) - num.begin() << endl;
     // cout << num.end() - lower_bound(num.begin(), num.end(), 2) << endl;
     // cout << upper_bound(num.begin(), num.end(), 2) - num.begin() << endl;
