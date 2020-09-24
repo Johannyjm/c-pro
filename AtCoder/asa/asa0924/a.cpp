@@ -9,11 +9,10 @@ int main(){
     cin.tie(nullptr);
     ios::sync_with_stdio(false);
 
-    int a, b, c;
-    cin >> a >> b >> c;
+    int n, x;
+    cin >> n >> x;
 
-    if(a+b < c) puts("Yes");
-    else puts("No");
+    cout << min(x-1, n-x) << endl;
 
     return 0;
 }

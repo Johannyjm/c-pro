@@ -5,35 +5,29 @@
 using namespace std;
 typedef long long ll;
 
-vector<int> a;
-vector<int> order;
-
-int dp[200000]
-int rec(int v, int p){
-
-}
 
 
 int main(){
     cin.tie(nullptr);
     ios::sync_with_stdio(false);
 
-    int n;
+    ll n;
     cin >> n;
-    a.resize(n);
-    order.resize(n);
-    rep(i, n){
-        cin >> a[i];
-        order[a[i]-1] = i;
+    vector<ll> d(n+1, 0);
+    for(int i = 1; i <= n; ++i){
+        for(int j = i; j <= n; j += i){
+            ++d[j];
+        }
+    }
+    d[1] = 1;
+    d[2] = 2;
+
+    ll res = 0;
+    for(ll i = 1; i <= n; ++i){
+        res += i * d[i];
     }
 
-    rep(i, n) cout << order[i] << " ";
-    cout << endl;
-
-    cout << n + rec(0, 0) << endl;
-
-
-
+    cout << res << endl;
 
     return 0;
 }

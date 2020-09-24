@@ -11,7 +11,18 @@ int main(){
     cin.tie(nullptr);
     ios::sync_with_stdio(false);
 
+    int n;
+    cin >> n;
+    vector<int> x(n), y(n);
+    rep(i, n){
+        cin >> x[i] >> y[i];
+        --x[i];
+        --y[i];
+    }
+
     
+
+
 
     return 0;
 }

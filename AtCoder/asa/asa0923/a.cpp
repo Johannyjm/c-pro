@@ -9,11 +9,11 @@ int main(){
     cin.tie(nullptr);
     ios::sync_with_stdio(false);
 
-    int a, b, c;
-    cin >> a >> b >> c;
+    int n;
+    cin >> n;
 
-    if(a+b < c) puts("Yes");
-    else puts("No");
+    if(7<=n%10 && n%10 <=9) cout << (n/10+1)*100 << endl;
+    else cout << n/10*100 + n%10*15 << endl;
 
     return 0;
 }

@@ -5,35 +5,31 @@
 using namespace std;
 typedef long long ll;
 
-vector<int> a;
-vector<int> order;
-
-int dp[200000]
-int rec(int v, int p){
-
-}
-
-
 int main(){
     cin.tie(nullptr);
     ios::sync_with_stdio(false);
 
     int n;
     cin >> n;
-    a.resize(n);
-    order.resize(n);
+    vector<int> a(n);
+    int mx = -1;
     rep(i, n){
         cin >> a[i];
-        order[a[i]-1] = i;
+        mx = max(mx, a[i]);
     }
 
-    rep(i, n) cout << order[i] << " ";
-    cout << endl;
+    vector<int> b(mx+10, 0);
+    rep(i, n){
+        int d = a[i];
+        for(int j = d; j < mx+10; j += d) ++b[j];
+    }
 
-    cout << n + rec(0, 0) << endl;
+    int res = 0;
+    rep(i, n){
+        if(b[a[i]] == 1) ++res;
+    }
 
-
-
+    cout << res << endl;
 
     return 0;
 }

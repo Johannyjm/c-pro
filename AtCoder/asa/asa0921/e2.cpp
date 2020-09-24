@@ -15,16 +15,37 @@ int main(){
     ll m = t.size();
 
     vector<vector<int>> idx(26);
-    for(int i = 0; i < n; ++i){
+    rep(i, n){
         idx[s[i] - 'a'].push_back(i);
     }
-    for(int i = 0; i < 26; ++i){
+    rep(i, 26){
         sort(idx[i].begin(), idx[i].end());
     }
 
-    for(int i = 0; i < 26; ++i){
+    rep(i, 26){
         for(auto el: idx[i]) cout << el << " ";
         cout << endl;
+    }
+
+    ll res = 0;
+    if(idx[t[0] - 'a'].empty()){
+        cout << -1 << endl;
+        return 0;
+    }
+
+    int ptr = idx[0].front();
+    rep1(i, m){
+        int now = t[i] - 'a';
+        if(idx[now].empty()){
+            cout << -1 << endl;
+            return 0;
+        }
+
+        if(idx[now].size() == 1){
+            if(idx[now].front() < ptr) res += n;
+            else ptr = idx[now].front();
+        }
+
     }
 
     return 0;

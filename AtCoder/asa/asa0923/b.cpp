@@ -9,11 +9,14 @@ int main(){
     cin.tie(nullptr);
     ios::sync_with_stdio(false);
 
-    int a, b, c;
-    cin >> a >> b >> c;
+    int n, l;
+    cin >> n >> l;
+    vector<string> s(n);
+    rep(i, n) cin >> s[i];
 
-    if(a+b < c) puts("Yes");
-    else puts("No");
+    sort(s.begin(), s.end());
+    rep(i, n) cout << s[i];
+    cout << endl;
 
     return 0;
 }
