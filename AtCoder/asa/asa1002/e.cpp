@@ -5,6 +5,8 @@
 using namespace std;
 typedef long long ll;
 
+
+
 int main(){
     cin.tie(nullptr);
     ios::sync_with_stdio(false);
@@ -18,7 +20,7 @@ int main(){
     rep1(i, n+1) rep1(j, n+1){
         if(s[i-1] == s[j-1]){
             if(i!=j && dp[i-1][j-1]+1 <= j-i){
-                dp[i][j] = max(dp[i][j], dp[i-1][j-1] + 1);
+                dp[i][j] = max(dp[i][j], dp[i-1][j-1] + 1ll);
             }
         }
         dp[i][j] = max({dp[i][j], dp[i-1][j], dp[i][j-1]});
