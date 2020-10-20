@@ -9,20 +9,19 @@ int main(){
     cin.tie(nullptr);
     ios::sync_with_stdio(false);
 
-    int n = 6;
-    vector<int> e(n), l(n);
-    rep(i, n) cin >> e[i];
-    int b;
-    cin >> b;
-    rep(i, n) cin >> l[i];
+    ll n;
+    cin >> n;
 
-    int cnt = 0;
-    int bonus = 0;
-    rep(i, n){
-        if(e[i] == l[i]) ++cnt;
-        else{
-            if()
+    set<ll> st;
+    for(ll i = 1; i*i <= n; ++i){
+        if(n%i == 0){
+            st.insert(i);
+            st.insert(n/i);
         }
+    }
+
+    for(auto elem: st){
+        cout << elem << "\n";
     }
 
     return 0;

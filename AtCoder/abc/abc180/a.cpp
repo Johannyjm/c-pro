@@ -9,21 +9,10 @@ int main(){
     cin.tie(nullptr);
     ios::sync_with_stdio(false);
 
-    int n = 6;
-    vector<int> e(n), l(n);
-    rep(i, n) cin >> e[i];
-    int b;
-    cin >> b;
-    rep(i, n) cin >> l[i];
+    int n, a, b;
+    cin >> n >> a >> b;
 
-    int cnt = 0;
-    int bonus = 0;
-    rep(i, n){
-        if(e[i] == l[i]) ++cnt;
-        else{
-            if()
-        }
-    }
+    cout << n-a+b << endl;
 
     return 0;
 }

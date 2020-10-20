@@ -81,7 +81,12 @@ int main(){
             // rep(j, (int)grp.size()) cout << grp[j] << " ";
             // cout << endl;
 
+            sort(grp.begin(), grp.end());
+
+            ll ans = 0;
+            int idx = 0;
             
+
         }
     }while(next_permutation(w.begin(), w.end()));
 
