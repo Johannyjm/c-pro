@@ -9,18 +9,19 @@ int main(){
     cin.tie(nullptr);
     ios::sync_with_stdio(false);
 
-    int a, b, c;
-    cin >> a >> b >> c;
+    string s = "DiscoPresentsDiscoveryChannelProgrammingContest2016";
 
-    int sm = a;
-    rep1(i, 10000){
-        if(sm * i % b == c){
-            puts("YES");
-            return 0;
-        }
+    int w;
+    cin >> w;
+    int n = s.size() / w;
+
+    rep(i, n){
+        rep(j, w) cout << s[i*w + j];
+        cout << endl;
     }
 
-    puts("NO");
+    rep(j, s.size()%w) cout << s[n*w + j];
+    if(s.size()%w!=0) cout << endl;
 
     return 0;
 }
