@@ -21,8 +21,11 @@ template <class Cap> struct mf_graph {
         assert(0 <= cap);
         int m = int(pos.size());
         pos.push_back({from, int(g[from].size())});
-        g[from].push_back(_edge{to, int(g[to].size()), cap});
-        g[to].push_back(_edge{from, int(g[from].size()) - 1, 0});
+        int from_id = int(g[from].size());
+        int to_id = int(g[to].size());
+        if (from == to) to_id++;
+        g[from].push_back(_edge{to, to_id, cap});
+        g[to].push_back(_edge{from, from_id, 0});
         return m;
     }
 
@@ -62,6 +65,7 @@ template <class Cap> struct mf_graph {
     Cap flow(int s, int t, Cap flow_limit) {
         assert(0 <= s && s < _n);
         assert(0 <= t && t < _n);
+        assert(s != t);
 
         std::vector<int> level(_n), iter(_n);
         internal::simple_queue<int> que;
@@ -95,8 +99,9 @@ template <class Cap> struct mf_graph {
                 g[v][i].cap += d;
                 g[e.to][e.rev].cap -= d;
                 res += d;
-                if (res == up) break;
+                if (res == up) return res;
             }
+            level[v] = _n;
             return res;
         };
 
@@ -105,11 +110,9 @@ template <class Cap> struct mf_graph {
             bfs();
             if (level[t] == -1) break;
             std::fill(iter.begin(), iter.end(), 0);
-            while (flow < flow_limit) {
-                Cap f = dfs(dfs, t, flow_limit - flow);
-                if (!f) break;
-                flow += f;
-            }
+            Cap f = dfs(dfs, t, flow_limit - flow);
+            if (!f) break;
+            flow += f;
         }
         return flow;
     }

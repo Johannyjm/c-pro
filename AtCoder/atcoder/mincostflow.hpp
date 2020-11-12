@@ -17,10 +17,15 @@ template <class Cap, class Cost> struct mcf_graph {
     int add_edge(int from, int to, Cap cap, Cost cost) {
         assert(0 <= from && from < _n);
         assert(0 <= to && to < _n);
+        assert(0 <= cap);
+        assert(0 <= cost);
         int m = int(pos.size());
         pos.push_back({from, int(g[from].size())});
-        g[from].push_back(_edge{to, int(g[to].size()), cap, cost});
-        g[to].push_back(_edge{from, int(g[from].size()) - 1, 0, -cost});
+        int from_id = int(g[from].size());
+        int to_id = int(g[to].size());
+        if (from == to) to_id++;
+        g[from].push_back(_edge{to, to_id, cap, cost});
+        g[to].push_back(_edge{from, from_id, 0, -cost});
         return m;
     }
 
@@ -119,7 +124,7 @@ template <class Cap, class Cost> struct mcf_graph {
             return true;
         };
         Cap flow = 0;
-        Cost cost = 0, prev_cost = -1;
+        Cost cost = 0, prev_cost_per_flow = -1;
         std::vector<std::pair<Cap, Cost>> result;
         result.push_back({flow, cost});
         while (flow < flow_limit) {
@@ -136,11 +141,11 @@ template <class Cap, class Cost> struct mcf_graph {
             Cost d = -dual[s];
             flow += c;
             cost += c * d;
-            if (prev_cost == d) {
+            if (prev_cost_per_flow == d) {
                 result.pop_back();
             }
             result.push_back({flow, cost});
-            prev_cost = cost;
+            prev_cost_per_flow = d;
         }
         return result;
     }

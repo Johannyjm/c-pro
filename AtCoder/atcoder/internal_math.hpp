@@ -3,6 +3,10 @@
 
 #include <utility>
 
+#ifdef _MSC_VER
+#include <intrin.h>
+#endif
+
 namespace atcoder {
 
 namespace internal {
@@ -15,14 +19,14 @@ constexpr long long safe_mod(long long x, long long m) {
     return x;
 }
 
-// Fast moduler by barrett reduction
+// Fast modular multiplication by barrett reduction
 // Reference: https://en.wikipedia.org/wiki/Barrett_reduction
 // NOTE: reconsider after Ice Lake
 struct barrett {
     unsigned int _m;
     unsigned long long im;
 
-    // @param m `1 <= m`
+    // @param m `1 <= m < 2^31`
     barrett(unsigned int m) : _m(m), im((unsigned long long)(-1) / m + 1) {}
 
     // @return m
@@ -83,7 +87,8 @@ constexpr bool is_prime_constexpr(int n) {
     if (n % 2 == 0) return false;
     long long d = n - 1;
     while (d % 2 == 0) d /= 2;
-    for (long long a : {2, 7, 61}) {
+    constexpr long long bases[3] = {2, 7, 61};
+    for (long long a : bases) {
         long long t = d;
         long long y = pow_mod_constexpr(a, t, n);
         while (t != n - 1 && y != 1 && y != n - 1) {
