@@ -52,7 +52,7 @@ int main(){
             }
         }
     }
-
+    return 1;
     rep(i, n){
         if(s[i] == ','){
             puts("set");
