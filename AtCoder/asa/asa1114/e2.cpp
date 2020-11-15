@@ -14,6 +14,7 @@ ll gcd(ll m, ll n){
     return n;
 }
 
+
 int main(){
     cin.tie(nullptr);
     ios::sync_with_stdio(false);
