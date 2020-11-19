@@ -15,7 +15,7 @@ int main(){
     cin.tie(nullptr);
     ios::sync_with_stdio(false);
 
-    ll n;
+    int n;
     cin >> n;
 
     vector<vector<Edge>> g(n);
