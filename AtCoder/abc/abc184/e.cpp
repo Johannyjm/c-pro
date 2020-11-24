@@ -7,87 +7,81 @@ using ll = long long;
 const int dy[] = {0, 1, 0, -1};
 const int dx[] = {1, 0, -1, 0};
 
-int h, w;
-int g2f(int y, int x){
-    return y*w + x;
-}
-
 int main(){
     cin.tie(nullptr);
     ios::sync_with_stdio(false);
 
+    int h, w;
     cin >> h >> w;
     vector<string> s(h);
     rep(i, h) cin >> s[i];
 
-    int sy, sx, gy, gx;
-    vector<vector<int>> g(h*w);
-    vector<vector<pair<int, int>>> warp(26);
+    int sy = -1;
+    int sx = -1;
+    int gy = -1;
+    int gx = -1;
+    vector<vector<pair<int, int>>> warps(26);
     rep(i, h) rep(j, w){
-        if(s[i][j] == '#') continue;
         if(s[i][j] == 'S'){
             sy = i;
             sx = j;
         }
-        else if(s[i][j] == 'G'){
+        if(s[i][j] == 'G'){
             gy = i;
             gx = j;
         }
 
-        else if('a'<=s[i][j] && s[i][j]<='z'){
-            warp[s[i][j] - 'a'].push_back({i, j});
+        if('a'<=s[i][j]&&s[i][j]<='z'){
+            warps[s[i][j]-'a'].push_back({i, j});
         }
+    }
+
+    priority_queue<pair<int, pair<int, int>>, vector<pair<int, pair<int, int>>>, greater<pair<int, pair<int, int>>>> pq;
+    pq.push({0, {sy, sx}});
+    const int INF = 1001001001;
+    vector<vector<int>> dist(h, vector<int>(w, INF));
+    dist[sy][sx] = 0;
+
+    while(!pq.empty()){
+        pair<int, pair<int, int>> pp = pq.top();
+        pq.pop();
+        int y = pp.second.first;
+        int x = pp.second.second;
 
         rep(dir, 4){
-            int ny = i + dy[dir];
-            int nx = j + dx[dir];
+            int ny = y + dy[dir];
+            int nx = x + dx[dir];
 
             if(ny<0 || ny>=h || nx<0 || nx>=w) continue;
             if(s[ny][nx] == '#') continue;
-            // cout << i << " " << j << " " << ny << " " << nx << endl;
-            g[g2f(i, j)].push_back(g2f(ny, nx));
-            g[g2f(ny, nx)].push_back(g2f(i, j));
+
+            if(dist[ny][nx] > dist[y][x] + 1){
+                dist[ny][nx] = dist[y][x] + 1;
+                pq.push({dist[ny][nx], {ny, nx}});
+            }
         }
-    }
 
-    rep(i, 26){
-        if(warp[i].size() == 0) continue;
-        int y0 = warp[i][0].first;
-        int x0 = warp[i][0].second;
-        int y1 = warp[i][1].first;
-        int x1 = warp[i][1].second;
+        if('a'<=s[y][x] && s[y][x]<='z'){
+            int ny = -1;
+            int nx = -1;
+            if(warps[s[y][x]-'a'][0].first == y){
+                ny = warps[s[y][x]-'a'][1].first;
+                nx = warps[s[y][x]-'a'][1].second;
+            }
+            else{
+                ny = warps[s[y][x]-'a'][0].first;
+                nx = warps[s[y][x]-'a'][0].second;
+            }
 
-        g[g2f(y0, x0)].push_back(g2f(y1, x1));
-        g[g2f(y1, x1)].push_back(g2f(y0, x0));
-    }
-
-    const int INF = 1001001001;
-    vector<int> dist(h*w, INF);
-    dist[g2f(sy, sx)] = 0;
-
-    priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq;
-    pq.push({0, g2f(sy, sx)});
-
-    while(!pq.empty()){
-        pair<int, int> p = pq.top();
-        int v = p.second;
-        pq.pop();
-
-        for(auto nv: g[v]){
-            // cout << "v: " << v << ", nv: " << nv << endl;
-            if(dist[nv] > dist[v] + 1){
-                dist[nv] = dist[v] + 1;
-                pq.push({dist[nv], nv});
+            if(dist[ny][nx] > dist[y][x] + 1){
+                dist[ny][nx] = dist[y][x] + 1;
+                pq.push({dist[ny][nx], {ny, nx}});
             }
         }
     }
-    int res = dist[g2f(gy, gx)];
-    if(res == INF) res= -1;
-    cout << res << endl;
-    // rep(i, h){
-    //     rep(j, w) cout << dist[g2f(i, j)] << " ";
-    //     cout << endl;
-    // }
+
+    if(dist[gy][gx] == INF) cout << -1 << endl;
+    else cout << dist[gy][gx] << endl;
 
     return 0;
 }
