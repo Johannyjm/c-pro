@@ -38,7 +38,7 @@ int main(){
 
     priority_queue<pair<int, pair<int, int>>, vector<pair<int, pair<int, int>>>, greater<pair<int, pair<int, int>>>> pq;
     pq.push({0, {sy, sx}});
-    const int INF = 1001001001;
+    const int INF = 99;
     vector<vector<int>> dist(h, vector<int>(w, INF));
     dist[sy][sx] = 0;
 
@@ -62,21 +62,18 @@ int main(){
         }
 
         if('a'<=s[y][x] && s[y][x]<='z'){
-            int ny = -1;
-            int nx = -1;
-            if(warps[s[y][x]-'a'][0].first == y){
-                ny = warps[s[y][x]-'a'][1].first;
-                nx = warps[s[y][x]-'a'][1].second;
-            }
-            else{
-                ny = warps[s[y][x]-'a'][0].first;
-                nx = warps[s[y][x]-'a'][0].second;
+            if(warps[s[y][x]-'a'].size() == 1) continue;
+
+            for(auto np: warps[s[y][x]-'a']){
+                int ny = np.first;
+                int nx = np.second;
+
+                if(dist[ny][nx] > dist[y][x] + 1){
+                    dist[ny][nx] = dist[y][x] + 1;
+                    pq.push({dist[ny][nx], {ny, nx}});
+                }
             }
 
-            if(dist[ny][nx] > dist[y][x] + 1){
-                dist[ny][nx] = dist[y][x] + 1;
-                pq.push({dist[ny][nx], {ny, nx}});
-            }
         }
     }
 
