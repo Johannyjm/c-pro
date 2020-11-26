@@ -12,6 +12,13 @@ int g2f(int y, int x){
     return y*w + x;
 }
 
+struct Edge{
+    int to;
+    int weight;
+
+    Edge(int t, int w): to(t), weight(w){}
+};
+
 int main(){
     cin.tie(nullptr);
     ios::sync_with_stdio(false);
@@ -20,12 +27,11 @@ int main(){
     vector<string> s(h);
     rep(i, h) cin >> s[i];
 
-    vector<vector<int>> g(h*w);
+    vector<vector<Edge>> g(h*w + 26);
     int sy = -1;
     int sx = -1;
     int gy = -1;
     int gx = -1;
-    vector<int> leader(26, -1);
     rep(i, h) rep(j, w){
         if(s[i][j] == '#') continue;
         if(s[i][j] == 'S'){
@@ -44,23 +50,17 @@ int main(){
             if(ny<0||ny>=h||nx<0||nx>=w) continue;
             if(s[ny][nx] == '#') continue;
 
-            g[g2f(i, j)].push_back(g2f(ny, nx));
-            g[g2f(ny, nx)].push_back(g2f(i, j));
+            g[g2f(i, j)].push_back(Edge(g2f(ny, nx), 1));
         }
 
         if('a'<=s[i][j] && s[i][j]<='z'){
-            if(leader[s[i][j]-'a'] == -1){
-                leader[s[i][j]-'a'] = g2f(i, j);
-            }
-            else{
-                g[leader[s[i][j]-'a']].push_back(g2f(i, j));
-                g[g2f(i, j)].push_back(leader[s[i][j]-'a']);
-            }
+            g[h*w + s[i][j]-'a'].push_back(Edge(g2f(i, j), 0));
+            g[g2f(i, j)].push_back(Edge(h*w + s[i][j]-'a', 1));
         }
     }
 
     const int INF = 1001001001;
-    vector<int> dist(h*w, INF);
+    vector<int> dist(h*w+26, INF);
     dist[g2f(sy, sx)] = 0;
 
     priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq;
@@ -71,26 +71,17 @@ int main(){
         int v = p.second;
         pq.pop();
 
-        for(auto nv: g[v]){
-            if(v==g2f(sy, sx)||nv==g2f(sy, sx)) cout << "v: " << v << ", nv: " << nv << " " << dist[nv] <<  endl;
-            if(dist[nv] > dist[v] + 1){
-                dist[nv] = dist[v] + 1;
-                pq.push({dist[nv], nv});
+        for(auto ne: g[v]){
+            if(dist[ne.to] > dist[v] + ne.weight){
+                dist[ne.to] = dist[v] + ne.weight;
+                pq.push({dist[ne.to], ne.to});
             }
         }
     }
+
     int res = dist[g2f(gy, gx)];
-    if(res == INF) res= -1;
+    if(res == INF) res = -1;
     cout << res << endl;
-
-
-    rep(i, h){
-        rep(j, w){
-            if(dist[i*h+j]==INF) cout << 'I' << " ";
-            else cout << dist[i*h+j] << " ";
-        }
-        cout << endl;
-    }
 
     return 0;
 }
