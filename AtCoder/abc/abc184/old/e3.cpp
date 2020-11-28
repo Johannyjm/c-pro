@@ -63,31 +63,25 @@ int main(){
     vector<int> dist(h*w+26, INF);
     dist[g2f(sy, sx)] = 0;
 
-    deque<int> dq;
-    dq.push_back(g2f(sy, sx));
+    priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq;
+    pq.push({0, g2f(sy, sx)});
 
-    while(!dq.empty()){
-        int v = dq.front();
-        dq.pop_front();
+    while(!pq.empty()){
+        pair<int, int> p = pq.top();
+        int v = p.second;
+        pq.pop();
 
         for(auto ne: g[v]){
-            if(dist[ne.to] <= dist[v]+ne.weight) continue;
-
-            dist[ne.to] = dist[v] + ne.weight;
-            
-            if(ne.weight == 1) dq.push_back(ne.to);
-            if(ne.weight == 0) dq.push_front(ne.to);
+            if(dist[ne.to] > dist[v] + ne.weight){
+                dist[ne.to] = dist[v] + ne.weight;
+                pq.push({dist[ne.to], ne.to});
+            }
         }
     }
 
     int res = dist[g2f(gy, gx)];
     if(res == INF) res = -1;
     cout << res << endl;
-
-    // rep(i, h*w+26){
-    //     cout << dist[i] << " ";
-    //     if(i%w==w-1) cout << endl;
-    // }
 
     return 0;
 }
