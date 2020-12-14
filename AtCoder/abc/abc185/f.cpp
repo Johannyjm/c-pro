@@ -19,24 +19,25 @@ int main(){
     cin.tie(nullptr);
     ios::sync_with_stdio(false);
 
-    segtree<int, op, e> seg(3300000);
+    segtree<int, op, e> seg(440000);
+
     int n, q;
     cin >> n >> q;
+    vector<int> a(n);
     rep(i, n){
-        int a;
-        cin >> a;
-        seg.set(i, a);
+        cin >> a[i];
+        seg.set(i, a[i]);
     }
 
     rep(_, q){
-        int cmd, x, y;
-        cin >> cmd >> x >> y;
+        int t, x, y;
+        cin >> t >> x >> y;
 
-        if(cmd == 2){
-            cout << seg.prod(x-1, y) << endl;
+        if(t == 1){
+            seg.set(x-1, seg.get(x-1)^y);
         }
-        if(cmd == 1){
-            seg.set(x-1, seg.get(x-1) ^ y);
+        else{
+            cout << seg.prod(x-1, y) << endl;
         }
     }
 
