@@ -1,49 +1,57 @@
 #include <bits/stdc++.h>
-#define rep(i, n) for (int i = 0; i < (n); ++i)
-#define rep1(i, n) for (int i = 1; i < (n); ++i)
+#include <atcoder/all>
+#define rep(i, n) for(int i = 0; i < (n); ++i)
+#define rep1(i, n) for(int i = 1; i < (n); ++i)
 using namespace std;
-typedef long long ll;
-const ll INF = 1LL << 60;
+using namespace atcoder;
+using ll = long long;
+using mint = modint1000000007;
 
-const ll SEG_LEN = 1LL << 20;
-double seg[SEG_LEN * 2] = {0};
-
-void add(int idx, int x){
-    idx += SEG_LEN;
-    seg[idx] += x;
-    while(1){
-        idx /= 2;
-        if(idx==0) break;
-        seg[idx] = seg[idx*2] + seg[idx*2+1];
-    }
-}
-
-int get_sum(int l, int r){
-    l += SEG_LEN;
-    r += SEG_LEN;
-    int ret = 0;
-
-    while(l<r){
-        if(l%2){
-            ret += seg[l];
-            ++l;
-        }
-        l /= 2;
-
-        if(r%2){
-            ret += seg[r-1];
-            --r;
-        }
-        r /= 2;
+template<typename T>
+vector<T> compress(vector<T> &a){
+    vector<T> ret = a;
+    sort(ret.begin(), ret.end());
+    ret.erase(unique(ret.begin(), ret.end()), ret.end());
+    for(int i = 0; i < (int)a.size(); ++i){
+        a[i] = lower_bound(ret.begin(), ret.end(), a[i]) - ret.begin();
     }
     return ret;
 }
 
-int main() {
+pair<double, double> op(pair<double, double> a, pair<double, double> b){
+    return {a.first*b.first, a.second*b.first+b.second};
+}
+
+pair<double, double> e(){
+    return {1, 0};
+}
+
+int main(){
     cin.tie(nullptr);
     ios::sync_with_stdio(false);
 
+    ll n, m;
+    cin >> n >> m;
+    vector<ll> p(m);
+    vector<double> a(m), b(m);
+    rep(i, m) cin >> p[i] >> a[i] >> b[i];
+
+    vector<ll> vals = compress(p);
     
+    segtree<pair<double, double>, op, e> seg(110000);
+    double res1 = 1;
+    double res2 = 1;
+
+    rep(i, m){
+        seg.set(p[i], {a[i], b[i]});
+        pair<double, double> prod = seg.all_prod();
+        
+        res1 = min(res1, prod.first + prod.second);
+        res2 = max(res2, prod.first + prod.second);
+    }
+
+    cout << setprecision(20);
+    cout << res1 << "\n" << res2 << endl;
 
     return 0;
 }

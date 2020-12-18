@@ -4,6 +4,17 @@
 using namespace std;
 typedef long long ll;
 
+template<typename T>
+vector<T> compress(vector<T> &a){
+    vector<T> ret = a;
+    sort(ret.begin(), ret.end());
+    ret.erase(unique(ret.begin(), ret.end()), ret.end());
+    for(int i = 0; i < (int)a.size(); ++i){
+        a[i] = lower_bound(ret.begin(), ret.end(), a[i]) - ret.begin();
+    }
+    return ret;
+}
+
 bool is_prime(int n){
     if(n == 1) return false;
     
