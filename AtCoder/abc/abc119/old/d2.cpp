@@ -10,25 +10,23 @@ int main(){
 
     int a, b, q;
     cin >> a >> b >> q;
-
-    vector<ll> s, t;
     
-    const ll INF = 1ll<<60;
-    s.push_back(-INF);
+    vector<ll> s, t;
+    s.push_back(-(1ll<<60));
     rep(i, a){
         ll sa;
         cin >> sa;
         s.push_back(sa);
     }
-    s.push_back(INF);
+    s.push_back(1ll<<60);
 
-    t.push_back(-INF);
+    t.push_back(-(1ll<<60));
     rep(i, b){
-        ll ta;
-        cin >> ta;
-        t.push_back(ta);
+        ll tb;
+        cin >> tb;
+        t.push_back(tb);
     }
-    t.push_back(INF);
+    t.push_back(1ll<<60);
 
     rep(_, q){
         ll x;
@@ -37,17 +35,18 @@ int main(){
         int idx_a = lower_bound(s.begin(), s.end(), x) - s.begin();
         int idx_b = lower_bound(t.begin(), t.end(), x) - t.begin();
 
-        ll res = INF;
+        ll res = 1ll<<60;
         for(int i = idx_a-1; i <= idx_a; ++i){
-            for(int j = idx_b-1; j <=idx_b; ++j){
-                res = min(res, abs(x-s[i])+abs(s[i]-t[j]));
-                res = min(res, abs(x-t[j])+abs(t[j]-s[i]));
+            for(int j = idx_b-1; j <= idx_b; ++j){
+                ll cand1 = abs(x-s[i]) + abs(s[i]-t[j]);
+                ll cand2 = abs(x-t[j]) + abs(t[j]-s[i]);
+
+                res = min({res, cand1, cand2});
             }
         }
-        
-        cout << res << "\n";
-    }
 
+        cout << res << endl;
+    }
 
     return 0;
 }
