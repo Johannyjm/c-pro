@@ -7,38 +7,28 @@ using namespace atcoder;
 using ll = long long;
 using mint = modint1000000007;
 
-ll gcd(ll a, ll b){
-    if(a == 0) return b;
-    return gcd(b%a, a);
-}
-
 int main(){
     cin.tie(nullptr);
     ios::sync_with_stdio(false);
 
     int t;
     cin >> t;
-    
+
     while(t--){
         ll n, s, k;
         cin >> n >> s >> k;
 
-        ll g = gcd(k, n);
-        n /= g;
-        s /= g;
-        k /= g;
+        pair<ll, ll> c = crt({0, s}, {n, k});
 
-        ll inv_k = inv_mod(k, n);
-        // cout << "inv_k: " << inv_k << endl;
-        if(inv_k == 1){
+        if(c == make_pair(0ll, 0ll)){
             cout << -1 << endl;
             continue;
         }
 
-        ll res = -s * inv_k % n;
-        if(res < 0) res += n;
+        ll cr = c.first%c.second;
+        if(cr < s) cr = c.first + c.second;
 
-        cout << res << endl;
+        cout << (cr-s)/k << endl;
     }
 
     return 0;
