@@ -1,15 +1,18 @@
 #include <bits/stdc++.h>
-#include <atcoder/all>
 #define rep(i, n) for(int i = 0; i < (n); ++i)
 #define rep1(i, n) for(int i = 1; i < (n); ++i)
 using namespace std;
-using namespace atcoder;
 using ll = long long;
-using mint = modint1000000007;
 
-ll gcd(ll a, ll b){
-    if(a == 0) return b;
-    return gcd(b%a, a);
+// returns (x, y, gcd(a, b)) s.t. ax + by = gcd(a, b)
+vector<ll> ext_gcd(ll a, ll b){
+    if(a == 0) return {0, 1, b};
+    vector<ll> G = ext_gcd(b%a, a);
+    ll x = G[0];
+    ll y = G[1];
+    ll g = G[2];
+    
+    return {y-b/a*x, x, g};
 }
 
 int main(){
@@ -18,24 +21,27 @@ int main(){
 
     int t;
     cin >> t;
-    
+
     while(t--){
         ll n, s, k;
         cin >> n >> s >> k;
 
-        ll g = gcd(k, n);
-        n /= g;
-        s /= g;
-        k /= g;
+        vector<ll> G = ext_gcd(k, n);
 
-        ll inv_k = inv_mod(k, n);
-        // cout << "inv_k: " << inv_k << endl;
-        if(inv_k == 1){
+        if(s%G[2] != 0){
             cout << -1 << endl;
             continue;
         }
 
+        if(G[2] != 1){
+            n /= G[2];
+            s /= G[2];
+            k /= G[2];
+        }
+
+        ll inv_k = G[0];
         ll res = -s * inv_k % n;
+
         if(res < 0) res += n;
 
         cout << res << endl;

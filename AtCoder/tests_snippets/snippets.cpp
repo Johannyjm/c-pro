@@ -35,6 +35,22 @@ ll gcd(ll m, ll n){
     return n;
 }
 
+ll gcd(ll a, ll b){
+    if(a == 0) return b;
+    else return gcd(b%a, a);
+}
+
+// returns (x, y, gcd(a, b)) s.t. ax + by = gcd(a, b)
+vector<ll> ext_gcd(ll a, ll b){
+    if(a == 0) return {0, 1, b};
+    vector<ll> G = ext_gcd(b%a, a);
+    ll x = G[0];
+    ll y = G[1];
+    ll g = G[2];
+    
+    return {y-b/a*x, x, g};
+}
+
 ll lcm(ll m, ll n){
     return m / gcd(m, n) * n;
 }

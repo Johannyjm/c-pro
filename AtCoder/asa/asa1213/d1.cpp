@@ -23,12 +23,12 @@ int main(){
     int m = cnt.size();
     int resg = 0;
 
-    rep(bias, 2){
+    rep(_, 2){
         int res = 0;
         int ctr = 0;
-        int l = bias;
+        int l = 0;
         int r = 0;
-        for(int i = bias; i < m; ++i){
+        rep(i, m){
             if(cnt[i].first == '0') ++ctr;
             if(ctr > k){
                 r = i;
@@ -43,7 +43,7 @@ int main(){
             int sm = prev + cnt[r].second;
             if(r+1 < m) sm += cnt[r+1].second;
             sm -= cnt[l].second + cnt[l+1].second;
-            cout << sm << endl;
+
             res = max(res, sm);
             prev = sm;
             r += 2;
@@ -54,7 +54,7 @@ int main(){
 
         resg = max(resg, res);
 
-        // reverse(cnt.begin(), cnt.end());
+        reverse(cnt.begin(), cnt.end());
     }
 
     cout << resg << endl;
