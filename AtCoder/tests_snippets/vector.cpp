@@ -29,12 +29,12 @@ int main() {
     rep(i, n) cout << num[i] << " ";
     cout << endl;
 
-    cout << upper_bound(num.begin(), num.end(), 3) - num.begin() << endl;
+    cout << upper_bound(num.begin(), num.end(), 5) - num.begin() << endl;
 
     // reverse(num.begin(), num.end());
     rep(i, n) cout << num[i] << " ";
     cout << endl;
-    cout << lower_bound(num.begin(), num.end(), 3) - num.begin() << endl;
+    cout << lower_bound(num.begin(), num.end(), 5) - num.begin() << endl;
 
     rep(i, n) cout << num[i] << " ";
     // cout << endl;
