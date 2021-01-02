@@ -44,7 +44,11 @@ int main(){
 
                 if(ny<0 || ny>=h || nx<0 || nx>=w) break;
                 if(s[ny][nx] == '@') break;
-                if(dist[ny][nx] < dist[y][x]+1) break;
+                if(dist[ny][nx] != INF){
+                    if(dist[ny][nx] < dist[y][x] + 1) break;
+                    else continue;
+                }
+                // if(dist[ny][nx] < dist[y][x]+1) break;
 
 
                 dist[ny][nx] = dist[y][x] + 1;
