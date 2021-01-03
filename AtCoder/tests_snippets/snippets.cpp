@@ -4,6 +4,22 @@
 using namespace std;
 typedef long long ll;
 
+vector<int> rooted_tree(vector<vector<int>> g, int r=0){
+    vector<int> ret(g.size(), -1);
+    stack<int> st;
+    st.push(r);
+    while(!st.empty()){
+        int v = st.top();
+        st.pop();
+        for(int nv: g[v]){
+            if(ret[nv] != -1 || nv == 0) continue;
+            ret[nv] = v;
+            st.push(nv);
+        }
+    }
+    return ret;
+}
+
 template<typename T>
 vector<T> compress(vector<T> &a){
     vector<T> ret = a;
