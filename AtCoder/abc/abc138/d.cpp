@@ -1,30 +1,29 @@
 #include <bits/stdc++.h>
-#define rep(i, n) for (int i = 0; i < (n); ++i)
-#define rep1(i, n) for (int i = 1; i < (n); ++i)
+#define rep(i, n) for(int i = 0; i < (n); ++i)
+#define rep1(i, n) for(int i = 1; i < (n); ++i)
 using namespace std;
-typedef long long ll;
+using ll = long long;
 
+int n, q;
 vector<vector<int>> g;
 vector<bool> seen;
-vector<int> cnt;
 vector<int> res;
-
-void dfs(int v, int pv){
+void dfs(int v){
     seen[v] = true;
-    res[v] = res[pv] + cnt[v];
 
     for(int nv: g[v]){
         if(seen[nv]) continue;
-        dfs(nv, v);
+        
+        res[nv] += res[v];
+        dfs(nv);
     }
 }
 
-int main() {
+int main(){
     cin.tie(nullptr);
     ios::sync_with_stdio(false);
 
-    int n, q;
-    cin >> n>> q;
+    cin >> n >> q;
 
     g.resize(n);
     rep(i, n-1){
@@ -33,26 +32,23 @@ int main() {
         --a;
         --b;
         g[a].push_back(b);
-        if(a) g[b].push_back(a);
-    }
-
-    cnt.resize(n, 0);
-    rep(i, q){
-        int p, x;
-        cin >> p >> x;
-        --p;
-        cnt[p] += x;
+        g[b].push_back(a);
     }
 
     res.resize(n, 0);
-    seen.resize(n, false);
-    res[0] = cnt[0];
-    for(int nv: g[0]){
-        dfs(nv, 0);
+    while(q--){
+        int p, x;
+        cin >> p >> x;
+        --p;
+
+        res[p] += x;
     }
 
-    rep(i, n) cout << res[i] << " ";
-    cout << endl;
+    seen.resize(n, false);
+    dfs(0);
+
+    rep(i, n-1) cout << res[i] << " ";
+    cout << res.back() << endl;
 
     return 0;
 }
