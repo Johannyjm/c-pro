@@ -1,45 +1,10 @@
 #include <bits/stdc++.h>
-#define _GLIBCXX_DEBUG
-#define rep(i, n) for (int i = 0; i < (n); ++i)
-#define rep1(i, n) for (int i = 1; i < (n); ++i)
+#define rep(i, n) for(int i = 0; i < (n); ++i)
+#define rep1(i, n) for(int i = 1; i < (n); ++i)
 using namespace std;
-typedef long long ll;
+using ll = long long;
 
-const ll SEG_LEN = 1LL << 20;
-int seg[SEG_LEN * 2] = {0};
-
-void add(int idx, int x){
-    idx += SEG_LEN;
-    seg[idx] += x;
-    while(1){
-        idx /= 2;
-        if(idx==0) break;
-        seg[idx] = seg[idx*2] + seg[idx*2+1];
-    }
-}
-
-int get_sum(int l, int r){
-    l += SEG_LEN;
-    r += SEG_LEN;
-    int ret = 0;
-
-    while(l<r){
-        if(l%2){
-            ret += seg[l];
-            ++l;
-        }
-        l /= 2;
-
-        if(r%2){
-            ret += seg[r-1];
-            --r;
-        }
-        r /= 2;
-    }
-    return ret;
-}
-
-int main() {
+int main(){
     cin.tie(nullptr);
     ios::sync_with_stdio(false);
 
@@ -48,9 +13,13 @@ int main() {
     vector<int> a(n), b(n);
     rep(i, n) cin >> a[i] >> b[i];
 
-    if(n%2 == 1){
-
-    }
+    sort(a.begin(), a.end());
+    sort(b.begin(), b.end(), greater<int>());
+    int idx = (n-1)/2;
+    int l = a[idx] + ((n%2==1)? 0: a[idx+1]);
+    int r = b[idx] + ((n%2==1)? 0: b[idx+1]);
+    cout << l << " " << r << endl;
+    cout << r-l+1 << endl;
 
     return 0;
 }
