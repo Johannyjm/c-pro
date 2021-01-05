@@ -18,7 +18,7 @@ int main(){
     int idx = (n-1)/2;
     int l = a[idx] + ((n%2==1)? 0: a[idx+1]);
     int r = b[idx] + ((n%2==1)? 0: b[idx+1]);
-    cout << l << " " << r << endl;
+    
     cout << r-l+1 << endl;
 
     return 0;
