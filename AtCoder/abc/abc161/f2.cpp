@@ -4,12 +4,12 @@
 using namespace std;
 using ll = long long;
 
-set<ll> divisor(ll n) {
+set<ll> divisor(ll n){
     set<ll> ret;
-    for(ll i = 1; i*i <= n; ++i) {
-        if (n%i == 0) {
+    for(ll i = 1; i*i <= n; ++i){
+        if(n%i == 0){
             ret.insert(i);
-            if(i*i != n) ret.insert(n/i);
+            ret.insert(n/i);
         }
     }
     return ret;
@@ -21,13 +21,12 @@ int main(){
 
     ll n;
     cin >> n;
-    
+
     set<ll> res = divisor(n-1);
     res.erase(1);
 
     set<ll> div = divisor(n);
     div.erase(1);
-
     for(auto d: div){
         ll num = n;
         while(num%d == 0) num /= d;
@@ -35,8 +34,6 @@ int main(){
         if(num%d == 1) res.insert(d);
     }
 
-    // for(auto e: res) cout << e << " ";
-    // cout << endl;
     cout << res.size() << endl;
 
     return 0;
