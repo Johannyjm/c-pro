@@ -1,22 +1,13 @@
 n = int(input())
-h = list(map(int, input().split()))
 
-import sys
-sys.setrecursionlimit(10**6)
+dp = [[0] * 2 for _ in range(n+1)] # dp[day][b: 0, t: 1]
 
-INF = 10**12
+dp[0][0] = 1
+print(dp)
+for i in range(n):
+    dp[i+1][0] += dp[i][0] + dp[i][1] * 2
+    dp[i+1][1] += dp[i][0]
 
-memo = [-1] * n
-
-def rec(i): # return min cost in i idx
-    if(i == 0): return 0
-    if(memo[i] != -1): return memo[i]
-
-    ret = rec(i-1) + abs(h[i]-h[i-1])
-    if(i > 1): ret = min(ret, rec(i-2) + abs(h[i] - h[i-2]))
-
-    memo[i] = ret
-    return ret
-
-print(rec(n-1))
+print(dp)
+print(dp[n][0])
 
