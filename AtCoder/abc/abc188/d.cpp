@@ -11,27 +11,29 @@ int main(){
     ll n, C;
     cin >> n >> C;
 
-    vector<pair<ll, ll>> event;
+    vector<ll> a(n), b(n), c(n);
+    vector<pair<ll, ll>> ab;
     rep(i, n){
-        ll a, b, c;
-        cin >> a >> b >> c;
+        cin >> a[i] >> b[i] >> c[i];
 
-        event.push_back({a, c});
-        event.push_back({b+1, -c});
+        ab.push_back({a[i], c[i]});
+        ab.push_back({b[i]+1, -c[i]});
     }
 
-    sort(event.begin(), event.end());
+    sort(ab.begin(), ab.end());
 
-    ll prev = 0;
-    ll total = 0;
+    ll prev = ab[0].first;
+    ll total = ab[0].second;
     ll res = 0;
-    for(auto p: event){
-        ll day = p.first;
-        ll dif = p.second;
+    rep1(i, 2*n){
+        ll curr = ab[i].first;
+        ll dif = ab[i].second;
+        ll seg = curr - prev;
 
-        res += (day - prev) * min(total, C);
-        prev = day;
+        res += seg * min(total, C);
         total += dif;
+
+        prev = curr;
     }
 
     cout << res << endl;
