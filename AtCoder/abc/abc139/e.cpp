@@ -29,18 +29,41 @@ int main(){
         cout << endl;
     }
 
-    vector<vector<int>> g(n*(n-1)/2), parent(n*(n-1)/2);
+    vector<vector<int>> g(n*(n-1)/2);
+    vector<int> psize(n*(n-1)/2, 0);
     rep(i, n){
         rep(j, n-2){
             int from = cnv[i][a[i][j]];
             int to = cnv[i][a[i][j+1]];
 
             g[from].push_back(to);
-            parent[to].push_back(from);
+            ++psize[to];
         }
     }
 
     queue<int> q;
+    rep(i, n*(n-1)/2){
+        if(psize[i] == 0){
+            q.push(i);
+        }
+    }
+    if(q.empty()){
+        cout << -1 << endl;
+        return 0;
+    }
+
+    while(!q.empty()){
+        int v = q.front();
+        q.pop();
+        
+        for(int nv: g[v]){
+            
+        }
+    }
+
+
+
+
     rep(i, n*(n-1)/2){
         cout << i << " ";
         for(auto nv: g[i]) cout << nv << " ";
