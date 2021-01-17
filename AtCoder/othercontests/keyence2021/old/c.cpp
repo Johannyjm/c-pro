@@ -32,7 +32,7 @@ int main(){
     // }
 
     rep(i, 3){
-        dp[0][0][i] = 1;
+        dp[0][0][i] = mint();
     }
 
     mint val = 0;
