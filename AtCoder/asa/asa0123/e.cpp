@@ -55,10 +55,10 @@ int main(){
 
     }
 
-    rep(i, h){
-        rep(j, w) cout << dist[i][j] << " ";
-        cout << endl;
-    }
+    // rep(i, h){
+    //     rep(j, w) cout << dist[i][j] << " ";
+    //     cout << endl;
+    // }
 
     if(dist[gi][gj] == INF) dist[gi][gj] = -1;
     cout << dist[gi][gj] << endl;
