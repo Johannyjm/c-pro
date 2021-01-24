@@ -4,6 +4,23 @@
 using namespace std;
 typedef long long ll;
 
+using mat = vector<vector<ll>>;
+mat operator*(mat a, mat b){
+    int n = a.size();
+    int l = b.size();
+    int m = b[0].size();
+    
+    mat ret(n, vector<ll>(m, 0));
+
+    rep(i, n){
+        rep(j, l){
+            rep(k, m) ret[i][k] += a[i][j] * b[j][k];
+        }
+    }
+
+    return ret;
+}
+
 vector<int> rooted_tree(vector<vector<int>> g, int r=0){
     vector<int> ret(g.size(), -1);
     stack<int> st;

@@ -9,42 +9,21 @@ int main(){
     ios::sync_with_stdio(false);
 
     int n;
-	cin >> n;
-    vector<ll> a(n);
-	rep(i, n) cin >> a[i];
-    stack<ll> st;
-    vector<ll> l(110000), r(110000);
+    cin >> n;
+    vector<int> a(n);
+    rep(i, n) cin >> a[i];
 
-	rep(i, n){
-		while(st.empty() == false && a[st.top()] >= a[i])st.pop();
-		if(st.empty()){
-			l[i] = 0;
-		}else{
-			l[i] = st.top()+1;
-		}
-		st.push(i);
-	}
-
-	while(!st.empty()) st.pop();
-
-	for(int i = n-1; i >= 0; i--){
-		while(st.empty() == false && a[st.top()] >= a[i])st.pop();
-		if(st.empty()){
-			r[i] = n-1;
-		}
-        else{
-			r[i] = st.top()-1;
-		}
-		st.push(i);
-	}
-
-	ll res = 0;
-	rep(i, n) res = max(res, a[i]*(r[i]-l[i]+1));
+    int res = 0;
+    rep(l, n){
+        int mn = a[l];
+        rep(r, n){
+            if(l > r) continue;
+            mn = min(mn, a[r]);
+            res = max(res, mn*(r-l+1));
+        }
+    }
 
     cout << res << endl;
-
-	return 0;
-
-
+    
     return 0;
 }
