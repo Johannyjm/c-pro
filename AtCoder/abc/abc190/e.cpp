@@ -4,25 +4,22 @@
 using namespace std;
 using ll = long long;
 
-int k, C;
-vector<int> c;
-vector<vector<int>> dist;
-vector<vector<int>> kdist;
-vector<vector<int>> dp;
 const int INF = 1001001001;
-
+int k;
+// vector<vector<int>> dp;
+int dp[1<<18][18];
+vector<vector<int>> dist;
 int rec(int s, int v){
     if(dp[s][v] >= 0) return dp[s][v];
-    if((s==(1<<k)-1 && v == C)) return dp[s][v] = 0;
+    if(s == (1<<k) - 1) return dp[s][v] = 0;
 
     int ret = INF;
     rep(nv, k){
-        if(nv == v) continue;
-        if(!(s & (1<<nv))) ret = min(ret, rec(s|(1<<nv), nv) + kdist[v][nv]);
+        if(s & (1<<nv)) continue;
+        ret = min(ret, rec(s|(1<<nv), nv) + dist[v][nv]);
     }
 
-    dp[s][v] = ret;
-    return ret;
+    return dp[s][v] = ret;
 }
 
 int main(){
@@ -40,71 +37,58 @@ int main(){
         g[a].push_back(b);
         g[b].push_back(a);
     }
-    // int k;
+    
     cin >> k;
-    c.resize(k);
+    // dp.resize(1<<k, vector<int>(k));
+    vector<int> c(k);
     rep(i, k){
         cin >> c[i];
         --c[i];
     }
 
-    dist.resize(k, vector<int>(n, INF));
+    dist.resize(k, vector<int>(k, INF));
     queue<int> q;
     rep(i, k){
-        dist[i][c[i]] = 0;
-        q.push(c[i]);
-
+        int st = c[i];
+        vector<int> d(n, INF);
+        d[st] = 0;
+        q.push(st);
         while(!q.empty()){
             int v = q.front();
             q.pop();
 
             for(auto nv: g[v]){
-                if(dist[i][nv] != INF) continue;
+                if(d[nv] != INF) continue;
 
-                dist[i][nv] = dist[i][v] + 1;
+                d[nv] = d[v] + 1;
                 q.push(nv);
             }
+        }
+
+        rep(j, k){
+            if(d[c[j]] == INF){
+                cout << -1 << endl;
+                return 0;
+            }
+            dist[i][j] = d[c[j]];
         }
     }
 
     // rep(i, k){
-    //     rep(j, n) cout << dist[i][j] << " ";
+    //     rep(j, k) cout << dist[i][j] << " ";
     //     cout << endl;
     // }
 
-    kdist.resize(k, vector<int>(k, INF));
-    rep(i, k){
-        rep(j, k) kdist[i][j] = dist[i][c[j]];
-    }
-
-    rep(i, k){
-        rep(j, k) cout << kdist[i][j] << " ";
-        cout << endl;
-    }
-
-
-
     int res = INF;
-    dp.resize(1<<k, vector<int>(k, -1));
     rep(i, k){
-        // vector<bool> seen(k, false);
-        // seen[i] = true;
-        C = i;
-        dp.assign(1<<k, vector<int>(k, -1));
-        int cost = rec(0, i);
-        cout << i << " " << cost << endl;
-        res = min(res, cost);
-
-        // cout << cost << endl;
-        // rep(i, 1<<k){
-        //     rep(j, k) cout << dp[i][j] << " ";
-        //     cout << endl;
-        // }
-        // cout << endl;
+        // dp.assign(1<<k, vector<int>(k, -1));
+        rep(j, 1<<k){
+            rep(l, k) dp[j][l] = -1;
+        }
+        res = min(res, rec(0, i));
     }
 
-    if(res == INF) cout << -1 << endl;
-    else cout << res-1 << endl;
+    cout << res+1 << endl;
 
     return 0;
 }
