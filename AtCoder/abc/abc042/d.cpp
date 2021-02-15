@@ -43,7 +43,6 @@ int main(){
     mint res = edge * comb(a+w-b-1, a);
     for(int j = b+1; j < w; ++j){
         mint base = comb(h-a-1+j, j) - edge;
-        // cout << j << " " << a+w-j-2 << " " << base.val() << " " << comb(a+w-j-2, a-1).val() << endl;
         res += base * comb(a-1+w-j-1, a-1);
     }
 

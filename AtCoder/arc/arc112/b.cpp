@@ -11,31 +11,25 @@ int main(){
     ll b, c;
     cin >> b >> c;
 
-    vector<set<ll>> dp(220);
-    dp[0].insert(b);
+    ll cnt = 0;
+    if(b < 0) ++cnt;
+    cnt += abs(b);
 
-    set<ll> res;
-    rep(i, 200){
-        for(auto e: dp[i]){
-            dp[i+1].insert(-e);
-            dp[i+2].insert(e-1);
-        }
+    if((b>=0 && c <= 2*cnt) || (b<0 && c<=abs(b)*2-1)){
+        if(c <= 1) cout << c+1 << endl;
+        else cout << c*2 - 1 << endl;
+        return 0;
     }
 
-    rep(i, 200){
-        for(auto e: dp[i]){
-            res.insert(e);
-        }
-        cout << i << ": " << res.size() << ", ";
-        // for(auto e: res) cout << e << " ";
-        cout << endl;
+    ll res = c;
+    if(cnt <= 1) res += cnt;
+    else{
+        if(b >= 0) res += 2*cnt-1;
+        else res += 2*cnt-2;
     }
 
-    // rep(i, 22){
-    //     cout << i << ": " << dp[i].size() << " , ";
-    //     for(auto e: dp[i]) cout << e << " ";
-    //     cout << endl;
-    // }
+    cout << res << endl;
+
 
 
     return 0;
