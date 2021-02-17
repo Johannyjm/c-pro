@@ -61,7 +61,7 @@ int main(){
         }
     }
 
-    cout << a << ": " << cnt_a << ", " << b << ": " << n-cnt_a << endl;
+    // cout << a << ": " << cnt_a << ", " << b << ": " << n-cnt_a << endl;
     cout << comb(n, cnt_a).val() << endl;
 
     return 0;
