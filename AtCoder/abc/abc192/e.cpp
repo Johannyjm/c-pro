@@ -43,9 +43,11 @@ int main(){
         pq.pop();
         int v = p.second;
 
+        if(v == y) break;
+
         for(auto ne: g[v]){
-            ll ndist = dist[v];
-            if(ndist % ne.k != 0) ndist += ne.k - ndist%ne.k;
+            ll ndist = ((dist[v] + ne.k - 1) / ne.k) * ne.k;
+            // if(ndist % ne.k != 0) ndist += ne.k - ndist%ne.k;
             ndist += ne.weight;
 
             if(ndist < dist[ne.to]){
