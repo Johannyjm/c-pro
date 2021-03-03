@@ -1,42 +1,33 @@
-def calc(s, h):
-    ret = 0
-    for i in range(1, 10):
-        cnt = s.count(str(i))
-        if int(h) == i: cnt += 1
-        ret += int(i) * pow(10, cnt)
-    return ret
-
 k = int(input())
 s = input()
 t = input()
-scnt = [0] * 10
-tcnt = [0] * 10
-for i in range(4):
-    scnt[ord(s[i])-ord('0')] += 1
-    tcnt[ord(t[i])-ord('0')] += 1
 
-res = 0
-valid = 0
-cnt = 0
-for ta in range(1, 10):
-    for ao in range(1, 10):
-        if(ta == ao): 
-            if(scnt[ta]+tcnt[ta]+2 > k): continue
+remain = [0] * 10
+for i in range(10):
+    remain[i] = k-s.count(str(i))-t.count(str(i))
+
+def calc(cnt):
+    ret = 0
+    for i in range(10):
+        ret += i * pow(10, cnt.count(str(i)))
+    return ret
+
+res = 0.0
+comb_all = (9*k-8)*(9*k-9)
+for i in range(1, 10):
+    for j in range(1, 10):
+        if i==j:
+            if remain[i] < 2: continue
         else:
-            if(scnt[ta]+tcnt[ta]+1 > k): continue
-            if(scnt[ao]+tcnt[ao]+1 > k): continue
+            if remain[i] == 0: continue
+            if remain[j] == 0: continue
+        
 
-        pt = calc(s, ta)
-        pa = calc(t, ao)
+        if calc(s + str(i)) > calc(t + str(j)):
+            if i==j:
+                cnt = remain[i] * (remain[i]-1)
+            else:
+                cnt = remain[i] * remain[j]
+            res += cnt / comb_all
 
-        valid += 1
-        print(ta, ao, pt, pa)
-        if(pt > pa):
-            restt = k - scnt[int(ta)]
-            resta = k - tcnt[int(ao)]
-            print(": o", end='\n\n')
-            cnt += 1
-
-print(valid, cnt)
-print(cnt / valid)
-            
+print(res)
