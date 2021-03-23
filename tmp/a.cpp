@@ -44,6 +44,14 @@ int main(){
         }
     }
 
+    for(int i = 0; i < h; ++i){
+        for(int j = 0; j < w; ++j){
+            if(dist[i][j]!=INF) cout << dist[i][j];
+            else cout << '#';
+        }
+        cout << endl;
+    }
+
     if(dist[h-1][w-1] == INF) cout << -1 << endl;
     else cout << dist[h-1][w-1] << endl;
 
