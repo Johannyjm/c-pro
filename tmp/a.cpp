@@ -13,9 +13,10 @@ int main(){
 
     int h, w;
     cin >> h >> w;
+    
     vector<string> s(h);
     for(int i = 0; i < h; ++i) cin >> s[i];
-    
+
     const int INF = 1001001001;
     vector<vector<int>> dist(h, vector<int>(w, INF));
     dist[0][0] = 0;
@@ -24,11 +25,12 @@ int main(){
     q.push({0, 0});
 
     while(!q.empty()){
-        pair<int, int> p = q.front();
+        pair<int, int> now = q.front();
         q.pop();
 
-        int y = p.first;
-        int x = p.second;
+        int y = now.first;
+        int x = now.second;
+
         for(int dir = 0; dir < 4; ++dir){
             int ny = y + dy[dir];
             int nx = x + dx[dir];
@@ -42,7 +44,8 @@ int main(){
         }
     }
 
-    cout << dist[h-1][w-1] << endl;
+    if(dist[h-1][w-1] == INF) cout << -1 << endl;
+    else cout << dist[h-1][w-1] << endl;
 
 
     return 0;
