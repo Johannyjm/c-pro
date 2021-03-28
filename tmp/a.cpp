@@ -55,6 +55,5 @@ int main(){
     if(dist[h-1][w-1] == INF) cout << -1 << endl;
     else cout << dist[h-1][w-1] << endl;
 
-
     return 0;
 }
