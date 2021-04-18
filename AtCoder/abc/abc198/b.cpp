@@ -4,10 +4,17 @@
 using namespace std;
 using ll = long long;
 
+bool is_palindrome(string s){
+    int n = s.size();
+    rep(i, n){
+        if(s[i] != s[n-1-i]) return false;
+    }
+    return true;
+}
+
 int main(){
     cin.tie(nullptr);
     ios::sync_with_stdio(false);
-
 
     string s;
     cin >> s;
@@ -17,8 +24,13 @@ int main(){
         rep(j, i) now += '0';
         now += s;
 
-        cout << now << endl;
+        if(is_palindrome(now)){
+            puts("Yes");
+            return 0;
+        }
     }
+
+    puts("No");
 
     return 0;
 }
