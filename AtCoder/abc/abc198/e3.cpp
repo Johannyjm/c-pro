@@ -6,9 +6,11 @@ using namespace std;
 int n;
 vector<int> c, cnt;
 vector<vector<int>> g;
-vector<bool> isntgood, seen;
+vector<bool> isntgood;
 
-void dfs(int v){
+
+
+void dfs(int v, bool seen[]){
     seen[v] = true;
     ++cnt[c[v]];
 
@@ -16,8 +18,10 @@ void dfs(int v){
         if(seen[nv]) continue;
         if(cnt[c[nv]] > 0) isntgood[nv] = true;
 
-        dfs(nv, seen, cnt);
+        dfs(nv, seen);
     }
+
+    --cnt[c[v]];
 } 
 
 int main(){
@@ -38,11 +42,11 @@ int main(){
         g[b].push_back(a);
     }
 
-    vector<int> cnt(110000, 0);
-    vector<bool> seen(n, false);
+    cnt.resize(110000, 0);
     isntgood.resize(n, false);
+    bool seen[n] = {0};
 
-    dfs(0, seen, cnt);
+    dfs(0, seen);
 
     for(int i = 0; i < n; ++i){
         if(!isntgood[i]) cout << i+1 << "\n";
