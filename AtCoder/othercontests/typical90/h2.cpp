@@ -4,6 +4,9 @@
 using namespace std;
 
 const int mod = 1000000007;
+const string t = "atcoder";
+
+long long dp[7][110000] = {};
 
 int main(){
     cin.tie(nullptr);
@@ -13,16 +16,20 @@ int main(){
     string s;
     cin >> n >> s;
 
-    vector<vector<int>> dp(7, vector<int>(n, 0));
-    const string ATCODER = "atcoder";
     for(int i = 0; i < 7; ++i){
-        int cnt = 1;
         for(int j = 0; j < n; ++j){
-            if(s[j] == ATCODER[i]){
-                if(i == 0) dp[i][j] = cnt++;
+            if(s[j] == t[i]){
+                if(j == 0)
+                    dp[i][j] = 1;
+                else if(i == 0){
+                    dp[i][j] = dp[i][j-1] + 1;
+                    dp[i][j] %= mod;
+                }
                 else{
-                    dp[i][j] = dp[i-1][j] * cnt % mod;
-                    if(dp[i-1][j] > 0) ++cnt;
+                    dp[i][j] += dp[i][j-1];
+                    dp[i][j] %= mod;
+                    dp[i][j] += dp[i-1][j-1];
+                    dp[i][j] %= mod;
                 }
             }
             else{
@@ -30,11 +37,6 @@ int main(){
             }
         }
     }
-    
-    // for(int i = 0; i < 7; ++i){
-    //     for(int j = 0; j < n; ++j) cout << dp[i][j] << " ";
-    //     cout << endl;
-    // }
 
     cout << dp[6][n-1] << endl;
 
