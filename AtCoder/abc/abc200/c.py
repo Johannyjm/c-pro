@@ -26,5 +26,4 @@ for st in range(200):
         res += b[i] * now
         now += b[i]
 
-
 print(res)

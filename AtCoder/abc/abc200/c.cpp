@@ -13,10 +13,12 @@ int main(){
     vector<ll> a(n);
     map<ll, ll> mp;
     ll mxa = 0;
+    vector<vector<ll>> cnt(200);
     rep(i, n){
         cin >> a[i];
         ++mp[a[i]];
         mxa = max(mxa, a[i]);
+        cnt[]
     }
 
     ll res = 0;
