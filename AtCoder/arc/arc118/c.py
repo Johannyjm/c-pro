@@ -47,22 +47,24 @@ for i in range(1<<m):
     if cnt == n: break
 
     for j in range(15):
-        for k in range(15):
-            for l in range(15):
-                if j==0 and k==0 and l==0: continue
+        for k in range(10):
+            for l in range(9):
+                for o in range(8):
+                    for p in range(5):
+                        if j==0 and k==0 and l==0 and o==0 and p == 0: continue
 
-                val = base * pow(2, j) * pow(3, k) * pow(5, l)
+                        val = base * pow(2, j) * pow(3, k) * pow(5, l) * pow(7, o) * pow(11, p)
 
-                if val > 10000: continue
-                if val in st: continue
+                        if val > 10000: continue
+                        if val in st: continue
 
-                a.append(val)
-                st.add(val)
-                cnt += 1
+                        a.append(val)
+                        st.add(val)
+                        cnt += 1
 
-                if cnt == n:
-                    print(*a)
-                    exit()
+                        if cnt == n:
+                            print(*a)
+                            exit()
 
 
 # for i in range(1, 100):
@@ -114,11 +116,11 @@ for i in range(1<<m):
 #         st.add(val)
 
 
-print(len(a))
+# print(len(a))
 print(*a)
 
-from math import gcd
-g = a[0]
-for i in range(1, len(a)):
-    g = gcd(g, a[i])
-print(g)
+# from math import gcd
+# g = a[0]
+# for i in range(1, len(a)):
+#     g = gcd(g, a[i])
+# print(g)

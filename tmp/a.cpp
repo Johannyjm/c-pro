@@ -1,59 +1,175 @@
 #include <iostream>
-#include <vector>
 #include <string>
-#include <queue>
-using namespace std;
+#include <vector>
 
-const int dy[] = {0, 1, 0, -1};
-const int dx[] = {1, 0, -1, 0};
+using namespace std;
+using ll = long long;
+
+int n, q;
+ll l;
+vector<ll> a;
+vector<vector<pair<ll, ll>>> ts;
+vector<int> k;
+
+ll estimator(ll t, ll s, ll scatter){
+  ll ok = 1001001;
+  ll ng = -1;
+  while(ok - ng > 1){
+    ll mid = (ok + ng) / 2;
+    if((mid * mid + 2 * s * mid - mid) / 2 >= scatter) ok = mid;
+    else ng = mid;
+  }
+  return t + ok;
+}
+
+bool check(ll m){
+  ll sm = 0;
+  for(int i = 0; i < n; ++i){
+    ll mn = 1ll << 60;
+
+    // already clean
+    if(a[i] <= l) continue;
+
+    for(int j = 0; j < k[i]; ++j){
+      ll time = ts[i][j].first;
+      ll ability = ts[i][j].second;
+      ll scat = a[i];
+
+      time = estimator(time, ability, scat-l);
+      
+      mn = min(mn, time);
+    }
+    sm += mn;
+  }
+  return sm <= m;
+}
 
 int main(){
-    cin.tie(nullptr);
-    ios::sync_with_stdio(false);
+  cin.tie(nullptr);
+  ios::sync_with_stdio(false);
 
-    int h, w;
-    cin >> h >> w;
-    
-    vector<string> s(h);
-    for(int i = 0; i < h; ++i) cin >> s[i];
+  int step;
+  cin >> step;
+  
+  // step 1
+  if(step == 1){
+    cin >> n;
+    a.resize(n);
+    for(int i = 0; i < n; ++i) cin >> a[i];
 
-    const int INF = 1001001001;
-    vector<vector<int>> dist(h, vector<int>(w, INF));
-    dist[0][0] = 0;
-
-    queue<pair<int, int>> q;
-    q.push({0, 0});
-
-    while(!q.empty()){
-        pair<int, int> now = q.front();
-        q.pop();
-
-        int y = now.first;
-        int x = now.second;
-
-        for(int dir = 0; dir < 4; ++dir){
-            int ny = y + dy[dir];
-            int nx = x + dx[dir];
-
-            if(ny<0 || ny>=h || nx<0 || nx>=w) continue;
-            if(s[ny][nx] == '#') continue;
-            if(dist[ny][nx] != INF) continue;
-
-            dist[ny][nx] = dist[y][x] + 1;
-            q.push({ny, nx});
-        }
+    ts.resize(n);
+    k.resize(n);
+    for(int i = 0; i < n; ++i){
+      cin >> k[i];
+      for(int j = 0; j < k[i]; ++j){
+        ll t, s;
+        cin >> t >> s;
+        ts[i].push_back({t, s});
+      }
     }
 
-    for(int i = 0; i < h; ++i){
-        for(int j = 0; j < w; ++j){
-            if(dist[i][j]!=INF) cout << dist[i][j];
-            else cout << '#';
-        }
-        cout << endl;
+    ll res = 0;
+    for(int i = 0; i < n; ++i){
+      ll mn = 1ll << 60;
+      for(int j = 0; j < k[i]; ++j){
+        ll time = ts[i][j].first;
+        ll ability = ts[i][j].second;
+        ll scat = a[i];
+
+        //binary search in O(log(sqrt(n)))
+        time = estimator(time, ability, scat);
+
+        // // greedy in O(sqrt(n))
+        // while(1){
+        //   scat -= ability;
+        //   ++time;
+        //   if(scat <= 0) break;
+        //   ++ability;
+        // }
+
+        mn = min(mn, time);
+      }
+      res += mn;
     }
 
-    if(dist[h-1][w-1] == INF) cout << -1 << endl;
-    else cout << dist[h-1][w-1] << endl;
+    cout << res << endl;
+  }
 
-    return 0;
+  // step 2
+  if(step == 2){
+    cin >> n;
+    a.resize(n);
+    for(int i = 0; i < n; ++i) cin >> a[i];
+
+    ts.resize(n);
+    k.resize(n);
+    for(int i = 0; i < n; ++i){
+      cin >> k[i];
+      for(int j = 0; j < k[i]; ++j){
+        ll t, s;
+        cin >> t >> s;
+        ts[i].push_back({t, s});
+      }
+    }
+
+    cin >> q;
+    for(int i = 0; i < q; ++i){
+      cin >> l;
+
+      ll ok = 1001001001;
+      ll ng = -1;
+      while(ok - ng > 1){
+        ll mid = (ok + ng) / 2;
+        
+        if(check(mid)) ok = mid;
+        else ng = mid;
+      }
+
+      cout << ok << endl;
+    }
+
+  }
+
+  return 0;
+}
+
+
+
+
+
+
+bool check2(ll m){
+  ll ok = 1ll << 60;
+  ll ng = -1;
+
+  while(ok - ng > 1){
+    ll mid = (ok + ng) / 2;
+
+    if(check3(mid)) ok = mid;
+    else ng = mid;
+  }
+
+  return ok <= t;
+}
+
+bool check3(ll m){
+  ll mx = 0;
+  for(int i = 0; i < n; ++i){
+    ll mn = 1ll << 60;
+
+    // already clean
+    if(a[i] <= m) continue;
+
+    for(int j = 0; j < k[i]; ++j){
+      ll time = ts[i][j].first;
+      ll ability = ts[i][j].second;
+      ll scat = a[i];
+
+      time = estimator(time, ability, scat-m);
+      
+      mn = min(mn, time);
+    }
+    sm += mn;
+  }
+  return sm <= m;
 }

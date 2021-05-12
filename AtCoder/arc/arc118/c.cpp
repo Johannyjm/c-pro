@@ -20,22 +20,11 @@ int main(){
     ios::sync_with_stdio(false);
 
     vector<int> primes;
-    rep1(i, 50000){
+    rep1(i, 1230){
         if(is_prime(i)) primes.push_back(i);
     }
 
-    // rep(i, 2501){
-    //     cout << i+1 << ":" << primes[i] << ", ";
-    // }
-    // cout << endl;
 
-    int now = 1;
-    for(auto e: primes){
-        cout << now << " " << e << " " << now*e << endl;
-        now *= e;
-
-        if(now > 10000) break;
-    }
 
     return 0;
 }
