@@ -14,9 +14,6 @@ fn main() {
     let (sy, sx) = (0, 0);
     let (gy, gx) = (r-1, c-1);
 
-    let dy: [isize; 3] = [0, 0, 1];
-    let dx: [isize; 3] = [1, -1, 0];
-
     const INF: i32 = 1001001001;
     let mut dist = vec![vec![INF; c]; r];
     dist[sy][sx] = 0;
@@ -28,12 +25,23 @@ fn main() {
         let Reverse((_, y, x)) = now.unwrap();
 
         for dir in 0..3 {
-            let ny = y + dy[dir];
-            let nx = x + dx[dir];
+            let ny = y + if dir == 0 || dir == 1{
+                0
+            } else{
+                1
+            };
+            let nx_: isize = x as isize + if dir == 0{
+                1
+            } else if dir == 1{
+                -1
+            } else {
+                0
+            };
 
-            if ny<0 || ny>=r || nx<0 || nx>=c {
+            if ny>=r || nx_<0 || nx_ as usize>=c {
                 continue;
             }
+            let nx = nx_ as usize;
 
             let cost;
             if dir == 0 {
@@ -56,7 +64,7 @@ fn main() {
             let ny = y - i;
             let nx = x;
 
-            if ny<0 || ny>=r || nx<0 || nx >= c {
+            if ny>=r {
                 continue;
             }
             let cost = (i+1) as i32;
