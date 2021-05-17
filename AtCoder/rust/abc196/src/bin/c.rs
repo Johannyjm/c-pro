@@ -6,7 +6,7 @@ use proconio::{
 
 fn digit(mut n: i64) -> i64{
     let mut ret: i64 = 1;
-    // let mut tmp = n;
+    
     while(n > 0){
         n /= 10;
         ret *= 10;
