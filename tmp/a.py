@@ -1,94 +1,38 @@
+from collections import deque
+
 n = int(input())
-a = list(map(int, input().split()))
+s = [input() for _ in range(n)]
+g = [[] for _ in range(n)]
 
-# e.g. a = [3, 1, 4, 1, 5, 9, 2]
-# bubble sort
+for i in range(n):
+    if s[i].split()[1] == '0': continue
 
-def valid(idx):
-    if(a[idx] <= a[idx+1]): return True
-    else: return False
+    for j in s[i].split()[2: ]:
+        g[i].append(int(j)-1)
+#print(g)
 
-def swap(idx):
-    a[idx], a[idx+1] = a[idx+1], a[idx]
+# enqueue -> deque().append()
+# dequeue -> deque().popleft()
 
-while(True):
-    flg = True
-    for j in range(n-1):
-        if(not valid(j)):
-            swap(j)
-            flg = False
-    if flg:
-        break
+q = deque()
+q.append(0)
+INF = float('inf')
+dist = [INF for _ in range(n)]
+dist[0] = 0
 
-print(a)
+while len(q) > 0:
+    v = q.popleft()
 
+    for nv in g[v]:
+        if dist[nv] != INF: continue
 
+        dist[nv] = dist[v] + 1
+        q.append(nv)
 
-# e.g. a = [3, 1, 4, 1, 5, 9, 2]
-# one 3, two 1, one 4, one 5, one 2
-# cnt [0, 2, 1, 1, 1, 1, 0, 0, 0, 0, 1]
-# a <= 100000
-
-cnt = [0] * 110000
-
-for e in a:
-    cnt[e] += 1
-
-for i in range(110000):
-    if(cnt[i] == 0): continue
-    for _ in range(cnt[i]):
-        print(i, end=' ')
-    #print(str(i) * cnt[i])
-
-print()
+for i in range(n):
+    if dist[i] != INF: print(i+1, dist[i])
+    else: print(i+1, -1)
 
 
-def merge_sort(li):
-    m = len(li)
-    if(m == 1):
-        return li
-
-    l = li[: m//2]
-    r = li[m//2: ]
-
-    L = merge_sort(l)
-    R = merge_sort(r)
-
-    print(l, r, L, R)
-    
-    return merge(L, R)
 
 
-# L: 1, 3, 4
-# R: 2, 5, 9
-# ret: 1, 2, 3, 4, 5, 9
-
-def merge(L, R):
-    L = L[::-1]
-    R = R[::-1]
-    ret = []
-    while(True):
-        if(len(L) == 0):
-            ret += R
-            break
-        if(len(R) == 0):
-            ret += L
-            break
-
-        el = L[-1]
-        er = R[-1]
-        if(el == er):
-            ret.append(el)
-            ret.append(er)
-            L.pop()
-            R.pop()
-        elif(el < er):
-            ret.append(el)
-            L.pop()
-        else:
-            ret.append(er)
-            R.pop()
-    
-    return ret
-
-print(merge_sort(a))
