@@ -1,17 +1,23 @@
 import math
-def comb(n,k):
-    # print(n, k)
-    k = min(k, n-k)
-    return math.factorial(n) // (math.factorial(n - k) * math.factorial(k))
-
 a, b, k = map(int, input().split())
 
-cnt = 0
-now = 0
-while cnt <= min(a, b):
-    now += comb(a, cnt) * comb(b, cnt)
-    if now >= k: break
-    cnt += 1
+n = a+b
+l = a+b
+res = ''
+for i in range(l):
+    if a > 0:
+        choose_a = math.factorial(n-1) // (math.factorial(a-1) * math.factorial(b))
+    else:
+        choose_a = 0
 
+    if k <= choose_a:
+        res += 'a'
+        a -= 1
+    else:
+        res += 'b'
+        b -= 1
+        k -= choose_a
 
-print(cnt)
+    n = a+b
+
+print(res)
