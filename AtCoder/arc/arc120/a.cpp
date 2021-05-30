@@ -20,10 +20,12 @@ int main(){
             mx[i] = a[i];
             sm[i] = a[i];
             mxsm[i] = a[i];
+            mxmx[i] = a[i];
         }
         else{
             mx[i] = max(mx[i-1], a[i]);
             sm[i] = sm[i-1] + a[i];
+            mxmx[i] = max(mxmx[i], )
             mxsm[i] = mxsm[i-1] + mx[i-1];
         }
     }
