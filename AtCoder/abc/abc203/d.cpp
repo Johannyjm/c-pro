@@ -96,7 +96,7 @@ int main(){
     // res = min(res, aa[medidx]);
 
     // FloatingMedian fm;
-    for(auto e: t) cout << e << " ";
+    // for(auto e: t) cout << e << " ";
     cout << endl;
     memset(seg, 0, sizeof(seg)); 
     rep(i, k*k){  
