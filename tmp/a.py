@@ -1,12 +1,25 @@
-from collections import defaultdict
-n, k = map(int, input().split())
+n = int(input())
 a = list(map(int, input().split()))
 
-res = 0
-cnt = defaultdict(int)
-for e in a:
-    cnt[e] = cnt[e-k] + 1
-    res = max(res, cnt[e])
+bit = [0] * (1<<20)
+def add(i, x):
+    ptr = i+1
+    while ptr <= n:
+        bit[ptr] += x
+        ptr += (ptr & -ptr)
 
-if res == 1: res = -1
-print(res)
+def get(i):
+    ptr = i+1
+    ret = 0
+    while ptr > 0:
+        ret += bit[ptr]
+        ptr -= (ptr & -ptr)
+    return ret
+
+
+for i in range(n):
+    add(i, a[i])
+
+
+for i in range(n):
+    print(get(i))
