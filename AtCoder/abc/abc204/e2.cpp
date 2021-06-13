@@ -17,7 +17,7 @@ ll findmin(ll now, ll c, ll d){
 
     ll ret = -1;
     ll mn = 1ll<<60;
-    for(ll w = l; w <= r; ++l){
+    for(ll w = l; w <= r; ++w){
         if(now + w + c + d / (now + 1 + w) < mn){
             mn = now + w + c + d / (now + 1 + w);
             ret = w;
@@ -59,7 +59,6 @@ int main(){
         if(dist[v] != d) continue;
         
         for(auto ne: g[v]){
-            cout << v << " " << ne.to << " " << ne.c << " " << ne.d;
             ll wait = findmin(dist[v], ne.c, ne.d);
             ll cost = dist[v] + wait + ne.c + (ne.d / (dist[v] + 1 + wait));
             if(dist[ne.to] > cost){
