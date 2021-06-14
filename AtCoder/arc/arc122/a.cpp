@@ -26,10 +26,9 @@ int main(){
         cnt[i][1] = cnt[i-1][0];
     }
 
-    rep(i, 3){
-        rep(j, 2) cout << cnt[i][j].val() << " ";
-        cout << endl;
-    }
+    vector<vector<mint> dp(n+10, vector<mint>(2, 0));
+    dp[0][0] = a[0] * ;
+
 
     return 0;
 }
