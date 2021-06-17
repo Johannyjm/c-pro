@@ -30,6 +30,8 @@ mint perm(int n, int k){
     return fact[n] * ifact[n-k];
 }
 
+
+
 int main(){
     cin.tie(nullptr);
     ios::sync_with_stdio(false);
