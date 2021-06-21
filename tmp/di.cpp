@@ -22,11 +22,38 @@ int main(){
         ll c;
         cin >> a >> b >> c;
 
+        --a;
+        --b;
+
         g[a].push_back(Edge(b, c));
         g[b].push_back(Edge(a, c));
     }
 
-    
+    priority_queue<pair<ll, int>, vector<pair<ll, int>>, greater<pair<ll, int>>> pq;
+    pq.push({0, 0});
+    const ll INF = 1ll<<60;
+    vector<ll> dist(n, INF);
+    dist[0] = 0;
+
+    while(!pq.empty()){
+        auto [d, v] = pq.top();
+        pq.pop();
+
+        if(dist[v] != d) continue;
+
+        for(auto ne: g[v]){
+            if(dist[ne.to] > dist[v] + ne.weight){
+                dist[ne.to] = dist[v] + ne.weight;
+                pq.push({dist[ne.to], ne.to});
+            }
+        }
+    }
+
+    ll res = dist[n-1];
+    if(res == INF) res = -1;
+
+    cout << res << endl;
 
     return 0;
+
 }
