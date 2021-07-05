@@ -21,6 +21,7 @@ int main(){
         int a, b;
         ll c;
         cin >> a >> b >> c;
+
         --a;
         --b;
         g[a].push_back(Edge(b, c));
@@ -29,6 +30,7 @@ int main(){
 
     priority_queue<pair<ll, int>, vector<pair<ll, int>>, greater<pair<ll, int>>> pq;
     pq.push({0, 0});
+
     const ll INF = 1ll << 60;
     vector<ll> dist(n, INF);
     dist[0] = 0;
@@ -38,19 +40,17 @@ int main(){
         pq.pop();
 
         if(dist[v] != d) continue;
-
         for(auto ne: g[v]){
-            int nv = ne.to;
+            int nv= ne.to;
             if(dist[nv] > dist[v] + ne.weight){
                 dist[nv] = dist[v] + ne.weight;
                 pq.push({dist[nv], nv});
             }
         }
     }
-    
+
     ll res = dist[n-1];
     if(res == INF) res = -1;
-
     cout << res << endl;
 
     return 0;
