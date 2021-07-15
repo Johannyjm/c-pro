@@ -4,42 +4,31 @@
 using namespace std;
 using ll = long long;
 
-struct Edge{
-    int to;
-    ll weight;
-    Edge(int t, ll w): to(t), weight(w) {}
-};
-int n, m;
-vector<vector<Edge>> g;
-
-vector<ll> dijkstra(int st){
-    
-}
-
 int main(){
     cin.tie(nullptr);
     ios::sync_with_stdio(false);
 
+    int n, m;
     cin >> n >> m;
-    g.resize(n);
-    rep(i, m){
-        int a, b;
-        ll c;
-        cin >> a >> b >> c;
-        --a;
-        --b;
-        g[a].push_back(Edge(b, c));
-        g[b].push_back(Edge(a, c));
-    }
 
-    const int INF = 1001001001;
-    vector<vector<int>> minv(n, vector<int>(n, INF));
+    vector<ll> a(m), b(m), c(m);
+    rep(i, m) cin >> a[i] >> b[i] >> c[i];
+
+    const ll INF = 1ll << 60;
     vector<vector<ll>> dist(n, vector<ll>(n, INF));
-    rep(st, n){
-        dist[st] = dijkstra(st);
+    rep(i, n) dist[i][i] = 0;
+    rep(i, m){
+        dist[a[i]-1][b[i]-1] = c[i];
+    }
+    
+    ll res = 0;
+    rep(k, n) for(int i = n-1; i >= 0; --i) for(int j = n-1; j >= 0; --j){
+        if(dist[i][j] != INF) res += dist[i][j];
+        dist[i][j] = min(dist[i][j], dist[i][k] + dist[k][j]);
     }
 
-    
+    cout << res << endl;
+
 
     return 0;
 }
