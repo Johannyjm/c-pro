@@ -26,7 +26,6 @@ int main(){
         if(dist[i][j] != INF) res += dist[i][j];
         dist[i][j] = min(dist[i][j], dist[i][k] + dist[k][j]);
     }
-
     cout << res << endl;
 
 
