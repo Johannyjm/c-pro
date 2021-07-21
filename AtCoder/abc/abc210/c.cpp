@@ -27,13 +27,14 @@ int main(){
         int r = i;
         int l = r-k;
 
-        ++mp[c[r]];
         --mp[c[l]];
-        if(mp[c[r]] == 1){
-            ++cnt;
-        }
         if(mp[c[l]] == 0){
             --cnt;
+        }
+        
+        ++mp[c[r]];
+        if(mp[c[r]] == 1){
+            ++cnt;
         }
 
         res = max(res, cnt);
