@@ -9,6 +9,6 @@ while True:
             for c in range(b+1, n):
                 
                 if a + b + c == x:
-                    print(a, b, c)
+                    # print(a, b, c)
                     res += 1
     print(res)
