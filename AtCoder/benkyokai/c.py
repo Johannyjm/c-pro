@@ -17,11 +17,13 @@ def main():
         for j in range(n-1):
             if use[j]:
                 sm += buf + int(s[j])
+                buf = 0
             else:
                 buf = buf*10 + int(s[j]) * 10
 
-        sm += buf; + int(s[-1])
-        print(use, sm)
+        if use[-1]: sm += buf*10 + int(s[-1])
+        else: sm += buf + int(s[-1])
+        # print(use, sm)
 
         res += sm
 
