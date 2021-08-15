@@ -19,48 +19,35 @@ int main(){
 
     int n;
     cin >> n;
-    vector<vector<Edge>> g(n);
+    vector<pair<ll, pair<int, int>>> wuv(n-1);
     rep(i, n-1){
-        ll u, v, w;
+        int u, v;
+        ll w;
         cin >> u >> v >> w;
         --u;
         --v;
 
-        g[u].push_back(Edge(v, w));
-        g[v].push_back(Edge(u, w));
+        wuv[i] = {w, {u, v}};
     }
 
-    fenwick_tree<ll> bit1(11000000), bit2(11000000);
-    queue<int> q;
-    q.push(0);
-    vector<bool> seen(n, false);
-    seen[0] = true;
+    sort(wuv.begin(), wuv.end());
+    dsu uf(n);
+
     ll res = 0;
-    
-    while(!q.empty()){
-        int v = q.front();
-        q.pop();
+    for(auto edge: wuv){
+        // ll w = edge.first;
+        // int u = edge.second.first;
+        // int v = edge.second.second;
 
-        for(auto ne: g[v]){
-            int nv = ne.to;
-            if(seen[nv]) continue;
-
-            ll w = ne.weight;
-            res += w;
-
-            res += bit1.sum(0, w) * w;
-            res += bit2.sum(w, 11000000);
-            cout << nv+1 << " " << bit1.sum(0, w) * w << " " << bit2.sum(w, 11000000) << " " << res << endl;
-
-            bit1.add(w, 1);
-            bit2.add(w, w);
-
-            seen[nv] = true;
-            q.push(nv);
-        }
-
+        auto [w, uv] = edge;
+        auto [u, v] = uv;
+        
+        res += ll(uf.size(u)) * ll(uf.size(v)) * w;
+        uf.merge(u, v);
     }
 
     cout << res << endl;
+
+
     return 0;
 }

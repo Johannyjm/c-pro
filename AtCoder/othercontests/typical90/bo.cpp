@@ -1,35 +1,38 @@
-#include <iostream>
-#include <vector>
+#include <bits/stdc++.h>
+#define rep(i, n) for(int i = 0; i < (n); ++i)
+#define rep1(i, n) for(int i = 1; i < (n); ++i)
 using namespace std;
 using ll = long long;
 
-ll proc(ll n){
-    ll n10 = 0;
-    ll base = 1;
-
-    // 8base to 10base;
-    while(n){
-        n10 += base * (n%10);
-        n /= 10;
-        base *= 8;
-    }
-
-    vector<ll> n9v;
-
-    // 10base to 9 base;
-    while(n10){
-        n9v.push_back(n10%9);
-        n10 /= 9;
-    }
-
+ll oct2n(string s){
     ll ret = 0;
-    base = 1;
-    for(auto e: n9v){
-        if(e == 8) e = 5;
-        ret += e * base;
-        base *= 10;
-    }
+    ll n = s.size();
 
+    rep(i, n){
+        ret += ll(s[i] - '0') * ll(pow(8, n-i-1));
+    }
+    return ret;
+}
+
+string nto9(ll num){
+    if(num == 0) return "0";
+    string ret = "";
+    ll tmp = num;
+    while(tmp > 0){
+        ret += char('0' + tmp%9);
+        tmp /= 9;
+    }
+    reverse(ret.begin(), ret.end());
+    return ret;
+}
+
+string proc(string s){
+    string tmp = nto9((oct2n(s)));
+    string ret = "";
+    for(char c: tmp){
+        if(c == '8') c = '5';
+        ret += c;
+    }
     return ret;
 }
 
@@ -37,14 +40,16 @@ int main(){
     cin.tie(nullptr);
     ios::sync_with_stdio(false);
 
-    ll n, k;
+    string n;
+    int k;
     cin >> n >> k;
-    
-    while(k--){
-        n = proc(n);
+
+    string res = n;
+    for(int i = 0; i < k; ++i){
+        res = proc(res);
     }
-    
-    cout << n << endl;
+
+    cout << res << endl;
 
     return 0;
 }
