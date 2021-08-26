@@ -1,35 +1,17 @@
 def main():
-
-    def check(x):
-        cnt = 0
-
-        for i in range(n):
-            if a[i] * f[i] <= x: continue
-
-            cnt += a[i] - (x//f[i])
-
-        return cnt <= k
-    
     n = int(input())
-    hs = [list(map(int, input().split())) for _ in range(n)]
 
-    
-    ok = 1 << 60
-    ng = -1
-
-    while ok - ng > 1:
-        mid = (ok + ng) // 2
-
-        if check(mid):
-            ok = mid
+    res = 0
+    for i in range(1, 10 ** 7):
+        num = str(i) * 2
+        if int(num) <= n:
+            res += 1
         else:
-            ng = mid
-
-    print(ok)
-
-
+            break
+    
+    print(res)
 
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     main()
