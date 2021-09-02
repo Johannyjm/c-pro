@@ -14,74 +14,50 @@ int main(){
     vector<vector<int>> a(m);
     rep(i, m){
         cin >> k[i];
-        vector<int> a_(k[i]);
-        rep(j, k[i]){
-            cin >> a_[j];
-        }
-        a[i] = a_;
+        vector<int> aa(k[i]);
+        rep(j, k[i]) cin >> aa[j];
+        reverse(aa.begin(), aa.end());
+        a[i] = aa;
     }
 
-    vector<queue<int>> qs(m);
+    vector<int> colors(n+1, -1);
+    vector<int> remidx;
     rep(i, m){
-        queue<int> q;
-        rep(j, k[i]){
-            q.push(a[i][j]);
+        if(colors[a[i].back()] != -1){
+            remidx.push_back(i);
+            remidx.push_back(colors[a[i].back()]);
         }
-        qs[i] = q;
+        else colors[a[i].back()] = i;
     }
 
-    // rep(i, m){
-    //     while(!qs[i].empty()){
-    //         cout << qs[i].front() << " ";
-    //         qs[i].pop();
-    //     }
-    //     cout << endl;
-    // }
-    // return 0;
+    while(!remidx.empty()){
+        vector<int> nremidx;
+        while(!remidx.empty()){
+            int idx = remidx.back();
+            remidx.pop_back();
+            if(!a[idx].empty()) a[idx].pop_back();
+            else continue;
 
-    unordered_set<int> exsists;
-    rep(j, m){
-        exsists.insert(j);
+            if(colors[a[idx].back()] != -1){
+                nremidx.push_back(idx);
+                nremidx.push_back(colors[a[idx].back()]);
+            }
+            else{
+                colors[a[idx].back()] = idx;
+            }
+        }
+        remidx = nremidx;
     }
 
-    queue<int> popidx;
-    // vector<int> cnt(n+1, -1);
-    while(1){
-        
-        bool valid = false;
-
-        // cnt.assign(n+1, -1);
-        unordered_map<int, int> cnt;
-        for(auto j: exsists){
-            if(cnt[qs[j].front()] != 0){
-                popidx.push(j);
-                popidx.push(cnt[qs[j].front()]-1);
-                valid = true;
-            }
-            cnt[qs[j].front()] = j+1;
-        }
-
-
-        while(!popidx.empty()){
-            int idx = popidx.front();
-            popidx.pop();
-
-            // cnt[qs[idx].front()] = -1;
-            qs[idx].pop();
-            if(qs[idx].empty()){
-                exsists.erase(idx);
-            }
-        }
-
-        if(!valid){
+    rep(i, m){
+        if(!a[i].empty()){
             puts("No");
             return 0;
         }
-
-        if(exsists.size() == 0) break;
     }
 
     puts("Yes");
+
 
     return 0;
 }
