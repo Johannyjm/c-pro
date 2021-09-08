@@ -52,6 +52,13 @@ int main(){
         ++cnt;
     }
 
+    if(k > 0){
+        ll whole = k / cnt;
+        ll rest = k % cnt;
+        res += ((a.back()-whole+1 + a.back()) * whole / 2) * cnt;
+        res += (a.back() - whole) * rest;
+    }
+
     cout << res << endl;
 
     return 0;
