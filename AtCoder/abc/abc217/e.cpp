@@ -8,16 +8,35 @@ int main(){
     cin.tie(nullptr);
     ios::sync_with_stdio(false);
 
-    int n, q;
-    cin >> n >> q;
+    int t;
+    cin >> t;
+
     queue<int> q;
     priority_queue<int, vector<int>, greater<int>> pq;
-    unordered_map<int, int> cnt;
-    while(q--){
-        int c, x;
-        cin >> c;
-        if(c == 1){
-            q.push()
+    while(t--){
+        int cmd;
+        cin >> cmd;
+        
+        if(cmd == 1){
+            int x;
+            cin >> x;
+            q.push(x);
+        }
+        if(cmd == 2){
+            if(!pq.empty()){
+                cout << pq.top() << endl;
+                pq.pop();
+            }
+            else{
+                cout << q.front() << endl;
+                q.pop();
+            }
+        }
+        if(cmd == 3){
+            while(!q.empty()){
+                pq.push(q.front());
+                q.pop();
+            }
         }
     }
 
