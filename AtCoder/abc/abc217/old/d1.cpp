@@ -17,10 +17,10 @@ int main(){
     while(q--){
         int c, x;
         cin >> c >> x;
-
         if(c == 1){
             st.insert(x);
         }
+
         if(c == 2){
             auto itr = st.lower_bound(x);
             int val = *itr;
