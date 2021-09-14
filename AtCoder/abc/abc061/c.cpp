@@ -1,28 +1,27 @@
-#include <bits/stdc++.h>
-#define rep(i, n) for (int i = 0; i < (n); ++i)
-#define rep1(i, n) for (int i = 1; i < (n); ++i)
+#include <iostream>
+#include <map>
 using namespace std;
-typedef long long ll;
+using ll = long long;
 
-int main() {
+int main(){
     cin.tie(nullptr);
     ios::sync_with_stdio(false);
-
+    
     ll n, k;
     cin >> n >> k;
-
+    
     map<ll, ll> mp;
-    rep(i, n){
+    for(int i = 0; i < n; ++i){
         ll a, b;
         cin >> a >> b;
         mp[a] += b;
     }
 
-    ll res = 0;
-    rep1(i, 100001){
-        res += mp[i];
-        if(res >= k){
-            cout << i << endl;
+    ll now = 0;
+    for(auto key: mp){
+        now += key.second;
+        if(now >= k){
+            cout << key.first << endl;
             return 0;
         }
     }
