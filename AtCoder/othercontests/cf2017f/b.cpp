@@ -1,37 +1,25 @@
-#include <bits/stdc++.h>
-#define rep(i, n) for (int i = 0; i < (n); ++i)
-#define rep1(i, n) for (int i = 1; i < (n); ++i)
+#include <iostream>
+#include <string>
 using namespace std;
-typedef long long ll;
-const ll INF = 1LL << 60;
 
-int main() {
+int main(){
     cin.tie(nullptr);
     ios::sync_with_stdio(false);
 
     string s;
     cin >> s;
-    int n = s.size();
 
-    vector<int> abc(3, 0);
-    rep(i, n) ++abc[s[i] - 'a'];
-
-    if(n <= 3){
-        if(n==1) puts("YES");
-        if(n==2){
-            if(abc[0]<2 && abc[1]<2 && abc[2]<2) puts("YES");
-            else puts("NO");
-        }
-        if(n==3){
-            if(abc[0]==1 && abc[1]==1 && abc[2]==1) puts("YES");
-            else puts("NO");
-        }
-
-        return 0;
+    int mx = 0;
+    int cnt[26] = {};
+    for(auto c: s){
+        ++cnt[c - 'a'];
+        mx = max(mx, cnt[c - 'a']);
     }
-    
-    if(max({abc[0], abc[1], abc[2]}) - min({abc[0], abc[1], abc[2]}) < 2) puts("YES");
-    else puts("NO");
+
+    int other = s.size() - mx;
+
+    if(other >= (mx-1) * 2) cout << "YES" << endl;
+    else cout << "NO" << endl;
 
     return 0;
 }
