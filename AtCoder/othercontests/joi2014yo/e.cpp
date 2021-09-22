@@ -1,86 +1,86 @@
 #include <bits/stdc++.h>
-#define _GLIBCXX_DEBUG
-#define rep(i, n) for (int i = 0; i < (n); ++i)
-#define rep1(i, n) for (int i = 1; i < (n); ++i)
+#define rep(i, n) for(int i = 0; i < (n); ++i)
+#define rep1(i, n) for(int i = 1; i < (n); ++i)
 using namespace std;
-typedef long long ll;
+using ll = long long;
+const int INF = 1001001001;
 
-int main() {
+struct Edge{
+    int to, weight;
+    Edge(int t, int w): to(t), weight(w) {}
+};
+
+int main(){
     cin.tie(nullptr);
     ios::sync_with_stdio(false);
 
-    int n, k;
-    cin >> n >> k;
+    int n, m;
+    cin >> n >> m;
 
     vector<int> c(n), r(n);
     rep(i, n) cin >> c[i] >> r[i];
 
-    vector<vector<int>> g(n); // for bfs
-    rep(_, k){
+    vector<vector<int>> g(n);
+    rep(i, m){
         int a, b;
         cin >> a >> b;
         --a;
         --b;
-
         g[a].push_back(b);
         g[b].push_back(a);
     }
 
-    vector<vector<int>> gg(n); // for dijkstra
-
-    const int INF = 1001001001;
-    vector<vector<int>> cost(n, vector<int>(n, INF));
-    rep(sv, n){
-
-        vector<int> dist(n, INF);
-        dist[sv] = 0;
+    vector<vector<Edge>> g2(n);
+    rep(st, n){
         queue<int> q;
-        q.push(sv);
-
-        bool flg = false;
+        q.push(st);
+        
+        vector<int> dist(n, INF);
+        dist[st] = 0;
         while(!q.empty()){
             int v = q.front();
             q.pop();
 
-            for(int nv: g[v]){
+            if(dist[v] >= r[st]) break;
+
+            for(auto nv: g[v]){
                 if(dist[nv] != INF) continue;
 
                 dist[nv] = dist[v] + 1;
                 q.push(nv);
-
-                if(dist[nv] <= r[sv]) {
-                    cost[sv][nv] = c[sv];
-                    gg[sv].push_back(nv); // directed graph
-                }
-                else{
-                    flg = true;
-                    break;
-                }
             }
+        }
 
-            if(flg) break;
+        rep(v, n){
+            if(dist[v] == INF) continue;
+            if(v == st) continue;
+            g2[st].push_back(Edge(v, c[st]));
         }
     }
 
     priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq;
-    pq.push(make_pair(0, 0));
-    vector<int> dist(n, INF);
-    dist[0] = 0;
+    pq.push({0, 0});
+
+    vector<int> dist2(n, INF);
+    dist2[0] = 0;
 
     while(!pq.empty()){
-        pair<int, int> p = pq.top();
+        auto [d, v] = pq.top();
         pq.pop();
-        int v = p.second;
 
-        for(int nv: gg[v]){
-            if(dist[v] + cost[v][nv] < dist[nv]){
-                dist[nv] = dist[v] + cost[v][nv];
-                pq.push(make_pair(dist[nv], nv));
+        if(dist2[v] != d) continue;
+
+        for(auto ne: g2[v]){
+            int nv = ne.to;
+            if(dist2[nv] > dist2[v] + ne.weight){
+                dist2[nv] = dist2[v] + ne.weight;
+                pq.push({dist2[nv], nv});
             }
         }
     }
 
-    cout << dist[n-1] << endl;
+
+    cout << dist2[n-1] << endl;
 
     return 0;
 }
