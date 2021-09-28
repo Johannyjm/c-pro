@@ -1,21 +1,25 @@
 def main():
     n = int(input())
-    k = int(input())
 
-    res = [1]
+    rl = [0] * n
+    for i in range(n):
+        x, le = map(int, input().split())
 
-    for _ in range(n):
-        
-        tmp = []
-        while len(res) > 0:
-            val = res.pop()
-            tmp.append(val * 2)
-            tmp.append(val + k)
-        
-        res = tmp
+        r = x + le
+        l = x - le
+
+        rl[i] = (r, l)
     
-    res.sort()
+    rl.sort()
 
+    now = -(1<<60)
+    res = 0
+    for i in range(n):
+
+        if rl[i][1] >= now:
+            res += 1
+            now = rl[i][0]
+    
     print(res)
 
 if __name__ == '__main__':
