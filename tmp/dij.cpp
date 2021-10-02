@@ -11,7 +11,7 @@ struct Edge{
 };
 
 int main(){
-    cin.tie(nulptr);
+    cin.tie(nullptr);
     ios::sync_with_stdio(false);
 
     int n, m;
@@ -21,6 +21,8 @@ int main(){
         int a, b;
         ll c;
         cin >> a >> b >> c;
+        --a;
+        --b;
         g[a].push_back(Edge(b, c));
         g[b].push_back(Edge(a, c));
     }
@@ -40,15 +42,14 @@ int main(){
 
         for(auto ne: g[v]){
             int nv = ne.to;
-
-            if(dist[nv] > dist[v] + ne.weight){
-                dist[nv] = dist[v] + ne.weight;
+            if(dist[nv] > dist[v] + weight){
+                dits[nv] = dist[v] + weight;
                 pq.push({dist[nv], nv});
             }
         }
     }
 
-    ll res = dist[n-1];
+    ll res = dist.back();
     if(res == INF) res = -1;
 
     cout << res << endl;
