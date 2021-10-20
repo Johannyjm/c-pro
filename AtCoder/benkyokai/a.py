@@ -1,23 +1,29 @@
-import sys
-sys.setrecursionlimit(10**6)
 def main():
-    n = int(input())
-    a = list(map(int, input().split()))
+    n, w = map(int, input().split())
+    wv = [list(map(int, input().split())) for _ in range(n)]
 
-    dp = [-1] * n
-    def rec(i): # 足場i における最小コスト
+    dp = [[0] * (w+1) for _ in range(n)]
+
+    for j in range(wv[0][0], w+1):
+        dp[0][j] = wv[0][1]
     
-        if dp[i] != -1: return dp[i]
-        if i == 0: return 0
+    for i in range(1, n):
+        for j in range(w+1):
+            dp[i][j] = max(
+                dp[i-1][j], 
+                dp[i][j-1]
+            )
 
-        ret = rec(i-1) + abs(a[i] - a[i-1])
-        if i > 1: ret = min(ret, rec(i-2) + abs(a[i] - a[i-2]))
+            if j-wv[i][0] >= 0:
+                dp[i][j] = max(
+                    dp[i][j], 
+                    dp[i-1][j-wv[i][0]] + wv[i][1]
+                )
+    
+    # for i in range(n):
+    #     print(*dp[i])
+    print(dp[n-1][w])
 
-        dp[i] = ret
-
-        return ret
-
-    print(rec(n-1))
 
 if __name__ == '__main__':
     main()
