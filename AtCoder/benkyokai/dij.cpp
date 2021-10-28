@@ -1,11 +1,8 @@
 #include <bits/stdc++.h>
-#include <atcoder/all>
 #define rep(i, n) for(int i = 0; i < (n); ++i)
 #define rep1(i, n) for(int i = 1; i < (n); ++i)
 using namespace std;
-using namespace atcoder;
 using ll = long long;
-using mint = modint1000000007;
 
 struct Edge{
     int to;
@@ -19,28 +16,24 @@ int main(){
 
     int n, m;
     cin >> n >> m;
-
     vector<vector<Edge>> g(n);
-    rep(_, m){
+    rep(i, m){
         int a, b;
         ll c;
         cin >> a >> b >> c;
-        --a;
-        --b;
         g[a].push_back(Edge(b, c));
         g[b].push_back(Edge(a, c));
     }
-
-    priority_queue<pair<ll, int>, vector<pair<ll, int>>, greater<pair<ll, int>>> pq;
-    pq.push({0, 0});
 
     const ll INF = 1ll << 60;
     vector<ll> dist(n, INF);
     dist[0] = 0;
 
+    priority_queue<pair<ll, int>, vector<pair<ll, int>>, greater<pair<ll, int>>> pq;
+    pq.push({0, 0});
+
     while(!pq.empty()){
         auto [d, v] = pq.top();
-        pq.pop();
 
         if(dist[v] != d) continue;
 
@@ -53,7 +46,7 @@ int main(){
         }
     }
 
-    ll res = dist.back();
+    ll res = dist[n-1];
     if(res == INF) res = -1;
 
     cout << res << endl;
