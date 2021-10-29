@@ -4,36 +4,23 @@
 using namespace std;
 using ll = long long;
 
-ll digit(ll num){
-    ll ret = 0;
-    while(num){
-        ++ret;
-        num /= 10;
-    }
-    return ret;
-}
-
 int main(){
     cin.tie(nullptr);
     ios::sync_with_stdio(false);
 
-    ll n;
-    cin >> n;
+    string s, t;
+    cin >> s >> t;
+    int n = s.size();
+    int m = t.size();
 
-    ll mod = 10000000;
-    ll now = 1;
-    ll res = 0;
-    for(ll i = 1; i <= n; ++i){
-        now *= i;
-        ll dbefore = digit(now);
-        now %= mod;
-        ll dafter = digit(now);
-
-        res += dbefore - dafter;
-        // cout << res << " " << dbefore << " " << dafter << endl;
+    int res = 1001001001;
+    rep(i, n - m + 1){
+        int cnt = 0;
+        rep(j, m){
+            if(s[i+j] != t[j]) ++cnt;
+        }
+        res = min(res, cnt);
     }
-    // cout << now << " " << digit(now) << endl;
-    res += digit(now);
 
     cout << res << endl;
 
