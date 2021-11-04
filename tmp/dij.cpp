@@ -11,9 +11,6 @@ struct Edge{
 };
 
 int main(){
-    cin.tie(nullptr);
-    ios::sync_with_stdio(false);
-
     int n, m;
     cin >> n >> m;
 
@@ -24,8 +21,8 @@ int main(){
         cin >> a >> b >> c;
         --a;
         --b;
-        g[a].push_back({b, c});
-        g[b].push_back({a, c});
+        g[a].push_back(Edge(b, c));
+        g[b].push_back(Edge(a, b));
     }
 
     priority_queue<pair<ll, int>, vector<pair<ll, int>>, greater<pair<ll, int>>> pq;
@@ -45,14 +42,12 @@ int main(){
             int nv = ne.to;
             if(dist[nv] > dist[v] + ne.weight){
                 dist[nv] = dist[v] + ne.weight;
-
                 pq.push({dist[nv], nv});
             }
         }
     }
 
     ll res = dist[n-1];
-
     if(res == INF) res = -1;
 
     cout << res << endl;
