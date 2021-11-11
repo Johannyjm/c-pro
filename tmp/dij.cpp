@@ -18,11 +18,10 @@ int main(){
     cin >> n >> m;
 
     vector<vector<Edge>> g(n);
+
     for(int i = 0; i < m; ++i){
         int a, b;
         ll c;
-        cin >> a >> b >> c;
-
         --a;
         --b;
         g[a].push_back(Edge(b, c));
@@ -33,7 +32,7 @@ int main(){
     pq.push({0, 0});
 
     const ll INF = 1ll << 60;
-    vector<ll> dist(n, INF); // minimum distance from start vertex
+    vector<ll> dist(n, INF);
     dist[0] = 0;
 
     while(!pq.empty()){
@@ -53,10 +52,9 @@ int main(){
     }
 
     ll res = dist[n-1];
-
     if(res == INF) res = -1;
 
     cout << res << endl;
-
+    
     return 0;
 }
