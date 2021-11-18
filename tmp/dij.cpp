@@ -21,6 +21,7 @@ int main(){
         int a, b;
         ll c;
         cin >> a >> b >> c;
+
         --a;
         --b;
         g[a].push_back(Edge(b, c));
@@ -42,14 +43,17 @@ int main(){
 
         for(auto ne: g[v]){
             int nv = ne.to;
+
             if(dist[nv] > dist[v] + ne.weight){
                 dist[nv] = dist[v] + ne.weight;
+
                 pq.push({dist[nv], nv});
             }
         }
     }
 
     ll res = dist[n-1];
+
     if(res == INF) res = -1;
 
     cout << res << endl;
