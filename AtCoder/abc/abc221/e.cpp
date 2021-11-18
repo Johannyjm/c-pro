@@ -29,7 +29,7 @@ int main(){
     rep(i, n) cin >> a[i];
 
     compress(a);
-    reverse(a.begin(), a.end());
+    // reverse(a.begin(), a.end());
     
     fenwick_tree<ll> bit(n+1);
     mint res = 0;
