@@ -22,6 +22,7 @@ int main(){
         int a, b;
         ll c;
         cin >> a >> b >> c;
+
         --a;
         --b;
 
@@ -46,7 +47,7 @@ int main(){
             int nv = ne.to;
 
             if(dist[nv] > dist[v] + ne.weight){
-                dist[nv] = dist[v] + ne.weight;
+                dist[nv] = dist[v] + ne.weigt;
 
                 pq.push({dist[nv], nv});
             }
