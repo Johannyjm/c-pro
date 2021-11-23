@@ -22,10 +22,8 @@ int main(){
         int a, b;
         ll c;
         cin >> a >> b >> c;
-
         --a;
         --b;
-
         g[a].push_back(Edge(b, c));
         g[b].push_back(Edge(a, c));
     }
@@ -47,8 +45,8 @@ int main(){
             int nv = ne.to;
 
             if(dist[nv] > dist[v] + ne.weight){
-                dist[nv] = dist[v] + ne.weigt;
-
+                dist[nv] = dist[v] + ne.weight;
+                
                 pq.push({dist[nv], nv});
             }
         }

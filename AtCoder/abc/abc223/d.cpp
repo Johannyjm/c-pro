@@ -1,44 +1,7 @@
-#include <bits/stdc++.h>
-#define rep(i, n) for(int i = 0; i < (n); ++i)
-#define rep1(i, n) for(int i = 1; i < (n); ++i)
+#include <iostream>
+#include <vector>
+#include <queue>
 using namespace std;
-using ll = long long;
-
-struct Edge {
-    int to;
-    Edge(int t): to(t) {}
-};
-
-using Graph = vector<vector<Edge>>;
-
-vector<int> topo_sort(const Graph &G) {  // bfs
-    vector<int> ans;
-    int n = (int)G.size();
-    vector<int> ind(n);            // ind[i]: 頂点iに入る辺の数(次数)
-    for (int i = 0; i < n; i++) {  // 次数を数えておく
-        for (auto e : G[i]) {
-            ind[e.to]++;
-        }
-    }
-    queue<int> que;
-    for (int i = 0; i < n; i++) {  // 次数が0の点をキューに入れる
-        if (ind[i] == 0) {
-            que.push(i);
-        }
-    }
-    while (!que.empty()) {  // 幅優先探索
-        int now = que.front();
-        ans.push_back(now);
-        que.pop();
-        for (auto e : G[now]) {
-            ind[e.to]--;
-            if (ind[e.to] == 0) {
-                que.push(e.to);
-            }
-        }
-    }
-    return ans;
-}
 
 int main(){
     cin.tie(nullptr);
@@ -46,26 +9,46 @@ int main(){
 
     int n, m;
     cin >> n >> m;
-    vector<pair<int, int>> ab(m);
-    rep(i, m){
+    
+    vector<vector<int>> g(n);
+    vector<int> h(n, 0);
+    for(int i = 0; i < m; ++i){
         int a, b;
         cin >> a >> b;
         --a;
         --b;
-        ab[i] = {a, b};
+        
+        g[a].push_back(b);
+        ++h[b];
     }
-    sort(ab.begin(), ab.end());
-
-    Graph g(n);
-    rep(i, m){
-        g[ab[i].first].push_back(Edge(ab[i].second));
-    }
-
-    vector<int> res = topo_sort(g);
-
-    for(auto e: res) cout << e+1 << " ";
-    cout << endl;
     
+    priority_queue<int, vector<int>, greater<int>> pq;
+    for(int i = 0; i < n; ++i){
+        if(h[i] == 0) pq.push(i);
+    }
+
+    vector<int> res;
+
+    while(!pq.empty()){
+        int v = pq.top();
+        pq.pop();
+        
+        res.push_back(v + 1);
+
+        for(auto nv: g[v]){
+            --h[nv];
+
+            if(h[nv] == 0) pq.push(nv);
+        }
+    }
+
+    if(res.size() != n){
+        cout << -1 << endl;
+        return 0;
+    }
+
+    for(auto e: res) cout << e << " ";
+    cout << endl;
 
     return 0;
 }
