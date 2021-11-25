@@ -24,7 +24,6 @@ int main(){
         cin >> a >> b >> c;
         --a;
         --b;
-
         g[a].push_back(Edge(b, c));
         g[b].push_back(Edge(a, c));
     }
@@ -54,7 +53,7 @@ int main(){
     }
 
     ll res = dist[n-1];
-    
+
     if(res == INF) res = -1;
 
     cout << res << endl;
