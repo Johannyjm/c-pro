@@ -21,8 +21,6 @@ int main(){
     for(int i = 0; i < m; ++i){
         int a, b;
         ll c;
-        cin >> a >> b >> c;
-
         --a;
         --b;
         g[a].push_back(Edge(b, c));
@@ -58,7 +56,6 @@ int main(){
     if(res == INF) res = -1;
 
     cout << res << endl;
-
 
     return 0;
 }
