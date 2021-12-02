@@ -7,6 +7,7 @@ using ll = long long;
 struct Edge{
     int to;
     ll weight;
+
     Edge(int t, ll w): to(t), weight(w) {}
 };
 
@@ -21,6 +22,8 @@ int main(){
     for(int i = 0; i < m; ++i){
         int a, b;
         ll c;
+        cin >> a >> b >> c;
+
         --a;
         --b;
         g[a].push_back(Edge(b, c));
