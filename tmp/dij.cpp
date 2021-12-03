@@ -23,7 +23,6 @@ int main(){
         int a, b;
         ll c;
         cin >> a >> b >> c;
-
         --a;
         --b;
         g[a].push_back(Edge(b, c));

@@ -8,10 +8,18 @@ int main(){
     cin.tie(nullptr);
     ios::sync_with_stdio(false);
 
-    string s;
-    cin >> s;
+    int n;
+    cin >> n;
 
-    if(s.back() == 'r') puts("er");
-    else puts("ist");
+    unordered_set<int> st;
+    rep(i, n){
+        int l;
+        int a[l];
+        rep(i, l) cin >> a[i];
+        st.insert(a);
+    }
+
+    cout << (int)st.size() << endl;
 
     return 0;
+}
