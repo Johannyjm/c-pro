@@ -11,7 +11,6 @@ struct Edge{
     Edge(int t, ll w): to(t), weight(w) {}
 };
 
-
 int main(){
     cin.tie(nullptr);
     ios::sync_with_stdio(false);
@@ -25,6 +24,8 @@ int main(){
         ll c;
         cin >> a >> b >> c;
 
+        --a;
+        --b;
         g[a].push_back(Edge(b, c));
         g[b].push_back(Edge(a, c));
     }
@@ -41,7 +42,7 @@ int main(){
         pq.pop();
 
         if(dist[v] != d) continue;
-
+        
         for(auto ne: g[v]){
             int nv = ne.to;
 
