@@ -18,11 +18,6 @@ int main(){
             puts("No");
             return 0;
         }
-
-        if(a[i][j] % 7 == 0){
-            puts("No");
-            return 0;
-        }
     }
 
     rep(j, m) rep(i, n-1){
