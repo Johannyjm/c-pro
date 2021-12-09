@@ -1,7 +1,6 @@
 #include <iostream>
 #include <vector>
 #include <queue>
-
 using namespace std;
 using ll = long long;
 
@@ -18,13 +17,12 @@ int main(){
 
     int n, m;
     cin >> n >> m;
-
     vector<vector<Edge>> g(n);
     for(int i = 0; i < m; ++i){
         int a, b;
         ll c;
         cin >> a >> b >> c;
-
+        
         --a;
         --b;
         g[a].push_back(Edge(b, c));
@@ -63,3 +61,4 @@ int main(){
 
     return 0;
 }
+
