@@ -8,7 +8,7 @@ struct Edge{
     int to;
     ll weight;
 
-    Edge(int t, ll w): to(t), weight(w) {}
+    Edge(int t, ll w): to(t), weight(w){}
 };
 
 int main(){
@@ -51,8 +51,9 @@ int main(){
 
                 pq.push({dist[nv], nv});
             }
-        }
+        } 
     }
+
 
     ll res = dist[n-1];
 
@@ -62,3 +63,4 @@ int main(){
 
     return 0;
 }
+

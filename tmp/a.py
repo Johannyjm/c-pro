@@ -6,7 +6,7 @@ a = [[0] * m for _ in range(n)] # a = [[0] * m] * n
 for i in range(n):
     c[i], *a[i] = map(int, input().split())
 
-res = 1001001001 # float('int')
+res = 1001001001 # float('inf')
 for i in range(1 << n):
     
     use = [False] * n
