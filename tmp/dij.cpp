@@ -7,7 +7,7 @@ using ll = long long;
 struct Edge{
     int to;
     ll weight;
-    
+
     Edge(int t, ll w): to(t), weight(w) {}
 };
 
@@ -17,7 +17,7 @@ int main(){
 
     int n, m;
     cin >> n >> m;
-
+    
     vector<vector<Edge>> g(n);
     for(int i = 0; i < m; ++i){
         int a, b;
@@ -54,7 +54,7 @@ int main(){
         }
     }
 
-    ll res = dist[n-1];
+    ll res = dist.back();
 
     if(res == INF) res = -1;
 
@@ -62,4 +62,3 @@ int main(){
 
     return 0;
 }
-
