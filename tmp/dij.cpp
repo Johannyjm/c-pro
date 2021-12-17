@@ -7,7 +7,7 @@ using ll = long long;
 struct Edge{
     int to;
     ll weight;
-
+    
     Edge(int t, ll w): to(t), weight(w) {}
 };
 
@@ -23,7 +23,7 @@ int main(){
         int a, b;
         ll c;
         cin >> a >> b >> c;
-        
+
         --a;
         --b;
         g[a].push_back(Edge(b, c));
@@ -52,7 +52,7 @@ int main(){
                 pq.push({dist[nv], nv});
             }
         }
-    } 
+    }
 
     ll res = dist[n-1];
 
