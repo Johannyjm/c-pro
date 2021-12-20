@@ -17,13 +17,12 @@ int main(){
 
     int n, m;
     cin >> n >> m;
-    
+
     vector<vector<Edge>> g(n);
     for(int i = 0; i < m; ++i){
         int a, b;
         ll c;
-        cin >> a >> b >> c;
-
+        
         --a;
         --b;
         g[a].push_back(Edge(b, c));
@@ -46,7 +45,7 @@ int main(){
         for(auto ne: g[v]){
             int nv = ne.to;
 
-            if(dist[nv] > dist[v] + ne.weight){
+            if(dist[nv] < dist[v] + ne.weight){
                 dist[nv] = dist[v] + ne.weight;
 
                 pq.push({dist[nv], nv});
@@ -54,7 +53,7 @@ int main(){
         }
     }
 
-    ll res = dist.back();
+    ll res = dist[n-1];
 
     if(res == INF) res = -1;
 
