@@ -29,7 +29,7 @@ int main(){
         g[a].push_back(Edge(b, c));
         g[b].push_back(Edge(a, c));
     }
-    
+
     priority_queue<pair<ll, int>, vector<pair<ll, int>>, greater<pair<ll, int>>> pq;
     pq.push({0, 0});
 
@@ -54,11 +54,11 @@ int main(){
         }
     }
 
-    ll res = dist.back();
+    ll res = dist[n-1];
 
     if(res == INF) res = -1;
 
     cout << res << endl;
-
+    
     return 0;
 }
