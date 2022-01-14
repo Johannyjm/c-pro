@@ -14,14 +14,15 @@ struct Edge{
 int main(){
     cin.tie(nullptr);
     ios::sync_with_stdio(false);
-
+    
     int n, m;
     cin >> n >> m;
-
     vector<vector<Edge>> g(n);
+    
     for(int i = 0; i < m; ++i){
         int a, b;
         ll c;
+        cin >> a >> b >> c;
 
         --a;
         --b;
@@ -53,7 +54,7 @@ int main(){
         }
     }
 
-    ll res = dist.back();
+    ll res = dist[n-1];
 
     if(res == INF) res = -1;
 
