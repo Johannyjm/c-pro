@@ -7,6 +7,7 @@ using ll = long long;
 struct Edge{
     int to;
     ll weight;
+
     Edge(int t, ll w): to(t), weight(w) {}
 };
 
@@ -18,18 +19,19 @@ int main(){
     cin >> n >> m;
 
     vector<vector<Edge>> g(n);
-
     for(int i = 0; i < m; ++i){
         int a, b;
         ll c;
-        
+
+        cin >> a >> b >> c;
         --a;
         --b;
+
         g[a].push_back(Edge(b, c));
         g[b].push_back(Edge(a, c));
     }
 
-    priority_queue<pair<ll, int>, vector<pair<ll,int>>, greater<pair<ll, int>>> pq;
+    priority_queue<pair<ll, int>, vector<pair<ll, int>>, greater<pair<ll, int>>> pq;
     pq.push({0, 0});
 
     const ll INF = 1ll << 60;
@@ -52,7 +54,7 @@ int main(){
             }
         }
     }
-    
+
     ll res = dist.back();
 
     if(res == INF) res = -1;

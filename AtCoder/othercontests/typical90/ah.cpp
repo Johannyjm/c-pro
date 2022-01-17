@@ -9,48 +9,49 @@ int main(){
 
     int n, k;
     cin >> n >> k;
+
     vector<int> a(n);
     for(int i = 0; i < n; ++i) cin >> a[i];
 
     unordered_map<int, int> cnt;
+    int now = 1;
+    cnt[a[0]] = 1;
+    int r = 0;
 
     int res = 0;
-    int r = 0;
-    int now = 0;
-    while(1){
-        
-        if(cnt[a[r]] == 0 && now == k)
-            break;
 
-        ++cnt[a[r]];
-        
-        if(cnt[a[r]] == 1)
-            ++now;
-        
-        ++r;
-
-        if(r == n)
-            break;
-    }
-
-    
     for(int l = 0; l < n; ++l){
-
-        if(l > 0){
-            --cnt[a[l-1]];
-            if(cnt[a[l-1]] == 0) --now;
-        }
         
+        if(l > 0){
+            --cnt[a[l]];
+            if(cnt[a[l]] == 0) --now;
+        }
+
+        if(now > k) continue;
+        
+        bool isedge = false;
         while(now <= k){
             ++r;
+            if(r == n){
+                break;
+                isedge = true;
+            }
+            
             ++cnt[a[r]];
             if(cnt[a[r]] == 1) ++now;
+        }
+        
+        if(!isedge){
+            --now;
+            --cnt[a[r]];
+            --r;
         }
 
         res = max(res, r-l+1);
     }
 
     cout << res << endl;
+    
 
     return 0;
 }
