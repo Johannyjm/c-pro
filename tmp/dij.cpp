@@ -23,7 +23,7 @@ int main(){
         int a, b;
         ll c;
         cin >> a >> b >> c;
-        
+
         --a;
         --b;
         g[a].push_back(Edge(b, c));
@@ -48,13 +48,13 @@ int main(){
 
             if(dist[nv] > dist[v] + ne.weight){
                 dist[nv] = dist[v] + ne.weight;
-
+                
                 pq.push({dist[nv], nv});
             }
         }
     }
 
-    ll res = dist.back();
+    ll res = dist[n-1];
 
     if(res == INF) res = -1;
 
@@ -62,4 +62,3 @@ int main(){
 
     return 0;
 }
-
