@@ -23,13 +23,11 @@ int main(){
         int a, b;
         ll c;
         cin >> a >> b >> c;
-
         --a;
         --b;
         g[a].push_back(Edge(b, c));
         g[b].push_back(Edge(a, c));
     }
-
     priority_queue<pair<ll, int>, vector<pair<ll, int>>, greater<pair<ll, int>>> pq;
     pq.push({0, 0});
 
