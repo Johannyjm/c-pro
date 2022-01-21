@@ -17,7 +17,6 @@ int main(){
 
     int n, m;
     cin >> n >> m;
-
     vector<vector<Edge>> g(n);
     for(int i = 0; i < m; ++i){
         int a, b;
@@ -62,4 +61,3 @@ int main(){
 
     return 0;
 }
-
