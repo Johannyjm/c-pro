@@ -38,7 +38,7 @@ int main(){
     dist[0] = 0;
 
     while(!pq.empty()){
-        auto[d, v] = pq.top();
+        auto [d, v] = pq.top();
         pq.pop();
 
         if(dist[v] != d) continue;
@@ -53,12 +53,13 @@ int main(){
             }
         }
     }
-
+    
     ll res = dist[n-1];
 
     if(res == INF) res = -1;
 
     cout << res << endl;
+
 
     return 0;
 }
