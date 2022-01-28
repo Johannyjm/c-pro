@@ -4,6 +4,7 @@
 using namespace std;
 using ll = long long;
 
+
 struct Edge{
     int to;
     ll weight;
@@ -23,7 +24,7 @@ int main(){
         int a, b;
         ll c;
         cin >> a >> b >> c;
-
+        
         --a;
         --b;
         g[a].push_back(Edge(b, c));
@@ -36,7 +37,7 @@ int main(){
     const ll INF = 1ll << 60;
     vector<ll> dist(n, INF);
     dist[0] = 0;
-    
+
     while(!pq.empty()){
         auto [d, v] = pq.top();
         pq.pop();
@@ -53,8 +54,8 @@ int main(){
             }
         }
     }
-    
-    ll res = dist.back();
+
+    ll res = dist[n-1];
 
     if(res == INF) res = -1;
 
