@@ -3,7 +3,6 @@
 #include <queue>
 using namespace std;
 using ll = long long;
-
 struct Edge{
     int to;
     ll weight;
@@ -19,12 +18,10 @@ int main(){
     cin >> n >> m;
 
     vector<vector<Edge>> g(n);
-
     for(int i = 0; i < m; ++i){
         int a, b;
         ll c;
-        cin >> a >> b >> c;
-        
+
         --a;
         --b;
         g[a].push_back(Edge(b, c));
@@ -55,7 +52,7 @@ int main(){
         }
     }
 
-    ll res = dist.back();
+    ll res = dist[n-1];
 
     if(res == INF) res = -1;
 
