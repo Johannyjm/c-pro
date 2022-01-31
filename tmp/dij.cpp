@@ -3,6 +3,7 @@
 #include <queue>
 using namespace std;
 using ll = long long;
+
 struct Edge{
     int to;
     ll weight;
@@ -21,6 +22,7 @@ int main(){
     for(int i = 0; i < m; ++i){
         int a, b;
         ll c;
+        cin >> a >> b >> c;
 
         --a;
         --b;
@@ -30,7 +32,7 @@ int main(){
 
     priority_queue<pair<ll, int>, vector<pair<ll, int>>, greater<pair<ll, int>>> pq;
     pq.push({0, 0});
-
+    
     const ll INF = 1ll << 60;
     vector<ll> dist(n, INF);
     dist[0] = 0;
