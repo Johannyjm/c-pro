@@ -22,6 +22,7 @@ int main(){
     for(int i = 0; i < m; ++i){
         int a, b;
         ll c;
+        cin >> a >> b >> c;
 
         --a;
         --b;
