@@ -14,7 +14,7 @@ struct Edge{
 int main(){
     cin.tie(nullptr);
     ios::sync_with_stdio(false);
-    
+
     int n, m;
     cin >> n >> m;
 
@@ -35,8 +35,6 @@ int main(){
 
     const ll INF = 1ll << 60;
     vector<ll> dist(n, INF);
-    dist[0] = 0;
-
     while(!pq.empty()){
         auto [d, v] = pq.top();
         pq.pop();
@@ -53,8 +51,8 @@ int main(){
             }
         }
     }
-
-    ll res = dist[n-1];
+    
+    ll res = dist.back();
 
     if(res == INF) res = -1;
 
