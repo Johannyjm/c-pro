@@ -35,6 +35,8 @@ int main(){
 
     const ll INF = 1ll << 60;
     vector<ll> dist(n, INF);
+    dist[0] = 0;
+
     while(!pq.empty()){
         auto [d, v] = pq.top();
         pq.pop();
