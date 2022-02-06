@@ -47,7 +47,6 @@ int main(){
             int nv = ne.to;
 
             if(dist[nv] > dist[v] + ne.weight){
-
                 dist[nv] = dist[v] + ne.weight;
 
                 pq.push({dist[nv], nv});
@@ -55,7 +54,7 @@ int main(){
         }
     }
 
-    ll res = dist.back();
+    ll res = dist[n-1];
 
     if(res == INF) res = -1;
 
