@@ -33,7 +33,7 @@ int main(){
     priority_queue<pair<ll, int>, vector<pair<ll, int>>, greater<pair<ll, int>>> pq;
     pq.push({0, 0});
 
-    const ll INF = 1ll << 60;
+    ll const INF = 1ll << 60;
     vector<ll> dist(n, INF);
     dist[0] = 0;
 
@@ -45,7 +45,7 @@ int main(){
 
         for(auto ne: g[v]){
             int nv = ne.to;
-
+            
             if(dist[nv] > dist[v] + ne.weight){
                 dist[nv] = dist[v] + ne.weight;
 
