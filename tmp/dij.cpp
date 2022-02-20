@@ -1,7 +1,6 @@
 #include <iostream>
 #include <vector>
 #include <queue>
-
 using namespace std;
 using ll = long long;
 
@@ -43,7 +42,7 @@ int main(){
         pq.pop();
 
         if(dist[v] != d) continue;
-
+        
         for(auto ne: g[v]){
             int nv = ne.to;
 
@@ -55,7 +54,7 @@ int main(){
         }
     }
 
-    ll res = dist.back();
+    ll res = dist[n-1];
 
     if(res == INF) res = -1;
 
