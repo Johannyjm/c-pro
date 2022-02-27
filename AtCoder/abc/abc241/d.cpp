@@ -11,7 +11,7 @@ int main(){
     int q;
     cin >> q;
 
-    set<ll> st;
+    multiset<ll> st;
     while(q--){
         int t;
         cin >> t;
@@ -23,35 +23,50 @@ int main(){
             st.insert(x);
         }
 
-        if(t == 2){
+        if(t == 3){
             ll x, k;
             cin >> x >> k;
 
             auto itr = st.lower_bound(x);
 
-            if(itr - st.begin() < k){
-                cout << -1 << "\n";
-                continue;
+            bool flg = false;
+            for(int i = 0; i < k-1; ++i){
+                if(itr == st.end()){
+                    flg = true;
+                    break;
+                }
+                ++itr;
             }
-
-            for(int i = 0; i < k-1; ++i) --itr;
-
-            cout << *itr << "\n";
+            if(itr == st.end()) flg = true;
+        
+            if(flg) cout << -1 << "\n";
+            else cout << *itr << "\n";
         }
 
-        if(t == 3){
+        if(t == 2){
             ll x, k;
             cin >> x >> k;
 
             auto itr = st.upper_bound(x);
-
-            if(st.end() - itr > k){
+            
+            if(itr == st.begin()){
                 cout << -1 << "\n";
                 continue;
             }
-            for(int i = 0; i < k-1; ++i) ++itr;
 
-            cout << *itr << "\n";            
+            --itr;
+
+            bool flg = false;
+            for(int i = 0; i < k-1; ++i){
+                if(itr == st.begin()){
+                    flg = true;
+                    break;
+                }
+                --itr;
+            }
+
+            if(flg) cout << -1 << "\n";
+            else cout << *itr << "\n";
         }
     }
 
