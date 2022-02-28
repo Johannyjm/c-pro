@@ -54,11 +54,13 @@ int main(){
         }
     }
 
-    ll res = dist.back();
-
+    ll res = dist[n-1];
+    
     if(res == INF) res = -1;
 
     cout << res << endl;
 
     return 0;
 }
+    
+
