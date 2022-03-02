@@ -1,4 +1,5 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <string>
 #define rep(i, n) for(int i = 0; i < (n); ++i)
 #define rep1(i, n) for(int i = 1; i < (n); ++i)
 using namespace std;
@@ -19,23 +20,36 @@ int main(){
     string s;
     cin >> s;
 
+    if(ispali(s)){
+        puts("Yes");
+        return 0;
+    }
+
     int n = s.size();
-    vector<int> drop(n, 0);
+    int prea = 0;
+    int sufa = 0;
     rep(i, n){
-        if(s[i] == 'a') drop[i] = 1;
+        if(s[i] == 'a') ++prea;
         else break;
     }
+
     for(int i = n-1; i >= 0; --i){
-        if(s[i] == 'a') drop[i] = 1;
+        if(s[i] == 'a') ++sufa;
         else break;
     }
 
-    string dropa = "";
-    rep(i, n){
-        if(drop[i] != 1) dropa += s[i];
+    if(prea > sufa){
+        puts("No");
+        return 0;
     }
 
-    if(ispali(dropa)) puts("Yes");
+    int en = n-1;
+    if(prea < sufa) en -= sufa - prea - 1;
+
+    string s_ = "";
+    for(int i = 0; i < en; ++i) s_ += s[i];
+
+    if(ispali(s_)) puts("Yes");
     else puts("No");
 
     return 0;
