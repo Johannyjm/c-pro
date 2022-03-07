@@ -5,59 +5,63 @@ using namespace std;
 using ll = long long;
 
 int rotate(int n){
-    int tmp = n;
-    int d = 0;
-    while(tmp){
-        ++d;
-        tmp /= 10;
+    ll h = n % 10;
+    ll ret = n / 10;
+
+    while(n){
+        h *= 10;
+        n /= 10;
     }
-    int m = 1;
-    rep(_, d-1) m *= 10;
+    h /= 10;
 
-    int top = n / m;
-    int ret = n % m;
-    ret *= 10;
-    return ret + top;
+    ret += h;
 
+    return ret;
 }
 
 int main(){
     cin.tie(nullptr);
     ios::sync_with_stdio(false);
 
-    int a, n;
+    ll a, n;
     cin >> a >> n;
 
-    vector<unordered_set<int>> g(10000000);
-    queue<int> q;
-    q.push(n);
+    queue<ll> q;
+    q.push(1);
 
-    const int INF = 1001001001;
-    vector<int> dist(10000000, INF);
-    dist[n] = 0;
-
+    const ll INF = 1001001001;
+    vector<ll> dist(1100000, INF);
+    dist[1] = 0;
+    
     while(!q.empty()){
-        int v = q.front();
+        ll v = q.front();
         q.pop();
 
-        // 1
-        if(v % a == 0){
-            int nv = v / a;
-            if(g[v].count(nv) == 0){
-                g[v].insert(nv);
+        ll nv = -1;
+        if(v * a <= 1000000){
+            nv = v * a;
+            
+            if(nv == n){
+                cout << dist[v] + 1 << endl;
+                return 0;
+            }
 
+            if(dist[nv] == INF){
                 dist[nv] = dist[v] + 1;
 
                 q.push(nv);
             }
         }
-        
-        // 2
-        if(v >= 10 && v % 10 != 0){
-            int nv = rotate(v);
-            if(g[v].count(nv) == 0){
-                g[v].insert(nv);
-                
+
+        if(v >= 10 && v % 10 != 0 && v <= 1000000){
+            nv = rotate(v);
+
+            if(nv == n){
+                cout << dist[v] + 1 << endl;
+                return 0;
+            }
+
+            if(dist[nv] == INF){
                 dist[nv] = dist[v] + 1;
 
                 q.push(nv);
@@ -65,11 +69,7 @@ int main(){
         }
     }
 
-    int res = dist[1];
-
-    if(res == INF) res = -1;
-
-    cout << res << endl;
+    cout << -1 << endl;
 
     return 0;
 }
