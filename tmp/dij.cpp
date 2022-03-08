@@ -8,7 +8,7 @@ struct Edge{
     int to;
     ll weight;
 
-    Edge(int t, ll w): to(t), weight(w){}
+    Edge(int t, ll w): to(t), weight(w) {}
 };
 
 int main(){
@@ -17,12 +17,13 @@ int main(){
 
     int n, m;
     cin >> n >> m;
+
     vector<vector<Edge>> g(n);
     for(int i = 0; i < m; ++i){
         int a, b;
         ll c;
         cin >> a >> b >> c;
-        
+
         --a;
         --b;
         g[a].push_back(Edge(b, c));
@@ -44,7 +45,7 @@ int main(){
 
         for(auto ne: g[v]){
             int nv = ne.to;
-
+            
             if(dist[nv] > dist[v] + ne.weight){
                 dist[nv] = dist[v] + ne.weight;
 
@@ -53,7 +54,7 @@ int main(){
         }
     }
 
-    ll res = dist[n-1];
+    ll res = dist.back();
 
     if(res == INF) res = -1;
 
