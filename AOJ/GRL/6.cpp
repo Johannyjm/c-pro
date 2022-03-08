@@ -13,24 +13,29 @@ vector<vector<ll>> cost;
 
 vector<int> path_res;
 int cost_res;
+bool flg;
 
 void dfs(int v, ll cost_now, vector<int> path_now){
-    cout << v << " ";
+
     seen[v] = true;
+
     if(v == t){
-        path_now.push_back(t);
         path_res = path_now;
         cost_res = cost_now;
+        seen.assign(n, true);
+        flg = false;
         return;
     }
 
     for(auto nv: g[v]){
+
         if(seen[nv]) continue;
         if(cost[v][nv] == 0) continue;
 
         vector<int> tmp = path_now;
         tmp.push_back(nv);
-        dfs(nv, min(cost_now, cost[n][nv]), tmp);
+
+        dfs(nv, min(cost_now, cost[v][nv]), tmp);
     }
 }
 
@@ -55,7 +60,7 @@ int main(){
 
     seen.resize(n);
     g.resize(n);
-    cost.resize(n, vector<ll>(n, INF));
+    cost.resize(n, vector<ll>(n, -1));
     rep(i, m){
         int a, b, c;
         cin >> a >> b >> c;
@@ -69,20 +74,29 @@ int main(){
     while(1){
         
         seen.assign(n, false);
-
         vector<int> tmp;
+        tmp.push_back(s);
+        flg = true;
+
         dfs(s, INF, tmp);
 
         cout << cost_res << endl;
         for(auto e: path_res) cout << e << " ";
         cout << endl;
-        return 0;
 
-        if(cost_res == 0) break;
+
+
+        if(flg) break;
 
         res += cost_res;
 
         update(cost_res, path_res);
+        cout << endl;
+        for(auto e: cost){
+            for(auto ee: e) cout << ee << " ";
+            cout << endl;
+        }
+        cout << endl;
     }
 
     cout << res << endl;
