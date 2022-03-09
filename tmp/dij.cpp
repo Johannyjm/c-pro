@@ -14,7 +14,7 @@ struct Edge{
 int main(){
     cin.tie(nullptr);
     ios::sync_with_stdio(false);
-    
+
     int n, m;
     cin >> n >> m;
 
@@ -45,7 +45,7 @@ int main(){
 
         for(auto ne: g[v]){
             int nv = ne.to;
-
+            
             if(dist[nv] > dist[v] + ne.weight){
                 dist[nv] = dist[v] + ne.weight;
 
@@ -54,7 +54,7 @@ int main(){
         }
     }
 
-    ll res = dist.back();
+    ll res = dist[n-1];
 
     if(res == INF) res = -1;
 
