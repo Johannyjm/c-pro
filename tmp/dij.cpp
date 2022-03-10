@@ -45,7 +45,7 @@ int main(){
 
         for(auto ne: g[v]){
             int nv = ne.to;
-            
+
             if(dist[nv] > dist[v] + ne.weight){
                 dist[nv] = dist[v] + ne.weight;
 
