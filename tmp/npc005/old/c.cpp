@@ -40,13 +40,13 @@ int main(){
     // for(auto e: Q) cout << e << " ";
     // cout << endl;
 
-    fenwick_tree<int> bit(220000);
+    fenwick_tree<int> bit(440000);
     for(auto e: a){
         bit.add(e, 1);
     }
 
     for(auto x: Q){
-        cout << bit.sum(x, 220000) << "\n";
+        cout << bit.sum(x, 440000) << "\n";
     }
 
 
