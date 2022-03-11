@@ -38,17 +38,7 @@ int main(){
         b[i] = s[i] - k * i;
     }
 
-    for(auto e: a) cout << e << " ";
-    cout << endl;
-    for(auto e: s) cout << e << " ";
-    cout << endl;
-    for(auto e: b) cout << e << " ";
-    cout << endl;
-
     compress(b);
-
-    for(auto e: b) cout << e << " ";
-    cout << endl;
 
     fenwick_tree<ll> bit(n+1);
     ll res = 0;
