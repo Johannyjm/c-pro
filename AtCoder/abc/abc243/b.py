@@ -14,7 +14,7 @@ def main():
     res2 = 0
     for i in range(n):
         for j in range(n):
-            if i >= j: continue
+            if i == j: continue
             if a[i] == b[j]: res2 += 1
 
 
