@@ -17,8 +17,8 @@ int main(){
 
     int n, m;
     cin >> n >> m;
-    vector<vector<Edge>> g(n);
 
+    vector<vector<Edge>> g(n);
     for(int i = 0; i < m; ++i){
         int a, b;
         ll c;
@@ -54,10 +54,10 @@ int main(){
         }
     }
 
-    ll res = dist.back();
+    ll res = dist[n-1];
 
     if(res == INF) res = -1;
-    
+
     cout << res << endl;
 
     return 0;
