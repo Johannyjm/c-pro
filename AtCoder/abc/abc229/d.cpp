@@ -1,6 +1,6 @@
 #include <iostream>
 #include <vector>
-#include <string>
+#include <queue>
 using namespace std;
 
 int main(){
@@ -10,34 +10,45 @@ int main(){
     string s;
     int k;
     cin >> s >> k;
+    
     int n = s.size();
 
-    vector<pair<char, int>> comp;
-    comp.push_back({s[0], 1});
-    for(int i = 1; i < n; ++i){
-        if(s[i] == comp.back().first) ++comp.back().second;
-        else comp.push_back({s[i], 1});
+    if(n == 1){
+        if(s == "." && k == 0) cout << 0 << endl;
+        else cout << 1 << endl;
+        return 0;
     }
-
-    vector<pair<int, pair<int, int>>> dots;
-    int leftx = 0;
-    for(int i = 0; i < (int)comp.size(); ++i){
-        if(comp[i].first == 'X'){
-            leftx = comp[i].second;
-            continue;
-        }
-        int rightx = 0;
-        if(i != (int)comp.size()-1) rightx = comp[i+1].second;
-
-        dots.push_back({comp[i].second, {leftx, rightx}});
-    }
-
-    // for(auto e: dots) cout << e.first << " " << e.second.first << " " << e.second.second << endl;
 
     int res = 0;
-    for(int i = 0; i < (int)dots.size(); ++i){
-        
+    int r = 0;
+    int nowdot = 0;
+    int nowx = 0;
+    if(s[0] == '.') ++nowdot;
+    else ++nowx;
+
+    for(int l = 0; l < n; ++l){
+        if(l > 0){
+            if(s[l-1] == '.') --nowdot;
+            else --nowx;
+        }
+
+        // if(r < l) r = l;
+
+        while(nowdot <= k){
+            ++r;
+            if(r >= n) break;
+            
+            if(s[r] == '.') ++nowdot;
+            else ++nowx;
+
+            if(nowdot > k) break;
+            
+            res = max(res, nowx+nowdot);
+            // cout << l << " " << r << " " << nowdot << " " << nowx << endl;
+        }
     }
+
+    cout << res << endl;
 
     return 0;
 }
