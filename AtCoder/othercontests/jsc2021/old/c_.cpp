@@ -4,25 +4,21 @@
 using namespace std;
 using ll = long long;
 
-
-
 int main(){
     cin.tie(nullptr);
     ios::sync_with_stdio(false);
 
-    int a, b;
-    cin >> a >> b;
 
-    int res = 1;
-    for(int g = 2; g <= b; ++g){
+    string s;
+    cin >> s;
 
-        int l = 0;
-        while(l < a) l += g;
-        int r = l + g;
-        if(a<=l && r<=b) res = max(res, g);
+    rep(i, 10){
+        string now = "";
+        rep(j, i) now += '0';
+        now += s;
+
+        cout << now << endl;
     }
-
-    cout << res << endl;
 
     return 0;
 }

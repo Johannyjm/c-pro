@@ -4,25 +4,19 @@
 using namespace std;
 using ll = long long;
 
-
-
 int main(){
     cin.tie(nullptr);
     ios::sync_with_stdio(false);
 
-    int a, b;
-    cin >> a >> b;
+    ll x, y, z;
+    cin >> x >> y >> z;
 
-    int res = 1;
-    for(int g = 2; g <= b; ++g){
-
-        int l = 0;
-        while(l < a) l += g;
-        int r = l + g;
-        if(a<=l && r<=b) res = max(res, g);
+    for(ll w = 1000000; w >= 0; --w){
+        if(x*w < z*y){
+            cout << w << endl;
+            return 0;
+        }
     }
-
-    cout << res << endl;
 
     return 0;
 }

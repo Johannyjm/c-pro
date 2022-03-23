@@ -8,14 +8,14 @@ int main(){
     cin.tie(nullptr);
     ios::sync_with_stdio(false);
 
-    ll x, y, z;
+    int x, y, z;
     cin >> x >> y >> z;
 
-    for(ll w = 1000000; w >= 0; --w){
-        if(x*w < z*y){
-            cout << w << endl;
-            return 0;
-        }
+    if((y*z)%x == 0){
+        cout << (y*z) / x - 1 << endl;
+    }
+    else{
+        cout << (y*z) / x << endl;
     }
 
     return 0;
