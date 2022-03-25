@@ -8,12 +8,63 @@ int main(){
     cin.tie(nullptr);
     ios::sync_with_stdio(false);
 
-    int x, y;
-    cin >> x >> y;
+    string directions = "RRRRLLLL";
+    int n = directions.size();
+    int res = 0;
+    int sm = 0;
+    bool flg = false;
+    for(int i = 0; i < n; ++i){
+        
+        if(!flg){
+            if(directions[i] == 'R'){
+                flg = true;
+            }
+        }
+        else{
+            if(directions[i] == 'R'){
+                ++sm;
+            }
+            if(directions[i] == 'S'){
+                res += 1 + sm;
+                sm = 0;
+                flg = false;
+            }
+            if(directions[i] == 'L'){
+                res += 2 + 2*sm;
+                sm = 0;
+                flg = false;
+            }
+        }
+    }
 
-    int a = y - x;
+    sm = 0;
+    flg = false;
+    for(int i = n-1; i >= 0; --i){
+        
+        if(!flg){
+            if(directions[i] == 'L'){
+                flg = true;
+            }
+        }
+        else{
+            if(directions[i] == 'L'){
+                ++sm;
+            }
+            if(directions[i] == 'S'){
+                res += 1 + sm;
+                sm = 0;
+                flg = false;
+            }
+            if(directions[i] == 'R'){
+                res += 2*sm;
+                sm = 0;
+                flg = false;
+            }
+        }
+    }
 
-    cout << (a+10-1) / 10 << endl;
+    cout << res << endl;
+    
 
     return 0;
 }
