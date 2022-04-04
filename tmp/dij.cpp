@@ -7,7 +7,7 @@ using ll = long long;
 struct Edge{
     int to;
     ll weight;
-    
+
     Edge(int t, ll w): to(t), weight(w) {}
 };
 
@@ -45,7 +45,7 @@ int main(){
 
         for(auto ne: g[v]){
             int nv = ne.to;
-
+            
             if(dist[nv] > dist[v] + ne.weight){
                 dist[nv] = dist[v] + ne.weight;
 
@@ -54,8 +54,8 @@ int main(){
         }
     }
 
-    ll res = dist[n-1];
-    
+    ll res = dist.back();
+
     if(res == INF) res = -1;
 
     cout << res << endl;
