@@ -8,7 +8,7 @@ struct Edge{
     int to;
     ll weight;
 
-    Edge(int t, ll w): to(t), weight(w){}
+    Edge(int t, ll w): to(t), weight(w) {}
 };
 
 int main(){
@@ -53,7 +53,7 @@ int main(){
             }
         }
     }
-    
+
     ll res = dist.back();
 
     if(res == INF) res = -1;
