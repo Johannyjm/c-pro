@@ -12,8 +12,6 @@ struct Edge{
 };
 
 int main(){
-
-
     cin.tie(nullptr);
     ios::sync_with_stdio(false);
 
@@ -60,6 +58,6 @@ int main(){
     if(res == INF) res = -1;
 
     cout << res << endl;
-
+        
     return 0;
 }
