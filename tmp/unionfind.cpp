@@ -2,21 +2,21 @@
 #include <vector>
 using namespace std;
 
-struct UnionFind{
+struct DisjointSetUnion{
     vector<int> p;
     vector<int> r;
 
-    UnionFind(int n){
+    DisjointSetUnion(int n){
         p.resize(n, -1);
         r.resize(n, 1);
     }
 
     int leader(int x){
         if(p[x] == -1) return x;
-        return p[leader(x)] = leader(x);
+        return p[x] = leader(p[x]);
     }
 
-    void unite(int x, int y){
+    void merge(int x, int y){
         x = leader(x);
         y = leader(y);
 
@@ -33,6 +33,26 @@ int main(){
     cin.tie(nullptr);
     ios::sync_with_stdio(false);
 
-    int n, m;
-    cin >> n >> m;
+    int n, q;
+    cin >> n >> q;
+
+    DisjointSetUnion uf(n);
+    while(q--){
+        int p, a, b;
+        cin >> p >> a >> b;
+
+        if(p == 0){
+            uf.merge(a, b);
+        }
+        if(p == 1){
+            if(uf.leader(a) == uf.leader(b)){
+                cout << "Yes" << endl;
+            }
+            else{
+                cout << "No" << endl;
+            }
+        }
+    }
+
+    return 0;
 }
