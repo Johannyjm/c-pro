@@ -1,5 +1,6 @@
-#include <iostream>
-#include <queue>
+#include <bits/stdc++.h>
+#define rep(i, n) for(int i = 0; i < (n); ++i)
+#define rep1(i, n) for(int i = 1; i < (n); ++i)
 using namespace std;
 using ll = long long;
 
@@ -7,32 +8,27 @@ int main(){
     cin.tie(nullptr);
     ios::sync_with_stdio(false);
 
-    ll n, k, x;
+    int n;
+    ll k, x;
     cin >> n >> k >> x;
+    vector<ll> a(n);
+    rep(i, n) cin >> a[i];
 
-    priority_queue<ll> pq;
-    for(int i = 0; i < n; ++i){
-        ll a;
-        cin >> a;
-        pq.push(a);
+    sort(a.begin(), a.end(), greater<ll>());
+
+    rep(i, n){
+        ll num = min(k, a[i] / x);
+        a[i] -= num * x;
+        k -= num;
     }
 
-    for(int i = 0; i < k; ++i){
-        ll val = pq.top();
-        pq.pop();
-
-        val = max(0ll, val - x);
-
-        pq.push(val);
+    sort(a.begin(), a.end(), greater<ll>());
+    rep(i, k){
+        a[i] = 0;
     }
 
     ll res = 0;
-    while(!pq.empty()){
-        ll val = pq.top();
-        pq.pop();
-
-        res += val;
-    }
+    for(auto elem: a) res += elem;
 
     cout << res << endl;
 
