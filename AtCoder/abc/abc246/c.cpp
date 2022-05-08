@@ -8,7 +8,29 @@ int main(){
     cin.tie(nullptr);
     ios::sync_with_stdio(false);
 
-    
+    int n;
+    ll k, x;
+    cin >> n >> k >> x;
+    vector<ll> a(n);
+    rep(i, n) cin >> a[i];
+
+    sort(a.begin(), a.end(), greater<ll>());
+
+    rep(i, n){
+        ll num = min(k, a[i] / x);
+        a[i] -= num * x;
+        k -= num;
+    }
+
+    sort(a.begin(), a.end(), greater<ll>());
+    rep(i, k){
+        a[i] = 0;
+    }
+
+    ll res = 0;
+    for(auto elem: a) res += elem;
+
+    cout << res << endl;
 
     return 0;
 }
