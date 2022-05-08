@@ -23,6 +23,11 @@ int main(){
     }
 
     sort(a.begin(), a.end(), greater<ll>());
+    if(k >= n){
+        cout << 0 << endl;
+        return 0;
+    }
+    
     rep(i, k){
         a[i] = 0;
     }

@@ -10,39 +10,28 @@ int main(){
 
     int n;
     cin >> n;
+
     vector<string> s(n), t(n);
     rep(i, n) cin >> s[i] >> t[i];
 
-    unordered_set<string> used;
+
     rep(i, n){
         
-        if(used.count(s[i])){
-            if(used.count(t[i])){
-                puts("No");
-                return 0;
-            }
-            else{
-                used.insert(t[i]);
-                continue;
-            }
-        }
-        if(used.count(t[i])){
-            used.insert(s[i]);
-            continue;
-        }
-        int count_s = 0;
-        int count_t = 0;
+        bool s_unuse = true;
+        bool t_unuse = true;
         rep(j, n){
             if(i == j) continue;
-            if(s[i] == s[j] || s[i] == t[j]) ++count_s;
-            if(t[i] == s[j] || t[i] == t[j]) ++count_t;
+            if(s[i] == s[j] || s[i] == t[j]) s_unuse = false;
+            if(t[i] == s[j] || t[i] == t[j]) t_unuse = false;
         }
 
-        if(count_s >= count_t) used.insert(t[i]);
-        else used.insert(s[i]);
+        if(!s_unuse && !t_unuse){
+            puts("No");
+            return 0;
+        }
     }
 
     puts("Yes");
-    
+
     return 0;
 }
