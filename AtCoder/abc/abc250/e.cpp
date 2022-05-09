@@ -45,7 +45,7 @@ int main(){
     // for(auto e: b) cout << e << " ";
     // cout << endl;
 
-    vector<bitset<220000>> st_a(n), st_b(n);
+    vector<bitset<22000>> st_a(n), st_b(n);
 
     st_a[0].set(a[0]);
     st_b[0].set(b[0]);

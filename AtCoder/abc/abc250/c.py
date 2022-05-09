@@ -23,8 +23,6 @@ def main():
             inds[a[inds[x]]] = inds[a[inds[x]+1]]
             inds[a[inds[x]+1]] = tmp
 
-        print()
-        print(*a)
 
     print(*a)
 
