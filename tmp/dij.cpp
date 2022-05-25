@@ -11,6 +11,7 @@ struct Edge{
     Edge(int t, ll w): to(t), weight(w) {}
 };
 
+
 int main(){
     cin.tie(nullptr);
     ios::sync_with_stdio(false);
