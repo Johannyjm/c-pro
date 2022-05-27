@@ -1,62 +1,43 @@
 #include <bits/stdc++.h>
-#define _GLIBCXX_DEBUG
-#define rep(i, n) for (int i = 0; i < (n); ++i)
-#define rep1(i, n) for (int i = 1; i < (n); ++i)
+#define rep(i, n) for(int i = 0; i < (n); ++i)
+#define rep1(i, n) for(int i = 1; i < (n); ++i)
 using namespace std;
-typedef long long ll;
+using ll = long long;
 
-int n;
+vector<int> w;
 vector<vector<int>> dp;
+int rec(int l, int r){
+    if(dp[l][r] != -1) return dp[l][r];
+    if(abs(l-r) <= 1) return dp[l][r] = 0;
+    
+    int ret = 0;
+    if(abs(w[l] - w[r-1]) <= 1 && rec(l+1, r-1) == r-l-2) ret = r-l;
 
-int solve(vector<int> w, int i){
-    w[i] = -1;
-    w[i+1] = -1;
-
-    bool flg = true;
-    rep(i, n-1){
-        if(w[i] == -1) continue;
-        int ptr = 0;
-        while(i+1 + ptr < n && w[i+1 + ptr] == -1){
-            ++ptr;
-        }
-        if(abs(w[i] - w[i+1 + ptr]) <= 1) {
-            flg = false;
-            break;
-        }
+    for(int m = l+1; m <= r-1; ++m){
+        ret = max(ret, rec(l, m) + rec(m, r));
     }
 
-    if(flg){
-        dp[0][i] == 
-    }
-
-    rep(i, n-1){
-        if(w[i] == -1) continue;
-        int ptr = 0;
-        while(i+1 + ptr < n && w[i+1 + ptr] == -1){
-            ++ptr;
-        }
-        if(abs(w[i] - w[i+1 + ptr]) <= 1){
-            int ret = solve(w, i);
-        }
-    }
+    return dp[l][r] = ret;
 }
 
-int main() {
+int main(){
     cin.tie(nullptr);
     ios::sync_with_stdio(false);
 
-    cin >> n;
-    vector<int> w(n);
-    rep(i, n) cin >> w[i];
+    dp.resize(330, vector<int>(330));
+    while(true){
+        int n;
+        cin >> n;
 
-    dp.resize(n, vector<int>(n, 0));
+        if(n == 0) return 0;
 
-    int res = 0;
-    rep(i, n-1){
-        if(abs(w[i] - w[i+1]) <= 1) res = max(res, solve(w, i));
+        w.resize(n);
+        rep(i, n) cin >> w[i];
+
+        dp.assign(330, vector<int>(330, -1));
+        cout << rec(0, n) << endl;
+
     }
-
-    cout << res << endl;
 
     return 0;
 }
