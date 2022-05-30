@@ -22,6 +22,7 @@ int main(){
     for(int i = 0; i < m; ++i){
         int a, b;
         ll c;
+
         cin >> a >> b >> c;
 
         --a;
@@ -54,8 +55,8 @@ int main(){
         }
     }
 
-    ll res = dist.back();
-    
+    ll res = dist[n-1];
+
     if(res == INF) res = -1;
 
     cout << res << endl;
