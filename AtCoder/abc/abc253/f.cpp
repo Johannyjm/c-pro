@@ -1,6 +1,6 @@
-#include <bits/stdc++.h>
-#define rep(i, n) for(int i = 0; i < (n); ++i)
-#define rep1(i, n) for(int i = 1; i < (n); ++i)
+#include <iostream>
+#include <vector>
+#include <queue>
 using namespace std;
 using ll = long long;
 
@@ -17,12 +17,13 @@ int main(){
 
     int n, m;
     cin >> n >> m;
-    
+
     vector<vector<Edge>> g(n);
     for(int i = 0; i < m; ++i){
         int a, b;
         ll c;
-
+        cin >> a >> b >> c;
+        
         --a;
         --b;
         g[a].push_back(Edge(b, c));
@@ -40,6 +41,8 @@ int main(){
         auto [d, v] = pq.top();
         pq.pop();
 
+        if(dist[v] != d) continue;
+
         for(auto ne: g[v]){
             int nv = ne.to;
 
@@ -50,7 +53,7 @@ int main(){
             }
         }
     }
-    
+
     ll res = dist.back();
 
     if(res == INF) res = -1;
