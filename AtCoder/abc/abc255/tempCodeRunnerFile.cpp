@@ -1,0 +1,2 @@
+
+        cout << ok << " " << ng << endl;
