@@ -15,7 +15,7 @@ def main():
         maxsq = 0
 
         for j in range(n):
-            print(i, j)
+            # print(i, j)
 
             maxsq = max(maxsq, (x[i]-x[j])**2 + (y[i]-y[j])**2)
         

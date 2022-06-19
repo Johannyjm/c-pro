@@ -11,45 +11,34 @@ int main(){
     int n, k;
     cin >> n >> k;
     vector<int> a(n);
+    unordered_set<int> bright;
     rep(i, k){
         int a_;
         cin >> a_;
-        a[i] = a_ - 1;
+        a[i] = a_-1;
+        bright.insert(a_-1);
     }
+
+
     vector<ll> x(n), y(n);
+    rep(i, n) cin >> x[i] >> y[i];
+
+    ll res_sq = 0;
     rep(i, n){
-        int x_, y_;
-        cin >> x_ >> y_;
-        x[i] = x_-1;
-        y[i] = y_-1;
-    }
-    ll ok = 1ll << 60;
-    ll ng = 0;
+        if(bright.count(i)) continue;
 
-    while(ok - ng > 1){
-        ll mid = (ok + ng) / 2;
-        // cout << ok << " " << ng << endl;
+        ll mindist_sq = 1ll << 60;
+        for(auto j: bright){
+            ll dist_sq = (x[i]-x[j])*(x[i]-x[j]) + (y[i]-y[j])*(y[i]-y[j]);
 
-        bool flg = true;
-        rep(i, n){
-            for(auto j: a){
-                ll d2 = (x[i]-x[j])*(x[i]-x[j]) + (y[i]-y[j])*(y[i]-y[j]);
-                // cout << i << " " << j << " " << d2 << endl;
-                if(d2 > mid){
-                    flg = false;
-                    break;
-                }
-            }
+            mindist_sq = min(mindist_sq, dist_sq);
+        }
 
-            if(!flg) break;
-        }        
-
-        if(flg) ok = mid;
-        else ng = mid;
+        res_sq = max(res_sq, mindist_sq);
     }
 
     cout << setprecision(20);
-    cout << sqrt(ok) << endl;
+    cout << sqrt(res_sq) << endl;
 
     return 0;
 }
