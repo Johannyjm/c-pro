@@ -23,7 +23,6 @@ def main():
                 indices_post.append(idx)
         
         bases = [False] * 4
-        print(indices_post)
         for idx in indices_post:
             bases[idx] = True
 
