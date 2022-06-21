@@ -1,6 +1,11 @@
 dy = (0, 1, 1, 1, 0, -1, -1, -1)
 dx = (1, 1, 0, -1, -1, -1, 0, 1)
 
+# 6 7 8
+# 5 v 1 -> x+
+# 4 3 2
+#   ↓ y+
+
 def main():
     h, w = map(int, input().split())
     s = [input() for _ in range(h)]
