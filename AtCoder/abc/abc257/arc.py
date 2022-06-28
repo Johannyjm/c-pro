@@ -16,7 +16,7 @@ def main():
     for elem in cand:
         if 1 <= elem <= n:
             res += 1
-    print(cand[: 10])
+    # print(cand[: 10])
     print(res)
 
 
