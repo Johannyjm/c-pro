@@ -14,7 +14,7 @@ def main():
                 continue
 
             if 1 <= c <= n :
-                result += 1            
+                result += 1
 
 
     
