@@ -2,14 +2,14 @@ from collections import deque
 dy = (0, 1, 0, -1)
 dx = (1, 0, -1, 0)
 
-def grid_bfs(grid, sy, sx, wall='#'): # returns dist[h][w]
+def grid_bfs(grid, sy, sx, inf=1<<60, wall='#'): # returns dist[h][w]
     h = len(grid)
     w = len(grid[0])
 
     q = deque()
     q.append((sy, sx))
 
-    INF = 1 << 60
+    INF = inf
     dist = [[INF]*w for _ in range(h)]
     dist[sy][sx] = 0
 
