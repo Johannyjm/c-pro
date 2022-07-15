@@ -26,6 +26,7 @@ int main(){
 
         --a;
         --b;
+        
         g[a].push_back(Edge(b, c));
         g[b].push_back(Edge(a, c));
     }
@@ -45,7 +46,7 @@ int main(){
 
         for(auto ne: g[v]){
             int nv = ne.to;
-            
+
             if(dist[nv] > dist[v] + ne.weight){
                 dist[nv] = dist[v] + ne.weight;
 
