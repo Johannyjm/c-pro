@@ -2,12 +2,15 @@ class UnionFind:
 
     def __init__(self, n: int) -> None:
         self.parent = [-1] * n
+        self.rank =[1] * n
     
     def find(self, x: int) -> int:
         if self.parent[x] == -1:
             return x
         
-        return self.find(self.parent[x])
+        tmp = self.find(self.parent[x])
+        self.parent[x] = tmp
+        return tmp
     
     def union(self, x: int, y: int) -> None:
         x = self.find(x)
@@ -15,6 +18,12 @@ class UnionFind:
 
         if x == y:
             return
+        
+        if self.rank[x] > self.rank[y]:
+            x, y = y, x
+        
+        if self.rank[x] == self.rank[y]:
+            self.rank[y] += 1
         
         self.parent[x] = y
     
