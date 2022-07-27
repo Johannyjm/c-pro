@@ -12,14 +12,15 @@ def main():
                 fs[i] = lambda x: x|a
             if t == 3:
                 fs[i] = lambda x: x^a
-        if i > 0: 
-            if t == 1:
-                fs[i] = lambda x: (fs[i-1](x) & a)
-            if t == 2:
-                fs[i] = lambda x: (fs[i-1](x) | a)
-            if t == 3:
-                fs[i] = lambda x: (fs[i-1](x) ^ a)
+            continue
     
+        if t == 1:
+            fs[i] = lambda x: (fs[i-1](x) & a)
+        if t == 2:
+            fs[i] = lambda x: (fs[i-1](x) | a)
+        if t == 3:
+            fs[i] = lambda x: (fs[i-1](x) ^ a)
+
     now = c
     for i in range(n):
         now = fs[i](now)

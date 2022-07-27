@@ -1,9 +1,8 @@
-from collections import defaultdict
 def main():
     n, m  = map(int, input().split())
     x = [0] + list(map(int, input().split()))
 
-    cy = defaultdict(int)
+    cy = [0] * 5500 # defaultdict(int)
     for _ in range(m):
         c, y = map(int, input().split())
         cy[c] = y
@@ -21,7 +20,7 @@ def main():
         for j in range(n):
             # i, j := i回目にj連続Hが出ている
             if dp[j] == -1: continue
-            
+
             # i+1回目はH
             nxt[j+1] = max(nxt[j+1], dp[j] + x[i+1] + cy[j+1])
 
