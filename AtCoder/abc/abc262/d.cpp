@@ -29,24 +29,26 @@ int main(){
         //     dp[i][1][am[i]] = 1;
         // }
         dp[0][0][0] = 1;
-        rep(i, n) rep(j, n) rep(k, d){
-            if(dp[i][j][k].val() == 0) continue;
+        rep(i, n) rep(j, d+1) rep(k, d){
+            // if(dp[i][j][k].val() == 0) continue;
             // not choose
             dp[i+1][j][k] += dp[i][j][k];
-            cout << dp[i+1][j][k].val() << " " << i+1 << " " << j << " " << k << endl;
+            // cout << dp[i+1][j][k].val() << " " << i+1 << " " << j << " " << k << endl;
 
             // choose
-            if(j+1 < n) dp[i+1][j+1][(k+am[i])%d] += dp[i][j][k];
-            cout << dp[i+1][j+1][(k+am[i])%d].val() << " " << i+1 << " " << j+1 << " " << (k+am[i])%d << endl;
-            cout << endl;
+            if(j != d) dp[i+1][j+1][(k+am[i])%d] += dp[i][j][k];
+            // cout << dp[i+1][j+1][(k+am[i])%d].val() << " " << i+1 << " " << j+1 << " " << (k+am[i])%d << endl;
+            // cout << endl;
         }
 
-        mint sm = 0;
-        rep(k, d) sm += dp[n][d][0];
+        // mint sm = 0;
+        // rep(k, d) sm += dp[n][d][0];
 
-        res += sm;
+        // res += sm;
 
-        cout << d << " " << sm.val() << endl;
+        // cout << d << " " << sm.val() << endl;
+
+        res += dp[n][d][0];
     }
 
     cout << res.val() << endl;
