@@ -47,8 +47,8 @@ int main(){
 
             if(dist[nv] > dist[v] + ne.weight){
                 dist[nv] = dist[v] + ne.weight;
-
-                pq.push({dist[nv], nv});
+                
+                pq.push({dist[nv], nv}); 
             }
         }
     }
