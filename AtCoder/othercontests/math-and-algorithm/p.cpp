@@ -4,26 +4,27 @@
 using namespace std;
 using ll = long long;
 
+ll gcd(ll x, ll y){
+    if(x == 0) return y;
+    return gcd(y%x, x);
+}
+
 int main(){
     cin.tie(nullptr);
     ios::sync_with_stdio(false);
 
-    ll n;
+    int n;
     cin >> n;
 
-    map<ll, ll> res;
-    for(ll k = 2; k*k <= n; ++k){
-        while(n%k == 0){
-            n /= k;
-            ++res[k];
-        }
-    }
-    if(n != 1) res[n] = 1;
+    ll g = 0;
+    rep(i, n){
+        ll a;
+        cin >> a;
 
-    for(auto k: res){
-        rep(_, k.second) cout << k.first << " ";
+        g = gcd(g, a);
     }
-    cout << endl;
+
+    cout << g << endl;
 
     return 0;
 }
