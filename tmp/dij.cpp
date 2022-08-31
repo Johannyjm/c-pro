@@ -39,7 +39,7 @@ int main(){
     while(!pq.empty()){
         auto [d, v] = pq.top();
         pq.pop();
-
+        
         if(dist[v] != d) continue;
 
         for(auto ne: g[v]){
@@ -47,8 +47,8 @@ int main(){
 
             if(dist[nv] > dist[v] + ne.weight){
                 dist[nv] = dist[v] + ne.weight;
-                
-                pq.push({dist[nv], nv}); 
+
+                pq.push({dist[nv], nv});
             }
         }
     }
