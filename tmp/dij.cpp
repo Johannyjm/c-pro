@@ -17,6 +17,7 @@ int main(){
 
     int n, m;
     cin >> n >> m;
+
     vector<vector<Edge>> g(n);
     for(int i = 0; i < m; ++i){
         int a, b;
@@ -39,7 +40,7 @@ int main(){
     while(!pq.empty()){
         auto [d, v] = pq.top();
         pq.pop();
-        
+
         if(dist[v] != d) continue;
 
         for(auto ne: g[v]){
