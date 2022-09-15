@@ -26,26 +26,18 @@ def main():
     l_sm = 0
     for i in range(n):
         l_sm += len(s[i])
+    
+    al = 16 - l_sm
+    al -= n-1
+
 
     for p in permutations(range(n)):
-
-        # if n > 1:        
-        #     for i in range(1, l_sm):
-
-        #         if n <= 2: continue
-        #         for j in range(1, l_sm):
-
-        #             if n <= 3: continue
-        #             for k in range(1, l_sm):
-                        
-        #                 if n <= 4: continue
-        #                 for l in range(1, l_sm):
-
-
+        
         for i in range(100):
             n_under = []
             for j in range(n-1):
-                n_under.append(randint(1, max(1, (16-l_sm)//(n-1))))
+                n_under.append(randint(0, al))
+
 
 
 
