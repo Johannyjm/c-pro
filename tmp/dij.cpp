@@ -15,8 +15,8 @@ int main(){
     cin.tie(nullptr);
     ios::sync_with_stdio(false);
 
-    int n, m;
-    cin >> n >> m;
+    int n, m, r;
+    cin >> n >> m >> r;
 
     vector<vector<Edge>> g(n);
     for(int i = 0; i < m; ++i){
@@ -27,15 +27,14 @@ int main(){
         --a;
         --b;
         g[a].push_back(Edge(b, c));
-        g[b].push_back(Edge(a, c));
     }
 
     priority_queue<pair<ll, int>, vector<pair<ll, int>>, greater<pair<ll, int>>> pq;
-    pq.push({0, 0});
+    pq.push({0, r});
 
     const ll INF = 1ll << 60;
     vector<ll> dist(n, INF);
-    dist[0] = 0;
+    dist[r] = 0;
 
     while(!pq.empty()){
         auto [d, v] = pq.top();
@@ -54,11 +53,11 @@ int main(){
         }
     }
 
-    ll res = dist.back();
-
-    if(res == INF) res = -1;
-
-    cout << res << endl;
+    for(auto res: dist){
+        if(res == INF) cout << "INF";
+        else cout << res;
+        cout << '\n';
+    }
 
     return 0;
 }
