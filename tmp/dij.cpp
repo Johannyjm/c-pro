@@ -24,8 +24,6 @@ int main(){
         ll c;
         cin >> a >> b >> c;
 
-        --a;
-        --b;
         g[a].push_back(Edge(b, c));
     }
 
@@ -56,8 +54,9 @@ int main(){
     for(auto res: dist){
         if(res == INF) cout << "INF";
         else cout << res;
+
         cout << '\n';
     }
-
+    
     return 0;
 }
