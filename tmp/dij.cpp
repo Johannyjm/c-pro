@@ -54,7 +54,7 @@ int main(){
     for(auto res: dist){
         if(res == INF) cout << "INF";
         else cout << res;
-        cout << '\n'; 
+        cout << '\n';
     }
 
     return 0;
