@@ -5,9 +5,9 @@ def main():
     st = [[int(t), s] for s, t in st]
     print(st)
 
-    st.sort(reverse=True)
+    st.sort()
 
-    print(st[1][1])    
+    print(st[-2][1])    
 
 if __name__ == '__main__':
     main()
