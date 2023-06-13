@@ -41,6 +41,19 @@ vector<int> rooted_tree(vector<vector<int>> g, int r=0){
     return ret;
 }
 
+vector<vector<int>> rooted_to_graph(vector<int> parent){
+    int n = parent.size();
+    vector<vector<int>> ret(n);
+    rep(i, n){
+        if(parent[i] == -1) continue;
+
+        ret[i].push_back(parent[i]);
+        ret[parent[i]].push_back(i);
+    }
+
+    return ret;
+}
+
 template<typename T>
 vector<T> compress(vector<T> &a){
     vector<T> ret = a;
