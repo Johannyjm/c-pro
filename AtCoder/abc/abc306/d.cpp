@@ -17,12 +17,12 @@ int main(){
     vector<vector<ll>> dp(n, vector<ll>(2, -INF));
 
     if(x[0] == 0){
-        dp[0][0] = y[0]; // ate to no problem
-        dp[0][1] = 0; // broke
+        dp[0][0] = max(0ll, y[0]);
+        dp[0][1] = 0;
     }
     else{
         dp[0][0] = 0;
-        dp[0][1] = y[0]; // broke
+        dp[0][1] = y[0];
     }
 
     rep1(i, n){
