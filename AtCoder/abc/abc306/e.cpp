@@ -18,7 +18,7 @@ void add(ll y, int xi){
         TopK.erase(TopK.begin());
         TopK.insert(y);
     }
-    else Others.insert(y);
+    else Others.insert(y); 
     A[xi] = y;
 }
 
