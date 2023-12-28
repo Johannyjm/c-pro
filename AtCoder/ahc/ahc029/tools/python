@@ -1,0 +1,20 @@
+    Finished release [optimized] target(s) in 0.18s
+     Running `target/release/tester python ../sample_submission.py`
+score:367
+Score = 367
+    Finished release [optimized] target(s) in 0.04s
+     Running `target/release/tester python ../sample_submission.py`
+score:1332
+Score = 1332
+    Finished release [optimized] target(s) in 0.04s
+     Running `target/release/tester python ../sample_submission.py`
+score:10162
+Score = 10162
+    Finished release [optimized] target(s) in 0.04s
+     Running `target/release/tester python ../sample_submission.py`
+score:9550
+Score = 9550
+    Finished release [optimized] target(s) in 0.05s
+     Running `target/release/tester python ../sample_submission.py`
+score:1869
+Score = 1869
